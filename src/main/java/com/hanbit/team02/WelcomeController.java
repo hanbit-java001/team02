@@ -1,4 +1,4 @@
-package com.hanbit.team02.web.controller;
+package com.hanbit.team02;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

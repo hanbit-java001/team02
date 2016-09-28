@@ -1,4 +1,4 @@
-package com.hanbit.team02.web.controller.core.dao;
+package com.hanbit.team02.core.dao;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.hanbit.team02.web.controller.core.vo.TicketVO;
+import com.hanbit.team02.core.vo.TicketVO;
 
 @Repository
 public class TicketDAO {

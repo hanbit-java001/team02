@@ -1,4 +1,4 @@
-package com.hanbit.team02.web.controller.core.vo;
+package com.hanbit.team02.core.vo;
 
 public class TicketVO {
 	private int trainId;
