@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
-    
+<mapper namespace="ticket">
+	<insert id="reserveTicket" parameterType="TicketVO">
+		INSERT INTO TICKET
+			(TRAIN_ID, SEAT_NUMBER, RESERVED_NUMBER, NAME, RESERVED_TIME, CANCEL)
+		VALUES
+			(#{trainId}, #{seatNumber}, #{reservedNumber}, #{name}, #{reservedTime}, #{cancel})
+	</insert>
+
+	<update id="cancelTicket" parameterType="TicketVO">
+		UPDATE TICKET SET
+			(TRAIN_ID = #{trainId}, SEAT_NUMBER = #{seatNumber}, RESERVED_NUMBER = #{reservedNumber},
+			NAME = #{name}, RESERVED_TIME = #{reservedTime}, CANCEL = #{cancel})
+		WHERE TRAIN_ID = #{trainId}
+	</update>
+
+	<select id="selectTickets" parameterType="Map" resultType="TicketVO">
+		SELECT TRAIN_ID, SEAT_NUMBER, RESERVED_NUMBER, NAME, RESERVED_TIME, CANCEL
+		FROM TICKET
+		WHERE TRAIN_ID = #{trainId}
+		ORDER BY RESERVED_TIME
+	</select>
+
+	<select id="selectTicket" parameterType="int" resultType="TicketVO">
+		SELECT TRAIN_ID, SEAT_NUMBER, RESERVED_NUMBER, NAME, RESERVED_TIME, CANCEL
+		FROM TICKET
+		WHERE TRAIN_ID = #{trainId}
+	</select>
+</mapper>
