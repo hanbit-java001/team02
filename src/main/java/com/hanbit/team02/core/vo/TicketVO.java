@@ -2,7 +2,7 @@ package com.hanbit.team02.core.vo;
 
 public class TicketVO {
 	private int trainId;
-	private int seatNumber;
+	private String seatNumber;
 	private int reservedNumber;
 	private String name;
 	private int reservedTime;
@@ -14,10 +14,10 @@ public class TicketVO {
 	public void setTrainId(int trainId) {
 		this.trainId = trainId;
 	}
-	public int getSeatNumber() {
+	public String getSeatNumber() {
 		return seatNumber;
 	}
-	public void setSeatNumber(int seatNumber) {
+	public void setSeatNumber(String seatNumber) {
 		this.seatNumber = seatNumber;
 	}
 	public int getReservedNumber() {
