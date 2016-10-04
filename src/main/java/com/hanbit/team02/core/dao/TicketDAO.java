@@ -37,7 +37,7 @@ public class TicketDAO {
 	}
 
 	// 티켓 상세 보기
-	public TicketVO selectTicket(int reservedNumber, int cancel) {
+	public TicketVO selectTicket(String reservedNumber, int cancel) {
 		Map params = new HashMap();
 		params.put("reservedNumber", reservedNumber);
 		params.put("cancel", cancel);
@@ -47,7 +47,7 @@ public class TicketDAO {
 	}
 
 	// 티켓 취소하기
-	public int cancelTicket(int reservedNumber) {
+	public int cancelTicket(String reservedNumber) {
 		int result = sqlSession.update("ticket.cancelTicket", reservedNumber);
 		return result;
 	}

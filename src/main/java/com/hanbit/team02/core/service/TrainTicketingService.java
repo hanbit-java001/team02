@@ -25,9 +25,10 @@ public class TrainTicketingService {
 	}
 	
 	//예매 목록보기
-	public List<TicketVO> getReservedTrainTickets(int reservedNumber, int cancle) {
-		if(cancle==0){
-			return ticketDAO.selectTickets(reservedNumber);
+	public List<TicketVO> getReservedTrainTickets(String name, int cancel) {
+		LOGGER.debug("예매 티켓 목록 가져오기");
+		if(cancel==0){
+			return ticketDAO.selectTickets(name, cancel);
 		}
 		else{
 			return null;
@@ -35,23 +36,40 @@ public class TrainTicketingService {
 	}
 
 	//예매 상세보기
-	public TicketVO getReservedTrainTicket(int reservedNumber) {
-		LOGGER.debug("예매 티켓 가져오기");
-		return ticketDAO.selectTicket(reservedNumber);
+	public TicketVO getReservedTrainTicket(String reservedNumber, int cancel) {
+		LOGGER.debug("예매 티켓 상세보기");
+		if(cancel==0){
+			return ticketDAO.selectTicket(reservedNumber, cancel);	
+		}
+		else{
+			return null;
+		}
 	}
-
+	
 	//취소하기
-	public int cancelReservedTrainTicket(int reservedNumber) {
+	public int cancelReservedTrainTicket(String reservedNumber) {
 		return ticketDAO.cancelTicket(reservedNumber);
 	}
 	
 	//취소목록보기
-	public List<TicketVO> getCanceledTrainTickets(int reservedNumber, String name) {
-		return null;
+	public List<TicketVO> getCanceledTrainTickets(String name, int cancel) {
+		LOGGER.debug("취소 티켓 목록 가져오기");
+		if(cancel!=0){
+			return ticketDAO.selectTickets(name, cancel);	
+		}
+		else{
+			return null;
+		}
 	}
 
 	//취소상세보기
-	public TicketVO getCanceledTrainTicket(int reservedNumber) {
-		return null;
+	public TicketVO getCanceledTrainTicket(String reservedNumber, int cancel) {
+		LOGGER.debug("취소 티켓 상세보기");
+		if(cancel!=0){
+			return ticketDAO.selectTicket(reservedNumber, cancel);	
+		}
+		else{
+			return null;
+		}
 	}
 }
