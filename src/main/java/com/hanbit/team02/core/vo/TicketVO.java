@@ -1,11 +1,13 @@
 package com.hanbit.team02.core.vo;
 
+import java.util.Date;
+
 public class TicketVO {
 	private int trainId;
 	private String seatNumber;
-	private int reservedNumber;
+	private String reservedNumber;
 	private String name;
-	private int reservedTime;
+	private Date reservedTime;
 	private int cancel;
 
 	public int getTrainId() {
@@ -20,10 +22,10 @@ public class TicketVO {
 	public void setSeatNumber(String seatNumber) {
 		this.seatNumber = seatNumber;
 	}
-	public int getReservedNumber() {
+	public String getReservedNumber() {
 		return reservedNumber;
 	}
-	public void setReservedNumber(int reservedNumber) {
+	public void setReservedNumber(String reservedNumber) {
 		this.reservedNumber = reservedNumber;
 	}
 	public String getName() {
@@ -32,10 +34,10 @@ public class TicketVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getReservedTime() {
+	public Date getReservedTime() {
 		return reservedTime;
 	}
-	public void setReservedTime(int reservedTime) {
+	public void setReservedTime(Date reservedTime) {
 		this.reservedTime = reservedTime;
 	}
 	public int getCancel() {
