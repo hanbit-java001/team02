@@ -10,42 +10,21 @@
 	href="/static/plugins/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="/static/plugins/material/iconfont/material-icons.css">
-<link rel="stylesheet" href="/static/css/scheduler.css" />
-<style>
-.team2-header {
-	width: 100%;
-	height: 48px;
-	background-color:#383838;
-	z-index: 1000;
-}
-
-.ticketingContainer{
-	position: relative;
-}
-
-.btnGroupTicketing{
-	margin-top: 100px;
-}
-.team2-top-button{
-	color: white;
-}
-</style>
+<link rel="stylesheet" href="/static/css/ticketing.css" />
 
 <title>Ticketing page</title>
 </head>
 <body>
 
 	<header class="team2-header">
-	<div id="btnGroupMain">
-		<div id="btnMenu" class="team2-top-button">
-			<i class="material-icons hanbit-abs-center">menu</i>
+		<div id="btnGroupMain">
+				<i class="material-icons team2-menu-button">menu</i>
 		</div>
-	</div>
 	</header>
 
 	<nav class="ticketingContainer container-fluid">
-		<div class="col-lg-4"></div>
-		<div class="btnGroupTicketing col-lg-4 ">
+		<div class="col-lg-4 col-md-4 col-sm-4"></div>
+		<div class="btnGroupTicketing col-lg-4 col-md-4 col-sm-4">
 			<p>
 				<button type="button" class="btn btnReserve btn-block">예매하기</button>
 			</p>
@@ -56,11 +35,29 @@
 				<button type="button" class="btn btnListingOfCanceled btn-block">취소목록</button>
 			</p>
 		</div>
-		<div class="col-lg-4"></div>
+		<div class="col-lg-4 col-md-4 col-sm-4"></div>
 	</nav>
+
+	<section class="reserveContainer">
+		<div class="col-lg-4 col-md-4 col-sm-4"></div>
+		<div class="col-lg-4 col-md-4 col-sm-4">
+			<div class="form-group">
+   				<label for="txtName" class="input-required">출발역</label>
+   				<menu type="toolbar" id="txtName">
+   					
+   				</menu>
+			</div>
+			<div class="form-group">
+   				<label for="txtName" class="input-required">도착역</label>
+   				<menu type="context" class="form-control" id="txtName" placeholder="도착역">
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-4 col-sm-4"></div>
+		
+	</section>
 
 	<script src="/static/plugins/jquery/jquery-3.1.0.min.js"></script>
 	<script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
-	<script src="/static/js/scheduler.js"></script>
+	<script src="/static/js/ticketing.js"></script>
 </body>
 </html>
