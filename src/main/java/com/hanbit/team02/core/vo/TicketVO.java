@@ -7,7 +7,7 @@ public class TicketVO {
 	private String seatNumber;
 	private String reservedNumber;
 	private String name;
-	private Date reservedTime;
+	private String reservedTime;
 	private int cancel;
 
 	public String getTrainId() {
@@ -34,10 +34,10 @@ public class TicketVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getReservedTime() {
+	public String getReservedTime() {
 		return reservedTime;
 	}
-	public void setReservedTime(Date reservedTime) {
+	public void setReservedTime(String reservedTime) {
 		this.reservedTime = reservedTime;
 	}
 	public int getCancel() {
