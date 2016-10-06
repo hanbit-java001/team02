@@ -3,17 +3,17 @@ package com.hanbit.team02.core.vo;
 import java.util.Date;
 
 public class TicketVO {
-	private int trainId;
+	private String trainId;
 	private String seatNumber;
 	private String reservedNumber;
 	private String name;
 	private Date reservedTime;
 	private int cancel;
 
-	public int getTrainId() {
+	public String getTrainId() {
 		return trainId;
 	}
-	public void setTrainId(int trainId) {
+	public void setTrainId(String trainId) {
 		this.trainId = trainId;
 	}
 	public String getSeatNumber() {
