@@ -51,18 +51,8 @@
 		</tr>
 	</table>
 	<button class="applyBtn" type="button">º¸³»±â</button>
-<script type="text/javascript">
-$(function(){
-	$(".applyBtn").on("click", function() {
-		var trainId = $("#txtTrainId").val().trim();
-		var seatNumber = $("#txtSeatNumber").val().trim();
-		var reservedNumber = $("#txtReservedNumber").val().trim();
-		var name = $("#txtName").val().trim();
-		var reservedTime = $("#txtReservedTime").val().trim();
-		var cancel = $("#txtCancel").val().trim();
-	}
-});
-</script>
+	
+
 	
 <script src="/static/plugins/jquery/jquery-3.1.0.min.js"></script>
 <script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
