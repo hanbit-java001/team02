@@ -29,16 +29,16 @@ public class SecurityService {
 	}
 
 	public MemberVO getValidMember(String memberId, String password) {
-		MemberVO member = MemberDAO.selectMember(memberId);
+		MemberVO member = memberDAO.selectMember(memberId);
 
 		if(memberId==null) {
-			throw new Exception("존재하지 않는 아이디입니다.");
+			throw new RuntimeException("존재하지 않는 아이디입니다.");
 		}
 
 		String encryptedPassword = member.getPassword();
 
 		if(!matchPassword(password, encryptedPassword)) {
-			throw new Exception("비밀번호가 틀렸습니다.");
+			throw new RuntimeException("비밀번호가 틀렸습니다.");
 		}
 
 		return member;
