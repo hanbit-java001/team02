@@ -8,15 +8,17 @@ import org.springframework.stereotype.Component;
 public class Session {
 
 	private boolean loggedIn;
+	private String name;
 	private String memberId;
 	private String email;
-	private String name;
+	private String phoneNumber;
 
 	public void logout() {
 		loggedIn = false;
+		name = null;
 		memberId = null;
 		email = null;
-		name = null;
+		phoneNumber = null;
 	}
 
 	public boolean isLoggedIn() {
@@ -46,4 +48,11 @@ public class Session {
 		this.memberId = memberId;
 	}
 
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 }
