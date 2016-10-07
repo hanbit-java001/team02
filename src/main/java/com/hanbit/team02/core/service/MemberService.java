@@ -29,16 +29,16 @@ public class MemberService {
 	public String joinMember(MemberVO member) {
 		LOGGER.debug("회원가입");
 
-		int countMember = MemberDAO.countMember(member.getMemberId());
+		int countMember = memberDAO.countMember(member.getMemberId());
 
-		if(countMember>0) {
-			throw new Exception("이미 존재하는 아이디입니다.");
+		if (countMember > 0) {
+			throw new RuntimeException("이미 존재하는 아이디입니다.");
 		}
 
 		String encryptedPassword = securityService.encryptPassword(member.getPassword());
 		member.setPassword(encryptedPassword);
 
-		MemberDAO.insertMember(member);
+		memberDAO.insertMember(member);
 
 		return member.getName();
 	}
@@ -47,7 +47,7 @@ public class MemberService {
 	public List<MemberVO> getMembers(String memberId) {
 		LOGGER.debug("회원목록");
 
-		if(memberId.equals("admin")) {
+		if (memberId.equals("admin")) {
 			return memberDAO.selectMembers(memberId);
 		} else {
 			return null;
@@ -69,7 +69,7 @@ public class MemberService {
 		String passwordCurrent = member.getCurrentPassword();
 		String encryptedPasswordCurrent = securityService.encryptPassword(passwordCurrent);
 
-		if(!securityService.matchPassword(passwordFromDB, encryptedPasswordCurrent)) {
+		if (!securityService.matchPassword(passwordFromDB, encryptedPasswordCurrent)) {
 			throw new RuntimeException("비밀번호를 잘못 입력하셨습니다.");
 		}
 
@@ -87,7 +87,7 @@ public class MemberService {
 		String passwordCurrent = member.getCurrentPassword();
 		String encryptedPasswordCurrent = securityService.encryptPassword(passwordCurrent);
 
-		if(!securityService.matchPassword(passwordFromDB, encryptedPasswordCurrent)) {
+		if (!securityService.matchPassword(passwordFromDB, encryptedPasswordCurrent)) {
 			throw new RuntimeException("비밀번호가 틀렸습니다.");
 		}
 

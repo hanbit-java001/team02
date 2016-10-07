@@ -13,19 +13,19 @@ public class MemberDAO {
 
 	@Autowired
 	private SqlSession sqlSession;
-	
 
 
-	public static int countMember(String memberId) {
+
+	public int countMember(String memberId) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 
 
-	public static void insertMember(MemberVO member) {
+	public void insertMember(MemberVO member) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
