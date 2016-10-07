@@ -7,6 +7,8 @@ public class MemberVO {
 	private String email;
 	private String phoneNumber;
 
+	private String currentPassword;
+
 	public String getName() {
 		return name;
 	}
@@ -37,4 +39,11 @@ public class MemberVO {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+	public String getCurrentPassword() {
+		return currentPassword;
+	}
+	public void setCurrentPassword(String currentPassword) {
+		this.currentPassword = currentPassword;
+	}
+
 }

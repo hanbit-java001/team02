@@ -27,7 +27,8 @@ public class MemberService {
 
 	// 회원가입
 	public String joinMember(MemberVO member) {
-		LOGGER.debug("회원으로 가입됨");
+		LOGGER.debug("회원가입");
+
 		int countMember = MemberDAO.countMember(member.getMemberId());
 
 		if(countMember>0) {
@@ -43,26 +44,56 @@ public class MemberService {
 	}
 
 	// 회원목록
-	public List<MemberVO> getMembers(String memberId, String email) {
-		LOGGER.debug("회원목록 가져옴");
-		return memberDAO.selectMembers(memberId, email);
+	public List<MemberVO> getMembers(String memberId) {
+		LOGGER.debug("회원목록");
+
+		if(memberId.equals("admin")) {
+			return memberDAO.selectMembers(memberId);
+		} else {
+			return null;
+		}
 	}
 
-	// 회원정보조회
+	// 회원정보 조회
 	public MemberVO getMember(String memberId) {
-		LOGGER.debug("회원정보 조회함");
+		LOGGER.debug("회원정보 조회");
+
 		return memberDAO.selectMember(memberId);
 	}
 
-	// 회원정보수정
+	// 회원정보 수정
 	public boolean modifyMember(MemberVO member) {
-		LOGGER.debug("회원정보가 수정됨");
-		return false;
+		LOGGER.debug("회원정보 수정");
+
+		String passwordFromDB = MemberDAO.selectPassword(member.getMemberId());
+		String passwordCurrent = member.getCurrentPassword();
+		String encryptedPasswordCurrent = securityService.encryptPassword(passwordCurrent);
+
+		if(!securityService.matchPassword(passwordFromDB, encryptedPasswordCurrent)) {
+			throw new RuntimeException("비밀번호를 잘못 입력하셨습니다.");
+		}
+
+		String encryptedPassword = securityService.encryptPassword(member.getPassword());
+		member.setPassword(encryptedPassword);
+
+		return memberDAO.updateMember(member);
 	}
 
-	// 회원탈퇴
+	// 회원 탈퇴
 	public boolean leaveMember(MemberVO member) {
-		LOGGER.debug("회원 탈퇴함");
-		return false;
+		LOGGER.debug("회원 탈퇴");
+
+		String passwordFromDB = MemberDAO.selectPassword(member.getMemberId());
+		String passwordCurrent = member.getCurrentPassword();
+		String encryptedPasswordCurrent = securityService.encryptPassword(passwordCurrent);
+
+		if(!securityService.matchPassword(passwordFromDB, encryptedPasswordCurrent)) {
+			throw new RuntimeException("비밀번호가 틀렸습니다.");
+		}
+
+		String encryptedPassword = securityService.encryptPassword(member.getPassword());
+		member.setPassword(encryptedPassword);
+
+		return memberDAO.deleteMember(member);
 	}
 }
