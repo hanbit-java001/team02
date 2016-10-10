@@ -1,1 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+	<select id="countMember" parameterType="string" resultType="int">
+		SELECT COUNT(member_id)
+		  FROM MEMBER
+		 WHERE member_id = #{memberId}
+	</select>
+	
+	<insert id="insertMember" parameterType="MemberVO">
+		INSERT INTO MEMBER
+			(MEMBER_NAME, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_PH)
+		VALUES
+			(#{name}, #{memberId}, #{password}, #{email}, #{phoneNumber})
+	</insert>
+	
+	<select id="selectMember" parameterType="map" resultType="string">
+		SELECT MEMBER_NAME AS name,
+			   MEMBER_ID AS memberId,
+			   MEMBER_PW AS password,
+			   MEMBER_EMAIL AS email
+		  FROM MEMBER
+		 <choose>
+		 	<when test="memberId != null">
+		 		WHERE MEMBER_ID = #{memberId}
+		 	</when>
+		 	<when test="email != null">
+		 		WHERE MEMBER_EMAIL = #{email}
+		 	</when>
+		 	<otherwise>
+		 		WHERE email = '!@#$'
+		 	</otherwise>
+		 </choose>
+	</select>
+
+	<select id="selectMembers" >
+		
+	</select>
+	
+	<select id="selectPassword">
+		SELECT password
+		  FROM MEMBER
+		 WHERE member_id = #{memberId}
+	</select>
+	<update id="updateMember" parameterType="MemberVO">
+		UPDATE MEMBER
+		   SET member_name = #{name},
+		       member_email = #{email},
+		       member_pw = #{password}
+	</update>
+
+	<delete id="deleteMember" parameterType="string">
+	
+	</delete>
+
+</mapper>

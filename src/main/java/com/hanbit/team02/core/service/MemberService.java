@@ -62,10 +62,10 @@ public class MemberService {
 	}
 
 	// 회원정보 수정
-	public boolean modifyMember(MemberVO member) {
+	public int modifyMember(MemberVO member) {
 		LOGGER.debug("회원정보 수정");
 
-		String passwordFromDB = MemberDAO.selectPassword(member.getMemberId());
+		String passwordFromDB = memberDAO.selectPassword(member.getMemberId());
 		String passwordCurrent = member.getCurrentPassword();
 		String encryptedPasswordCurrent = securityService.encryptPassword(passwordCurrent);
 
@@ -80,10 +80,10 @@ public class MemberService {
 	}
 
 	// 회원 탈퇴
-	public boolean leaveMember(MemberVO member) {
+	public int leaveMember(MemberVO member) {
 		LOGGER.debug("회원 탈퇴");
 
-		String passwordFromDB = MemberDAO.selectPassword(member.getMemberId());
+		String passwordFromDB = memberDAO.selectPassword(member.getMemberId());
 		String passwordCurrent = member.getCurrentPassword();
 		String encryptedPasswordCurrent = securityService.encryptPassword(passwordCurrent);
 

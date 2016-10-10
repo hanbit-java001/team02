@@ -1,6 +1,8 @@
 package com.hanbit.team02.core.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,52 +16,53 @@ public class MemberDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-
-
+	private int sqlForGetPara(String statement, Object parameter){
+		
+		int result = sqlSession.selectOne(statement, parameter);
+		
+		return result;
+	}
+	
 	public int countMember(String memberId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlForGetPara("member.countMember", memberId);
 	}
 
 
 
-	public void insertMember(MemberVO member) {
-		// TODO Auto-generated method stub
-
+	public int insertMember(MemberVO member) {
+		return sqlSession.insert("member.insertMember", member);
 	}
 
 
 
 	public List<MemberVO> selectMembers(String memberId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 
 	public MemberVO selectMember(String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+		Map param = new HashMap();
+		param.put("memberId", memberId);
+		
+		return sqlSession.selectOne("member.selectMember", param);
 	}
 
 
 
-	public static String selectPassword(String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+	public String selectPassword(String memberId) {
+		return sqlSession.selectOne("member.selectPassword", memberId);
 	}
 
 
 
-	public boolean updateMember(MemberVO member) {
-		// TODO Auto-generated method stub
-		return false;
+	public int updateMember(MemberVO member) {
+		return sqlSession.update("member.updateMember", member);
 	}
 
 
 
-	public boolean deleteMember(MemberVO member) {
-		// TODO Auto-generated method stub
-		return false;
+	public int deleteMember(MemberVO member) {
+		return sqlSession.delete("member.updateMember", member);
 	}
 }
