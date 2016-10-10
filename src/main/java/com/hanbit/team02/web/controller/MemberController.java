@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,9 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hanbit.team02.core.service.MemberService;
 import com.hanbit.team02.core.vo.MemberVO;
+import com.hanbit.team02.core.vo.TicketVO;
 
 @Controller
 public class MemberController {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(MemberController.class);
 
 	@Autowired
 	private MemberService memberService;
@@ -26,27 +31,17 @@ public class MemberController {
 		return "member/join";
 	}
 
-	@RequestMapping(value="/api/member/join", method=RequestMethod.POST)
+	@RequestMapping("/api/member/join")
 	@ResponseBody
-	public Map doJoin(HttpServletRequest request) {
-		String name = request.getParameter("name");
-		String memberId = request.getParameter("memberId");
-		String password = request.getParameter("password");
-		String email = request.getParameter("email");
-		String phoneNumber = request.getParameter("phoneNumber");
+	public MemberVO doJoin(@RequestBody MemberVO member) {
+		LOGGER.debug("회원가입");
 
-		MemberVO member = new MemberVO();
-		member.setName(name);
-		member.setMemberId(memberId);
-		member.setPassword(password);
-		member.setEmail(email);
-		member.setPhoneNumber(phoneNumber);
+		int countAdded = memberService.joinMember(member);
 
-		memberService.joinMember(member);
+		if (countAdded == 0) {
+			throw new RuntimeException();
+		}
 
-		Map result = new HashMap();
-		result.put("name", name);
-
-		return result;
+		return member;
 	}
 }

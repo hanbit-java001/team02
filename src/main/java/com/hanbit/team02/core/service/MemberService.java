@@ -26,7 +26,7 @@ public class MemberService {
 	private SecurityService securityService;
 
 	// 회원가입
-	public String joinMember(MemberVO member) {
+	public int joinMember(MemberVO member) {
 		LOGGER.debug("회원가입");
 
 		int countMember = memberDAO.countMember(member.getMemberId());
@@ -38,9 +38,7 @@ public class MemberService {
 		String encryptedPassword = securityService.encryptPassword(member.getPassword());
 		member.setPassword(encryptedPassword);
 
-		memberDAO.insertMember(member);
-
-		return member.getName();
+		return memberDAO.insertMember(member);
 	}
 
 	// 회원목록
