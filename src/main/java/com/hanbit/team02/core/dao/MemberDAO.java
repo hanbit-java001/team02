@@ -16,15 +16,9 @@ public class MemberDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	private int sqlForGetPara(String statement, Object parameter){
-		
-		int result = sqlSession.selectOne(statement, parameter);
-		
-		return result;
-	}
 	
 	public int countMember(String memberId) {
-		return sqlForGetPara("member.countMember", memberId);
+		return sqlSession.selectOne("member.countMember", memberId);
 	}
 
 
