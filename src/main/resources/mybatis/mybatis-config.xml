@@ -8,7 +8,10 @@
 	</settings>
 
 	<typeAliases>
+		<typeAlias type="com.hanbit.team02.core.vo.MemberVO" alias="MemberVO"/>
+		<typeAlias type="com.hanbit.team02.core.vo.SeatVO" alias="SeatVO"/>
 		<typeAlias type="com.hanbit.team02.core.vo.TicketVO" alias="TicketVO"/>
+		<typeAlias type="com.hanbit.team02.core.vo.TrainVO" alias="TrainVO"/>
 	</typeAliases>
 
 </configuration>
