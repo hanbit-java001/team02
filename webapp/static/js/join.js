@@ -31,6 +31,7 @@ $(function(){
 			$("#txtPhoneNumber").val("");
 			$("#txtPhoneNumber").focus();
 			return;
+		}
 
 		var data = {
 			name: name,
