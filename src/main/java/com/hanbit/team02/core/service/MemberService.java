@@ -29,11 +29,11 @@ public class MemberService {
 	public int joinMember(MemberVO member) {
 		LOGGER.debug("회원가입");
 
-		int countMemberId = memberDAO.countMemberId(member.getMemberId());
+		int countMember = memberDAO.countMember(member.getMemberId());
 		int countEmail = memberDAO.countEmail(member.getEmail());
 		int countPhoneNumber = memberDAO.countPhoneNumber(member.getPhoneNumber());
 
-		if (countMemberId > 0) {
+		if (countMember > 0) {
 			throw new RuntimeException("중복된 아이디입니다.");
 		} else if (countEmail > 0){
 			throw new RuntimeException("중복된 메일입니다.");

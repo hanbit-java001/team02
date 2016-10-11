@@ -8,14 +8,26 @@
 		  FROM MEMBER
 		 WHERE member_id = #{memberId}
 	</select>
-	
+
+	<select id="countEmail" parameterType="string" resultType="int">
+		SELECT COUNT(email)
+		  FROM MEMBER
+		 WHERE member_email = #{email}
+	</select>
+
+	<select id="countPhoneNumber" parameterType="string" resultType="int">
+		SELECT COUNT(phoneNumber)
+		  FROM MEMBER
+		 WHERE member_ph = #{phoneNumber}
+	</select>
+
 	<insert id="insertMember" parameterType="MemberVO">
 		INSERT INTO MEMBER
 			(MEMBER_NAME, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_PH)
 		VALUES
 			(#{name}, #{memberId}, #{password}, #{email}, #{phoneNumber})
 	</insert>
-	
+
 	<select id="selectMember" parameterType="map" resultType="string">
 		SELECT MEMBER_NAME AS name,
 			   MEMBER_ID AS memberId,
@@ -36,9 +48,9 @@
 	</select>
 
 	<select id="selectMembers" >
-		
+
 	</select>
-	
+
 	<select id="selectPassword">
 		SELECT password
 		  FROM MEMBER
@@ -52,7 +64,7 @@
 	</update>
 
 	<delete id="deleteMember" parameterType="string">
-	
+
 	</delete>
 
 </mapper>

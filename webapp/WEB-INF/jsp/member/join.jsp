@@ -36,11 +36,11 @@
 		</div>
 		<div class="form-group">
 			<label for="txtEmail" class="input-required">이메일</label>
-			<input type="email" class="form-control" id="txtEmail" placeholder="이메일">
+			<input type="text" class="form-control" id="txtEmail" placeholder="이메일">
 		</div>
 		<div class="form-group">
 			<label for="txtPhoneNumber" class="input-required">전화번호</label>
-			<input type="tel" class="form-control" id="txtPhoneNumber" placeholder="전화번호">
+			<input type="text" class="form-control" id="txtPhoneNumber" placeholder="전화번호">
 		</div>
 		<div class="bottom-buttons">
 			<button class="btnJoin btn btn-success">회원가입</button>

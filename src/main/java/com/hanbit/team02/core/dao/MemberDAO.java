@@ -17,7 +17,7 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 
 
-	public int countMemberId(String memberId) {
+	public int countMember(String memberId) {
 		return sqlSession.selectOne("member.countMemberId", memberId);
 	}
 
