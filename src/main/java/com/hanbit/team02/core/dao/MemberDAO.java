@@ -16,12 +16,18 @@ public class MemberDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	
-	public int countMember(String memberId) {
-		return sqlSession.selectOne("member.countMember", memberId);
+
+	public int countMemberId(String memberId) {
+		return sqlSession.selectOne("member.countMemberId", memberId);
 	}
 
+	public int countEmail(String email) {
+		return sqlSession.selectOne("member.countEmail", email);
+	}
 
+	public int countPhoneNumber(String phoneNumber) {
+		return sqlSession.selectOne("member.countPhoneNumber", phoneNumber);
+	}
 
 	public int insertMember(MemberVO member) {
 		return sqlSession.insert("member.insertMember", member);
@@ -38,7 +44,7 @@ public class MemberDAO {
 	public MemberVO selectMember(String memberId) {
 		Map param = new HashMap();
 		param.put("memberId", memberId);
-		
+
 		return sqlSession.selectOne("member.selectMember", param);
 	}
 

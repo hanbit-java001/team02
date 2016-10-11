@@ -29,10 +29,16 @@ public class MemberService {
 	public int joinMember(MemberVO member) {
 		LOGGER.debug("회원가입");
 
-		int countMember = memberDAO.countMember(member.getMemberId());
+		int countMemberId = memberDAO.countMemberId(member.getMemberId());
+		int countEmail = memberDAO.countEmail(member.getEmail());
+		int countPhoneNumber = memberDAO.countPhoneNumber(member.getPhoneNumber());
 
-		if (countMember > 0) {
-			throw new RuntimeException("이미 존재하는 아이디입니다.");
+		if (countMemberId > 0) {
+			throw new RuntimeException("중복된 아이디입니다.");
+		} else if (countEmail > 0){
+			throw new RuntimeException("중복된 메일입니다.");
+		} else if (countPhoneNumber > 0) {
+			throw new RuntimeException("중복된 전화번호입니다.");
 		}
 
 		String encryptedPassword = securityService.encryptPassword(member.getPassword());
@@ -86,7 +92,7 @@ public class MemberService {
 		String encryptedPasswordCurrent = securityService.encryptPassword(passwordCurrent);
 
 		if (!securityService.matchPassword(passwordFromDB, encryptedPasswordCurrent)) {
-			throw new RuntimeException("비밀번호가 틀렸습니다.");
+			throw new RuntimeException("비밀번호를 잘못 입력하셨습니다.");
 		}
 
 		String encryptedPassword = securityService.encryptPassword(member.getPassword());
