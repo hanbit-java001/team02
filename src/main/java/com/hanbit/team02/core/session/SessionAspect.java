@@ -13,24 +13,24 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class SessionAspect {
 
-	@Around("@annotation(com.hanbit.team02.core.session.LoginRequired)")
-	public Object checkLogin(ProceedingJoinPoint pjp) throws Throwable {
-
-		Session session = SessionHelpler.getSession();
-
-		if(session.isLoggedIn()) {
-			return pjp.proceed();
-		}
-
-		MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
-		Class returnType = methodSignature.getReturnType();
-
-		if(returnType == String.class) {
-			return "login";
-		}
-
-		Map result = new HashMap();
-		result.put("errorMsg", "로그인이 필요합니다.");
-		return result;
-	}
+//	@Around("@annotation(com.hanbit.team02.core.session.LoginRequired)")
+//	public Object checkLogin(ProceedingJoinPoint pjp) throws Throwable {
+//
+//		Session session = SessionHelpler.getSession();
+//
+//		if (session.isLoggedIn()) {
+//			return pjp.proceed();
+//		}
+//
+//		MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
+//		Class returnType = methodSignature.getReturnType();
+//
+//		if (returnType == String.class) {
+//			return "login";
+//		}
+//
+//		Map result = new HashMap();
+//		result.put("errorMsg", "로그인이 필요합니다.");
+//		return result;
+//	}
 }

@@ -11,50 +11,54 @@
 <link rel="stylesheet"
 	href="/static/plugins/material/iconfont/material-icons.css">
 <link rel="stylesheet" href="/static/css/ticketing.css" />
+<link rel="stylesheet" href="/static/css/common.css" />
 
 <title>Ticketing page</title>
 </head>
 <body>
-
-	<header class="team2-header">
-		<div id="btnGroupMain">
+	<div class="team02-body">
+		<header class="team2-header">
+			<div id="btnGroupMain">
 				<i class="material-icons team2-menu-button">menu</i>
-		</div>
-	</header>
-
-	<nav class="ticketingContainer container-fluid">
-		<div class="col-lg-4 col-md-4 col-sm-4"></div>
-		<div class="btnGroupTicketing col-lg-4 col-md-4 col-sm-4">
-			<p>
-				<button type="button" class="btn btnReserve btn-block">예매하기</button>
-			</p>
-			<p>
-				<button type="button" class="btn btnListing btn-block">예매목록</button>
-			</p>
-			<p>
-				<button type="button" class="btn btnListingOfCanceled btn-block">취소목록</button>
-			</p>
-		</div>
-		<div class="col-lg-4 col-md-4 col-sm-4"></div>
-	</nav>
-
-	<section class="reserveContainer">
-		<div class="col-lg-4 col-md-4 col-sm-4"></div>
-		<div class="col-lg-4 col-md-4 col-sm-4">
-			<div class="form-group">
-   				<label for="txtName" class="input-required">출발역</label>
-   				<menu type="toolbar" id="txtName">
-   					
-   				</menu>
 			</div>
-			<div class="form-group">
-   				<label for="txtName" class="input-required">도착역</label>
-   				<menu type="context" class="form-control" id="txtName" placeholder="도착역">
+		</header>
+
+		<nav class="ticketingContainer container-fluid">
+			<div class="col-lg-4 col-md-4 col-sm-4"></div>
+			<div class="btnGroupTicketing col-lg-4 col-md-4 col-sm-4">
+				<p>
+					<button type="button" class="btn btnReserve btn-block">예매하기</button>
+				</p>
+				<p>
+					<button type="button" class="btn btnListing btn-block">예매목록</button>
+				</p>
+				<p>
+					<button type="button" class="btn btnListingOfCanceled btn-block">취소목록</button>
+				</p>
 			</div>
-		</div>
-		<div class="col-lg-4 col-md-4 col-sm-4"></div>
-		
-	</section>
+			<div class="col-lg-4 col-md-4 col-sm-4"></div>
+		</nav>
+
+		<section class="reserveContainer">
+			<div class="col-lg-4 col-md-4 col-sm-4"></div>
+			<div class="col-lg-4 col-md-4 col-sm-4">
+				<div class="form-group">
+					<label for="txtName" class="input-required">출발역</label>
+					<menu type="toolbar" id="txtName">
+
+					</menu>
+				</div>
+				<div class="form-group">
+					<label for="txtName" class="input-required">도착역</label>
+					<menu type="context" class="form-control" id="txtName" placeholder="도착역">
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4"></div>
+		</section>
+	</div>
+	<footer class="team02-footer">
+	
+	</footer>
 
 	<script src="/static/plugins/jquery/jquery-3.1.0.min.js"></script>
 	<script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>

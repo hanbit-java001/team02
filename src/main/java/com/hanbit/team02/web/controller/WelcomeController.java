@@ -9,7 +9,13 @@ public class WelcomeController {
 	@RequestMapping("/")
 	public String welcome(){
 		
-		return "test";
+		return "/ticketing/ticketing";
+	}
+	
+	@RequestMapping("/team02")
+	public String team02(){
+		
+		return "/team02";
 	}
 
 }

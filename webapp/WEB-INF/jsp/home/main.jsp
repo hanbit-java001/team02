@@ -28,7 +28,6 @@
 
 		<div class="main-content">
 			<div class="main-content-body">
-				<img class="img-rectangle" src="/static/images/train.jpg" alt="" width="500" height="400">
 				<h2>편리한 교통 예매 서비스</h2>
 				<p>목적지로 가는 경로를 추천해주고, 교통편을 예약할 수 있습니다.</p><br>
 				<button id="btnJoin" class="btn btn-primary">지금 가입하기</button>
@@ -37,7 +36,7 @@
 
 		<div class="main-bottom">2016, Hanbit Team 02</div>
 
-		<div class="login-dialog">
+		<div class="login-dialog" >
 			<div class="form-group">
 				<label for="txtId" class="input-required">아이디</label>
 				<input type="text" class="form-control" id="txtId" placeholder="아이디">
