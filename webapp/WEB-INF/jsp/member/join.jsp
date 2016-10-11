@@ -27,8 +27,8 @@
 			<input type="text" class="form-control" id="txtName" placeholder="이름">
 		</div>
 		<div class="form-group">
-			<label for="txtId" class="input-required">아이디</label>
-			<input type="text" class="form-control" id="txtId" placeholder="아이디">
+			<label for="txtMemberId" class="input-required">아이디</label>
+			<input type="text" class="form-control" id="txtMemberId" placeholder="아이디">
 		</div>
 		<div class="form-group">
 			<label for="txtPassword" class="input-required">비밀번호</label>
