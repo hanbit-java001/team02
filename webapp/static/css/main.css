@@ -18,32 +18,33 @@ html, body {
 .main-top-body {
 	position: relative;
 	width: 80%;
-	height: 60px;
-	margin-top: 10px;
+	height: 48px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
+.main-top-body>div {
+	position: absolute;
+	display: inline-block;
+	height: 100%;
+	top: 0px;
+}
+
 .main-name {
-	position: relative;
 	text-align: center;
 	color: white;
 	font-size: x-large;
+	width: 40%;
+	left: 0px;
+	padding-top: 10px;
 }
 
 .main-menu {
-	position: absolute;
 	width: 50%;
-	height: 100%;
+	right: 0px;
 }
 
 .main-menu ul {
-	position: absolute;
-	right: 0px;
-	list-style: none;
-	padding: 0px;
-	top: 50%;
-	transform: translateY(-50%);
 }
 
 .main-menu ul li {
@@ -51,6 +52,8 @@ html, body {
 	font-size: medium;
 	color: white;
 	display: inline-block;
+	padding-left: 30px;
+	padding-top: 25px;
 }
 
 .main-content {
@@ -65,5 +68,5 @@ html, body {
 }
 
 .login-dialog {
-
+	display:none;
 }
