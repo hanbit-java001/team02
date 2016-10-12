@@ -11,6 +11,7 @@ public class WelcomeController {
 		
 		return "/home/main";
 	}
+
 	
 	@RequestMapping("/team02")
 	public String team02(){
