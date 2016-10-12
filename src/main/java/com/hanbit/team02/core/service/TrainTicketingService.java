@@ -23,7 +23,7 @@ public class TrainTicketingService {
 		LOGGER.debug("티켓 예매");
 		return ticketDAO.reserveTicket(ticket);
 	}
-	
+
 	//예매 목록보기
 	public List<TicketVO> getReservedTrainTickets(String name, int cancel) {
 		LOGGER.debug("예매 티켓 목록 가져오기");
@@ -39,23 +39,23 @@ public class TrainTicketingService {
 	public TicketVO getReservedTrainTicket(String reservedNumber, int cancel) {
 		LOGGER.debug("예매 티켓 상세보기");
 		if(cancel==0){
-			return ticketDAO.selectTicket(reservedNumber, cancel);	
+			return ticketDAO.selectTicket(reservedNumber, cancel);
 		}
 		else{
 			return null;
 		}
 	}
-	
+
 	//취소하기
-	public int cancelReservedTrainTicket(String reservedNumber) {
-		return ticketDAO.cancelTicket(reservedNumber);
+	public int cancelReservedTrainTicket(TicketVO ticket) {
+		return ticketDAO.cancelTicket(ticket);
 	}
-	
+
 	//취소목록보기
 	public List<TicketVO> getCanceledTrainTickets(String name, int cancel) {
 		LOGGER.debug("취소 티켓 목록 가져오기");
 		if(cancel!=0){
-			return ticketDAO.selectTickets(name, cancel);	
+			return ticketDAO.selectTickets(name, cancel);
 		}
 		else{
 			return null;
@@ -66,7 +66,7 @@ public class TrainTicketingService {
 	public TicketVO getCanceledTrainTicket(String reservedNumber, int cancel) {
 		LOGGER.debug("취소 티켓 상세보기");
 		if(cancel!=0){
-			return ticketDAO.selectTicket(reservedNumber, cancel);	
+			return ticketDAO.selectTicket(reservedNumber, cancel);
 		}
 		else{
 			return null;
