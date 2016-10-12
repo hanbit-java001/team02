@@ -19,13 +19,12 @@ public class TicketingController {
 	@Autowired
 	private TrainTicketingService trainTicketingService;
 
-	@LoginRequired
 	@RequestMapping("/ticketing/ticketing")
 	public String ticketing() {
 		return "/ticketing/ticketing";
 	}
 
-	// 예매하기
+	//예매하기
 	@LoginRequired
 	@RequestMapping("/api/ticketing/add")
 	@ResponseBody
@@ -39,7 +38,7 @@ public class TicketingController {
 		return ticket;
 	}
 
-	// 예매목록
+	//예매목록
 	@LoginRequired
 	@RequestMapping("/api/ticketing/reservedList")
 	@ResponseBody
@@ -47,7 +46,15 @@ public class TicketingController {
 		return trainTicketingService.getReservedTrainTickets(name, cancel);
 	}
 
-	// 취소목록
+	//예매 상세보기
+	@LoginRequired
+	@RequestMapping("/api/ticketing/reservedDetail")
+	@ResponseBody
+	public TicketVO getReservedTrainTicket(@RequestParam("reservedNumber") String reservedNumber, @RequestParam("cancel") int cancel) {
+		return trainTicketingService.getReservedTrainTicket(reservedNumber, cancel);
+	}
+
+	//취소목록
 	@LoginRequired
 	@RequestMapping("/api/ticketing/canceledList")
 	@ResponseBody
