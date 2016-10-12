@@ -24,11 +24,11 @@ public class TicketingController {
 		return "/ticketing/ticketing";
 	}
 
-	//예매하기
+	// 예매하기
 	@LoginRequired
-	@RequestMapping("/api/ticketing/add")
+	@RequestMapping("/api/ticketing/book")
 	@ResponseBody
-	public TicketVO addSchedule(@RequestBody TicketVO ticket) {
+	public TicketVO bookTicket(@RequestBody TicketVO ticket) {
 
 		int countAdded = trainTicketingService.reserveTrainTicket(ticket);
 
@@ -38,27 +38,50 @@ public class TicketingController {
 		return ticket;
 	}
 
-	//예매목록
+	// 예매 목록보기
 	@LoginRequired
-	@RequestMapping("/api/ticketing/reservedList")
+	@RequestMapping("/api/ticketing/bookedTickets")
 	@ResponseBody
-	public List<TicketVO> getReservedTrainTickets(@RequestParam("name") String name, @RequestParam("cancel") int cancel) {
+	public List<TicketVO> bookedTickets(@RequestParam("name") String name, @RequestParam("cancel") int cancel) {
 		return trainTicketingService.getReservedTrainTickets(name, cancel);
 	}
 
-	//예매 상세보기
+	// 예매 상세보기
 	@LoginRequired
-	@RequestMapping("/api/ticketing/reservedDetail")
+	@RequestMapping("/api/ticketing/bookedTicket")
 	@ResponseBody
-	public TicketVO getReservedTrainTicket(@RequestParam("reservedNumber") String reservedNumber, @RequestParam("cancel") int cancel) {
+	public TicketVO bookedTicket(@RequestParam("reservedNumber") String reservedNumber,
+			@RequestParam("cancel") int cancel) {
 		return trainTicketingService.getReservedTrainTicket(reservedNumber, cancel);
 	}
 
-	//취소목록
+	// 취소하기
 	@LoginRequired
-	@RequestMapping("/api/ticketing/canceledList")
+	@RequestMapping("/api/ticketing/revoke")
 	@ResponseBody
-	public List<TicketVO> getCanceledTrainTickets(@RequestParam("name") String name, @RequestParam("cancel") int cancel) {
+	public TicketVO revokeTicket(@RequestBody TicketVO ticket) {
+		int countRevoked = trainTicketingService.cancelReservedTrainTicket(ticket);
+
+		if (countRevoked == 0) {
+			throw new RuntimeException();
+		}
+		return ticket;
+	}
+
+	// 취소 목록보기
+	@LoginRequired
+	@RequestMapping("/api/ticketing/revokedTickets")
+	@ResponseBody
+	public List<TicketVO> revokedTickets(@RequestParam("name") String name, @RequestParam("cancel") int cancel) {
 		return trainTicketingService.getCanceledTrainTickets(name, cancel);
+	}
+
+	// 취소상세보기
+	@LoginRequired
+	@RequestMapping("/api/ticketing/revokedTicket")
+	@ResponseBody
+	public TicketVO revokedTicket(@RequestParam("reservedNumber") String reservedNumber,
+			@RequestParam("cancel") int cancel) {
+		return trainTicketingService.getCanceledTrainTicket(reservedNumber, cancel);
 	}
 }

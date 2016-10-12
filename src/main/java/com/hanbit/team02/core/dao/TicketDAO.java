@@ -47,8 +47,8 @@ public class TicketDAO {
 	}
 
 	// 티켓 취소하기
-	public int cancelTicket(String reservedNumber) {
-		int result = sqlSession.update("ticket.cancelTicket", reservedNumber);
+	public int cancelTicket(TicketVO ticket) {
+		int result = sqlSession.update("ticket.cancelTicket", ticket);
 		return result;
 	}
 }
