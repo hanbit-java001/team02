@@ -10,13 +10,13 @@
 	</select>
 
 	<select id="countEmail" parameterType="string" resultType="int">
-		SELECT COUNT(email)
+		SELECT COUNT(member_email)
 		  FROM MEMBER
 		 WHERE member_email = #{email}
 	</select>
 
 	<select id="countPhoneNumber" parameterType="string" resultType="int">
-		SELECT COUNT(phoneNumber)
+		SELECT COUNT(member_ph)
 		  FROM MEMBER
 		 WHERE member_ph = #{phoneNumber}
 	</select>
