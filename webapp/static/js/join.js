@@ -1,5 +1,16 @@
 $(function(){
 	$(".btnJoin").on("click", function() {
+		doJoin();
+	});
+
+	$(".join-dialog").keyup(function(event) {
+		if (event.keyCode != 13) {
+			return;
+		}
+		doJoin();
+	});
+
+	function doJoin() {
 		var name = $("#txtName").val();
 		var memberId = $("#txtMemberId").val();
 		var password = $("#txtPassword").val();
@@ -54,7 +65,7 @@ $(function(){
 		}).fail(function() {
 			alert("잠시 후 이용해주세요.");
 		});
-	});
+	}
 
 	$(".btnJoinCancel").on("click", function() {
 		location.href = "/home/main";
