@@ -1,9 +1,5 @@
 @CHARSET "UTF-8";
 
-
-
-
-
 .ticketingContainer{
 	position: relative;
 }
@@ -17,4 +13,17 @@
 	display:none;
 	position: relative;
 	margin-top: 100px;
+}
+.input-group-addon{
+    display: table-cell;
+    padding: 4px 12px;
+}
+
+.team2-back-button{
+	float: right;
+	margin-right: 25px;
+}
+
+.team2-next-button{
+	display: none;
 }

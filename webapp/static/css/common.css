@@ -18,14 +18,18 @@ html, body{
 	z-index: 100;
 }
 
-
-.team2-menu-button{
-	color : white;
+.material-icons{
 	cursor: pointer;
+}
+
+/* 모든 page의 헤더는 team2-header로 만들고 거기의 모든 material-icons에 적용 되는 스타일 */
+.team2-header .material-icons{
+	color : white;
 	top: 50%;
 	left: 50%;
 	transform: translate(50%, 50%)
 }
+
 
 .team02-footer{
 	width: 100%;

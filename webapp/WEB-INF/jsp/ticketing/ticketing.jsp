@@ -20,6 +20,8 @@
 		<header class="team2-header">
 			<div id="btnGroupMain">
 				<i class="material-icons team2-menu-button">menu</i>
+				<i class="material-icons team2-back-button">chevron_left</i>
+				<i class="material-icons team2-next-button">chevron_right</i>
 			</div>
 		</header>
 
@@ -44,13 +46,13 @@
 			<div class="col-lg-4 col-md-4 col-sm-4">
 				<div class="form-group">
 					<label for="txtName" class="input-required">Ãâ¹ß¿ª</label>
-					<menu type="toolbar" id="txtName">
-
-					</menu>
+					<menu type="context" class="form-control form-departure" id="txtName"></menu>
+					<i class="material-icons list-departure">list</i>
 				</div>
-				<div class="form-group">
 					<label for="txtName" class="input-required">µµÂø¿ª</label>
-					<menu type="context" class="form-control" id="txtName" placeholder="µµÂø¿ª">
+				<div class="form-group input-group">
+					<input type="context" class="form-control form-arrival" id="txtName" placeholder="µµÂø¿ª">
+					<i class="material-icons list-arrival input-group-addon">list</i>
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4"></div>
