@@ -1,4 +1,7 @@
 $(function(){
+		$(".menu-icon").on("click", function(){
+			$(".main-menus").toggle();
+		});
 	$("#mainLogin").on("click", function(){
 		hideMainContent();
 
