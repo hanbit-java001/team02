@@ -1,7 +1,5 @@
 package com.hanbit.team02.core.vo;
 
-import java.util.Date;
-
 public class TicketVO {
 	private String trainId;
 	private String seatNumber;
@@ -9,6 +7,7 @@ public class TicketVO {
 	private String name;
 	private String reservedTime;
 	private int cancel;
+	private String memberId;
 
 	public String getTrainId() {
 		return trainId;
@@ -45,5 +44,11 @@ public class TicketVO {
 	}
 	public void setCancel(int cancel) {
 		this.cancel = cancel;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 }

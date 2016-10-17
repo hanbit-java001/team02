@@ -27,20 +27,22 @@ public class TicketDAO {
 	}
 
 	// 티켓 목록 보기
-	public List<TicketVO> selectTickets(String name, int cancel) {
+	public List<TicketVO> selectTickets(String name, int cancel, String memberId) {
 		Map params = new HashMap();
 		params.put("name", name);
 		params.put("cancel", cancel);
+		params.put("memberId", memberId);
 
 		List<TicketVO> result = sqlSession.selectList("ticket.selectTickets", params);
 		return result;
 	}
 
 	// 티켓 상세 보기
-	public TicketVO selectTicket(String reservedNumber, int cancel) {
+	public TicketVO selectTicket(String reservedNumber, int cancel, String memberId) {
 		Map params = new HashMap();
 		params.put("reservedNumber", reservedNumber);
 		params.put("cancel", cancel);
+		params.put("memberId", memberId);
 
 		TicketVO ticket = sqlSession.selectOne("ticket.selectTicket", params);
 		return ticket;
