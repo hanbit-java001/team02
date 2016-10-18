@@ -18,6 +18,15 @@ html, body{
 	z-index: 100;
 }
 
+.train-ticketing-name{
+	text-align: center;
+	color: white;
+	font-size: x-large;
+	padding-top: 10px;
+	margin-bottom: -45px;
+	z-index: 20;
+}
+
 .material-icons{
 	cursor: pointer;
 }

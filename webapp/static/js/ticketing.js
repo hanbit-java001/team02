@@ -1,4 +1,13 @@
 $(function() {
+	$(".btnReserve").on("click", function(){
+		$(".team2-back-button").show();
+	});
+	
+	$(".team2-back-button").on("click", function(){
+		$(".team2-back-button").hide();
+	});
+	
+	
 	$(".btnReserve").on("click", function() {
 		hideBtnsOfTicketing();
 		showReserveContainer();

@@ -18,6 +18,7 @@
 <body>
 	<div class="team02-body">
 		<header class="team2-header">
+		<div class="train-ticketing-name">열차 예매</div>
 			<div id="btnGroupMain">
 				<i class="material-icons team2-menu-button">menu</i>
 				<i class="material-icons team2-back-button">chevron_left</i>

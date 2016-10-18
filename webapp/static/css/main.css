@@ -16,14 +16,6 @@ html, body {
 	z-index: 1000;
 }
 
-
-.main-top-body>div {
-	position: absolute;
-	display: inline-block;
-	height: 100%;
-	top: 0px;
-}
-
 .main-name {
 	text-align: left;
 	color: white;
@@ -32,6 +24,15 @@ html, body {
 	left: 0px;
 	padding-top: 10px;
 }
+
+.main-top-body>div {
+	position: absolute;
+	display: inline-block;
+	height: 100%;
+	top: 0px;
+}
+
+
 
 .main-menu {
 	width: 50%;

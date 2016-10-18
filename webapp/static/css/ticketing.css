@@ -22,6 +22,7 @@
 .team2-back-button{
 	float: right;
 	margin-right: 25px;
+	display: none;
 }
 
 .team2-next-button{
