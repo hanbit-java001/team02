@@ -31,8 +31,6 @@ public class SessionAspect {
 			return "login";
 		}
 
-		Map result = new HashMap();
-		result.put("errorMsg", "로그인이 필요합니다.");
-		return result;
+		throw new RuntimeException("로그인이 필요합니다.");
 	}
 }

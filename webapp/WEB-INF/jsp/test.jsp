@@ -7,7 +7,7 @@
 <title>test</title>
 </head>
 <body>
-	
+
 	<table border="1px">
 		<tr>
 			<th>type</th>
@@ -51,11 +51,12 @@
 		</tr>
 	</table>
 	<button class="applyBtn" type="button">º¸³»±â</button>
-	
 
-	
+
+
 <script src="/static/plugins/jquery/jquery-3.1.0.min.js"></script>
 <script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="/static/js/test.js"></script>
+<script src="/static/js/common.js"></script>
 </body>
 </html>

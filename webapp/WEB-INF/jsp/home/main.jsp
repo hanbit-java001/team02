@@ -23,6 +23,7 @@
 						<ul class="main-menus">
 							<li id="mainHome">홈</li>
 							<li id="mainLogin">로그인</li>
+							<li id="mainLogout">로그아웃</li>
 							<li id="mainService">서비스 이용하기</li>
 						</ul>
 					</div>
@@ -59,5 +60,6 @@
 <script src="/static/plugins/jquery/jquery-3.1.0.min.js"></script>
 <script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="/static/js/main.js"></script>
+<script src="/static/js/common.js"></script>
 </body>
 </html>

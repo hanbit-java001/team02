@@ -60,11 +60,12 @@
 		</section>
 	</div>
 	<footer class="team02-footer">
-	
+
 	</footer>
 
 	<script src="/static/plugins/jquery/jquery-3.1.0.min.js"></script>
 	<script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/static/js/ticketing.js"></script>
+	<script src="/static/js/common.js"></script>
 </body>
 </html>
