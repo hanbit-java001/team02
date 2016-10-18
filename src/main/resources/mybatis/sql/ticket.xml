@@ -5,30 +5,30 @@
 	<!-- 티켓 예매하기 -->
 	<insert id="reserveTicket" parameterType="TicketVO">
 		INSERT INTO TICKET
-			(train_id, seat_number, reserved_number, name, reserved_time, cancel)
+			(train_id, seat_number, reserved_number, name, reserved_time, cancel, member_id)
 		VALUES
-			(#{trainId}, #{seatNumber}, #{reservedNumber}, #{name}, #{reservedTime}, #{cancel})
+			(#{trainId}, #{seatNumber}, #{reservedNumber}, #{name}, #{reservedTime}, #{cancel}, #{memberId})
 	</insert>
 
 	<!-- 티켓 목록 보기 -->
 	<select id="selectTickets" parameterType="map" resultType="TicketVO">
-		SELECT train_id, seat_number, reserved_number, name, reserved_time, cancel
+		SELECT train_id, seat_number, reserved_number, name, reserved_time, cancel, member_id
 		  FROM TICKET
-	     WHERE name = #{name} AND cancel = #{cancel}
+	     WHERE name = #{name} AND cancel = #{cancel} AND member_id = #{memberId}
 	  ORDER BY reserved_time
 	</select>
 
 	<!-- 티켓 상세 보기 -->
 	<select id="selectTicket" parameterType="map" resultType="TicketVO">
-		SELECT train_id, seat_number, reserved_number, name, reserved_time, cancel
+		SELECT train_id, seat_number, reserved_number, name, reserved_time, cancel, member_id
 		  FROM TICKET
-		 WHERE train_id = #{trainId} AND cancel = #{cancel}
+		 WHERE train_id = #{trainId} AND cancel = #{cancel} AND member_id = #{memberId}
 	</select>
 
 	<!-- 티켓 취소하기 -->
 	<update id="cancelTicket" parameterType="TicketVO">
 		UPDATE TICKET
 		   SET cancel = #{cancel}
-		 WHERE train_id = #{trainId}
+		 WHERE train_id = #{trainId} AND member_id = #{memberId}
 	</update>
 </mapper>
