@@ -2,33 +2,60 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ticket">
-	<!-- 티켓 예매하기 -->
-	<insert id="reserveTicket" parameterType="TicketVO">
-		INSERT INTO TICKET
-			(train_id, seat_number, reserved_number, name, reserved_time, cancel, member_id)
+	<insert id="insertShares" parameterType="map">
+		INSERT INTO SHARES
+			(group_yn, owner_yn, reserved_number, share_id)
 		VALUES
-			(#{trainId}, #{seatNumber}, #{reservedNumber}, #{name}, #{reservedTime}, #{cancel}, #{memberId})
+			(#{groupYn}, #{ownerYn}, #{reservedNumber}, #{shareId})
 	</insert>
 
-	<!-- 티켓 목록 보기 -->
+	<insert id="reserveTicket" parameterType="TicketVO">
+		INSERT INTO TICKET
+			(train_id, seat_number, reserved_number, name, reserved_time, cancel)
+		VALUES
+			(#{trainId}, #{seatNumber}, #{reservedNumber}, #{name}, #{reservedTime}, #{cancel})
+	</insert>
+
 	<select id="selectTickets" parameterType="map" resultType="TicketVO">
-		SELECT train_id, seat_number, reserved_number, name, reserved_time, cancel, member_id
-		  FROM TICKET
-	     WHERE name = #{name} AND cancel = #{cancel} AND member_id = #{memberId}
+		SELECT t.train_id, t.seat_number, t.reserved_number, t.name, t.reserved_time, t.cancel
+		  FROM t.TICKET, s.SHARES
+	     WHERE t.cancel = #{cancel}
+	       AND (
+					(s.group_yn = 'N' AND s.share_id = {#memberId})
+	        	 OR (s.group_yn = 'Y' AND s.share_id IN (
+	        			SELECT group_id
+	        			  FROM GROUP_MEMBER
+	        			 WHERE member_id = {#memberId})
+	        		)
+	 		   )
 	  ORDER BY reserved_time
 	</select>
 
-	<!-- 티켓 상세 보기 -->
 	<select id="selectTicket" parameterType="map" resultType="TicketVO">
-		SELECT train_id, seat_number, reserved_number, name, reserved_time, cancel, member_id
-		  FROM TICKET
-		 WHERE train_id = #{trainId} AND cancel = #{cancel} AND member_id = #{memberId}
+		SELECT t.train_id, t.seat_number, t.reserved_number, t.name, t.reserved_time, t.cancel
+		  FROM t.TICKET, s.SHARES
+		 WHERE t.reserved_number = #{reservedNumber} AND t.cancel = #{cancel}
+		   AND (
+				  (s.group_yn = 'N' AND s.share_id = {#memberId})
+			   OR (s.group_yn = 'Y' AND s.share_id IN (
+			   			SELECT group_id
+			   			  FROM GROUP_MEMBER
+			   			 WHERE member_id = #{memberId})
+			   	  )
+		 	   )
 	</select>
 
-	<!-- 티켓 취소하기 -->
 	<update id="cancelTicket" parameterType="TicketVO">
 		UPDATE TICKET
 		   SET cancel = #{cancel}
-		 WHERE train_id = #{trainId} AND member_id = #{memberId}
+		 WHERE reserved_number IN (
+		 		SELECT t.reserved_number
+		 		  FROM t.TICKET AND s.SHARES
+		 		 WHERE t.reserved_number = #{reservedNumber}
+		 		   AND t.reserved_number = s.reserved_number
+		 		   AND s.group_yn = 'N'
+		 		   AND s.owner_yn = 'Y'
+		 		   AND s.share_id = #{memberId}
+		 )
 	</update>
 </mapper>

@@ -1,0 +1,28 @@
+Ticket
+	 String trainId
+	 String seatNumber
+	 String reservedNumber(*PK)
+	 String name
+	 String reservedTime
+	 int cancel
+
+Member
+	 String name
+	 String memberId(*PK)
+	 String password
+	 String email
+	 String phoneNumber
+
+Shares
+	boolean groupYn(*PK)
+	boolean ownerYn
+	String reservedNumber(*PK)
+	String shareId(*PK)	
+
+Groups
+	String groupId(*PK)
+	String groupName
+
+Group_member
+	String groupId(*PK)
+	String memberId(*PK)

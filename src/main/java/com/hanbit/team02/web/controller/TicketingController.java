@@ -42,8 +42,8 @@ public class TicketingController {
 	@LoginRequired
 	@RequestMapping("/api/ticketing/bookedTickets")
 	@ResponseBody
-	public List<TicketVO> bookedTickets(@RequestParam("name") String name, @RequestParam("cancel") int cancel) {
-		return trainTicketingService.getReservedTrainTickets(name, cancel);
+	public List<TicketVO> bookedTickets(@RequestParam("cancel") int cancel) {
+		return trainTicketingService.getReservedTrainTickets(cancel);
 	}
 
 	// 예매 상세보기
@@ -72,8 +72,8 @@ public class TicketingController {
 	@LoginRequired
 	@RequestMapping("/api/ticketing/revokedTickets")
 	@ResponseBody
-	public List<TicketVO> revokedTickets(@RequestParam("name") String name, @RequestParam("cancel") int cancel) {
-		return trainTicketingService.getCanceledTrainTickets(name, cancel);
+	public List<TicketVO> revokedTickets(@RequestParam("cancel") int cancel) {
+		return trainTicketingService.getCanceledTrainTickets(cancel);
 	}
 
 	// 취소상세보기

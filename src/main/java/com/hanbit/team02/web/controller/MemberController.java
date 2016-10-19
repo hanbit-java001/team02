@@ -39,7 +39,7 @@ public class MemberController {
 		int countAdded = memberService.joinMember(member);
 
 		if (countAdded == 0) {
-			throw new RuntimeException();
+			throw new RuntimeException("잠시 후 이용해주세요.");
 		}
 
 		return member;
