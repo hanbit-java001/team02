@@ -20,6 +20,18 @@ public class TicketDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
+	public int insertShares(boolean groupYn, boolean ownerYn, String reservedNumber, String shareId) {
+		Map params = new HashMap();
+
+		params.put("groupYn", groupYn? "Y":"N");
+		params.put("ownerYn", ownerYn? "Y":"N");
+		params.put("reservedNumber", reservedNumber);
+		params.put("shareId", shareId);
+
+		int result = sqlSession.insert("ticket.insertShares", params);
+		return result;
+	}
+
 	// 티켓 예매하기
 	public int reserveTicket(TicketVO ticket) {
 		int result = sqlSession.insert("ticket.reserveTicket", ticket);
@@ -27,9 +39,9 @@ public class TicketDAO {
 	}
 
 	// 티켓 목록 보기
-	public List<TicketVO> selectTickets(String name, int cancel, String memberId) {
+	public List<TicketVO> selectTickets(int cancel, String memberId) {
 		Map params = new HashMap();
-		params.put("name", name);
+
 		params.put("cancel", cancel);
 		params.put("memberId", memberId);
 
@@ -40,6 +52,7 @@ public class TicketDAO {
 	// 티켓 상세 보기
 	public TicketVO selectTicket(String reservedNumber, int cancel, String memberId) {
 		Map params = new HashMap();
+
 		params.put("reservedNumber", reservedNumber);
 		params.put("cancel", cancel);
 		params.put("memberId", memberId);

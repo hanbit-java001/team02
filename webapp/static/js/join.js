@@ -1,16 +1,16 @@
-$(function(){
+$(function() {
 	$(".btnJoin").on("click", function() {
-		doJoin();
+		join();
 	});
 
 	$(".join-dialog").keyup(function(event) {
 		if (event.keyCode != 13) {
 			return;
 		}
-		doJoin();
+		join();
 	});
 
-	function doJoin() {
+	function join() {
 		var name = $("#txtName").val();
 		var memberId = $("#txtMemberId").val();
 		var password = $("#txtPassword").val();
@@ -45,25 +45,23 @@ $(function(){
 		}
 
 		var data = {
-			name: name,
-			memberId: memberId,
-			password: password,
-			email: email,
-			phoneNumber: phoneNumber
+			name : name,
+			memberId : memberId,
+			password : password,
+			email : email,
+			phoneNumber : phoneNumber
 		};
 
-		$.ajax({
-			url: "/api/member/join",
-			method: "POST",
-			contentType: "application/json; charset=utf-8",
-			dataType: "json",
-			data: JSON.stringify(data)
-		}).done(function(result) {
-			var name = result.name;
-
-			alert(name + "님의 가입을 환영합니다.");
-		}).fail(function() {
-			alert("잠시 후 이용해주세요.");
+		callAjax({
+			url : "/api/member/join",
+			method : "POST",
+			contentType : "application/json; charset=utf-8",
+			dataType : "json",
+			data : JSON.stringify(data),
+			success : function(result) {
+				var name = result.name;
+				alert(name + "님의 가입을 환영합니다.");
+			}
 		});
 	}
 

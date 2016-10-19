@@ -30,13 +30,13 @@ public class TrainTicketingService {
 	}
 
 	//예매 목록보기
-	public List<TicketVO> getReservedTrainTickets(String name, int cancel) {
+	public List<TicketVO> getReservedTrainTickets(int cancel) {
 		LOGGER.debug("예매 티켓 목록 가져오기");
 
 		String memberId = SessionHelpler.getSession().getMemberId();
 
 		if(cancel==0){
-			return ticketDAO.selectTickets(name, cancel, memberId);
+			return ticketDAO.selectTickets(cancel, memberId);
 		}
 		else{
 			return null;
@@ -68,13 +68,13 @@ public class TrainTicketingService {
 	}
 
 	//취소목록보기
-	public List<TicketVO> getCanceledTrainTickets(String name, int cancel) {
+	public List<TicketVO> getCanceledTrainTickets(int cancel) {
 		LOGGER.debug("취소 티켓 목록 가져오기");
 
 		String memberId = SessionHelpler.getSession().getMemberId();
 
 		if(cancel!=0){
-			return ticketDAO.selectTickets(name, cancel, memberId);
+			return ticketDAO.selectTickets(cancel, memberId);
 		}
 		else{
 			return null;
