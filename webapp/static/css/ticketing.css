@@ -36,3 +36,6 @@
 #trainStationsTable td{
 	cursor: pointer;
 }
+#departureOrarrival{
+	text-align: center;
+}

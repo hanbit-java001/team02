@@ -45,12 +45,12 @@
 		<section class="reserveContainer">
 			<div class="col-lg-4 col-md-4 col-sm-4"></div>
 			<div class="reserveForm col-lg-4 col-md-4 col-sm-4">
-					<label for="txtName" class="input-required">출발역</label>
+					<label for="txtName" class="input-required arr">출발역</label>
 				<div class="form-group input-group">
 					<input type="context" class="form-control form-departure" id="txtName" placeholder="출발역">
 					<i tgt="departure" class="material-icons list-departure input-group-addon">list</i>
 				</div>
-					<label for="txtName" class="input-required">도착역</label>
+					<label for="txtName" class="input-required dep">도착역</label>
 				<div class="form-group input-group">
 					<input type="context" class="form-control form-arrival" id="txtName" placeholder="도착역">
 					<i tgt="arrival" class="material-icons list-arrival input-group-addon">list</i>
@@ -58,7 +58,9 @@
 			</div>
 			<div id="trainStationsTable" class="col-lg-4 col-md-4 col-sm-4 jumbotron">
 				<table class="table table-striped">
-					<tr id="departureOrarrival" colspan="5">출발역</tr>
+					<tr>
+						<th id="departureOrarrival" colspan="5"></th>
+					</tr>
 					<tr>
 						<td>서울</td>
 						<td>대전</td>

@@ -38,8 +38,14 @@ $(function() {
 	
 	$(".list-departure, .list-arrival").on("click", function() {
 		$(".reserveForm").hide();
-		alert($(".input-required").text())
-		$("#trainStationsTable").attr("tgt", $(this).attr("tgt"))
+		var tofrom = $(this).attr("tgt");
+		
+		if (tofrom == "departure"){
+			$("#departureOrarrival").text($(".arr").text());
+		} else if (tofrom == "arrival") {
+			$("#departureOrarrival").text($(".dep").text());
+		}
+		$("#trainStationsTable").attr("tgt", tofrom);
 		$("#trainStationsTable").show();
 	});
 	
