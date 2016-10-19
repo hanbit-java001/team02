@@ -45,10 +45,10 @@
 		<section class="reserveContainer">
 			<div class="col-lg-4 col-md-4 col-sm-4"></div>
 			<div class="col-lg-4 col-md-4 col-sm-4">
-				<div class="form-group">
 					<label for="txtName" class="input-required">출발역</label>
-					<menu type="context" class="form-control form-departure" id="txtName"></menu>
-					<i class="material-icons list-departure">list</i>
+				<div class="form-group input-group">
+					<input type="context" class="form-control form-departure" id="txtName" placeholder="출발역">
+					<i class="material-icons list-departure input-group-addon">list</i>
 				</div>
 					<label for="txtName" class="input-required">도착역</label>
 				<div class="form-group input-group">
