@@ -28,3 +28,11 @@
 .team2-next-button{
 	display: none;
 }
+
+#trainStationsTable{
+	display: none;
+	text-align: center;
+}
+#trainStationsTable td{
+	cursor: pointer;
+}

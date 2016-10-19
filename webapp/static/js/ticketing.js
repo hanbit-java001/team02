@@ -1,4 +1,5 @@
 $(function() {
+	
 	$(".btnReserve").on("click", function(){
 		$(".team2-back-button").show();
 	});
@@ -34,4 +35,33 @@ $(function() {
 	function showBtnsOfTicketing() {
 		$(".ticketingContainer").show();
 	}
+	
+	$(".list-departure, .list-arrival").on("click", function() {
+		$(".reserveForm").hide();
+		alert($(".input-required").text())
+		$("#trainStationsTable").attr("tgt", $(this).attr("tgt"))
+		$("#trainStationsTable").show();
+	});
+	
+
+	$("tr td").mouseenter(function(){
+		$(this).css("color", "blue")
+	})
+	$("tr td").mouseleave(function(){
+		$(this).css("color", "black")
+	})
+	$("tr td").click(function(){
+		var target = $("#trainStationsTable").attr("tgt");
+		
+		if (target == "departure") {
+			$(".form-departure").val($(this).text())
+		}
+		else if (target == "arrival") {
+			$(".form-arrival").val($(this).text())
+		}
+
+		$("#trainStationsTable").hide()
+		$(".reserveForm").show()
+	})
+	
 });
