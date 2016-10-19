@@ -44,17 +44,36 @@
 
 		<section class="reserveContainer">
 			<div class="col-lg-4 col-md-4 col-sm-4"></div>
-			<div class="col-lg-4 col-md-4 col-sm-4">
+			<div class="reserveForm col-lg-4 col-md-4 col-sm-4">
 					<label for="txtName" class="input-required">출발역</label>
 				<div class="form-group input-group">
 					<input type="context" class="form-control form-departure" id="txtName" placeholder="출발역">
-					<i class="material-icons list-departure input-group-addon">list</i>
+					<i tgt="departure" class="material-icons list-departure input-group-addon">list</i>
 				</div>
 					<label for="txtName" class="input-required">도착역</label>
 				<div class="form-group input-group">
 					<input type="context" class="form-control form-arrival" id="txtName" placeholder="도착역">
-					<i class="material-icons list-arrival input-group-addon">list</i>
+					<i tgt="arrival" class="material-icons list-arrival input-group-addon">list</i>
 				</div>
+			</div>
+			<div id="trainStationsTable" class="col-lg-4 col-md-4 col-sm-4 jumbotron">
+				<table class="table table-striped">
+					<tr id="departureOrarrival" colspan="5">출발역</tr>
+					<tr>
+						<td>서울</td>
+						<td>대전</td>
+						<td>대구</td>
+						<td>부산</td>
+						<td>광주</td>
+					</tr>
+					<tr>
+						<td>울산</td>
+						<td>인천</td>
+						<td>용산</td>
+						<td>의정부</td>
+						<td>춘천</td>
+					</tr>
+				</table>
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4"></div>
 		</section>
