@@ -18,31 +18,31 @@
 
 	<select id="selectTickets" parameterType="map" resultType="TicketVO">
 		SELECT t.train_id, t.seat_number, t.reserved_number, t.name, t.reserved_time, t.cancel
-		  FROM t.TICKET, s.SHARES
-	     WHERE t.cancel = #{cancel}
-	       AND (
-					(s.group_yn = 'N' AND s.share_id = {#memberId})
-	        	 OR (s.group_yn = 'Y' AND s.share_id IN (
-	        			SELECT group_id
-	        			  FROM GROUP_MEMBER
-	        			 WHERE member_id = {#memberId})
-	        		)
-	 		   )
-	  ORDER BY reserved_time
+		  FROM TICKET t, SHARES s
+	         WHERE t.cancel = #{cancel}
+	           AND (
+			 (s.group_yn = 'N' AND s.share_id = {#memberId})
+		      OR (s.group_yn = 'Y' AND s.share_id IN (
+				SELECT group_id
+				  FROM GROUP_MEMBER
+				 WHERE member_id = {#memberId})
+			 )
+	 	       )
+	     ORDER BY reserved_time
 	</select>
 
 	<select id="selectTicket" parameterType="map" resultType="TicketVO">
 		SELECT t.train_id, t.seat_number, t.reserved_number, t.name, t.reserved_time, t.cancel
-		  FROM t.TICKET, s.SHARES
+		  FROM TICKET t, SHARES s
 		 WHERE t.reserved_number = #{reservedNumber} AND t.cancel = #{cancel}
 		   AND (
-				  (s.group_yn = 'N' AND s.share_id = {#memberId})
-			   OR (s.group_yn = 'Y' AND s.share_id IN (
-			   			SELECT group_id
-			   			  FROM GROUP_MEMBER
-			   			 WHERE member_id = #{memberId})
-			   	  )
-		 	   )
+			 (s.group_yn = 'N' AND s.share_id = {#memberId})
+		      OR (s.group_yn = 'Y' AND s.share_id IN (
+				SELECT group_id
+				  FROM GROUP_MEMBER
+				 WHERE member_id = #{memberId})
+		          )
+		       )
 	</select>
 
 	<update id="cancelTicket" parameterType="TicketVO">
@@ -50,7 +50,7 @@
 		   SET cancel = #{cancel}
 		 WHERE reserved_number IN (
 		 		SELECT t.reserved_number
-		 		  FROM t.TICKET AND s.SHARES
+		 		  FROM TICKET t, SHARES s
 		 		 WHERE t.reserved_number = #{reservedNumber}
 		 		   AND t.reserved_number = s.reserved_number
 		 		   AND s.group_yn = 'N'
