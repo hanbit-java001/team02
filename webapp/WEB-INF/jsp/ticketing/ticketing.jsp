@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,7 +18,7 @@
 <body>
 	<div class="team02-body">
 		<header class="team2-header">
-		<div class="train-ticketing-name">¿­Â÷ ¿¹¸Å</div>
+		<div class="train-ticketing-name">ì—´ì°¨ ì˜ˆë§¤</div>
 			<div id="btnGroupMain">
 				<i class="material-icons team2-menu-button">menu</i>
 				<i class="material-icons team2-back-button">chevron_left</i>
@@ -30,54 +30,35 @@
 			<div class="col-lg-4 col-md-4 col-sm-4"></div>
 			<div class="btnGroupTicketing col-lg-4 col-md-4 col-sm-4">
 				<p>
-					<button type="button" class="btn btnReserve btn-block">¿¹¸ÅÇÏ±â</button>
+					<button type="button" class="btn btnReserve btn-block">ì˜ˆë§¤í•˜ê¸°</button>
 				</p>
 				<p>
-					<button type="button" class="btn btnListing btn-block">¿¹¸Å¸ñ·Ï</button>
+					<button type="button" class="btn btnListing btn-block">ì˜ˆë§¤ëª©ë¡</button>
 				</p>
 				<p>
-					<button type="button" class="btn btnListingOfCanceled btn-block">Ãë¼Ò¸ñ·Ï</button>
+					<button type="button" class="btn btnListingOfCanceled btn-block">ì·¨ì†Œëª©ë¡</button>
 				</p>
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4"></div>
 		</nav>
 
 		<section class="reserveContainer">
-			<div class="col-lg-4 col-md-4 col-sm-4"></div>
-			<div class="reserveForm col-lg-4 col-md-4 col-sm-4">
-					<label for="txtName" class="input-required arr">Ãâ¹ß¿ª</label>
+			<div class="col-lg-4 col-md-3 col-sm-3"></div>
+			<div class="reserveForm col-lg-4 col-md-6 col-sm-6">
+					<label for="txtName" class="input-required arr">ì¶œë°œì—­</label>
 				<div class="form-group input-group">
-					<input type="context" class="form-control form-departure" id="txtName" placeholder="Ãâ¹ß¿ª">
+					<input type="context" class="form-control form-departure" id="txtName" placeholder="ì¶œë°œì—­">
 					<i tgt="departure" class="material-icons list-departure input-group-addon">list</i>
 				</div>
-					<label for="txtName" class="input-required dep">µµÂø¿ª</label>
+					<label for="txtName" class="input-required dep">ë„ì°©ì—­</label>
 				<div class="form-group input-group">
-					<input type="context" class="form-control form-arrival" id="txtName" placeholder="µµÂø¿ª">
+					<input type="context" class="form-control form-arrival" id="txtName" placeholder="ë„ì°©ì—­">
 					<i tgt="arrival" class="material-icons list-arrival input-group-addon">list</i>
 				</div>
 			</div>
-			<div id="trainStationsTable" class="col-lg-4 col-md-4 col-sm-4 jumbotron">
-				<table class="table table-striped">
-					<tr>
-						<th id="departureOrarrival" colspan="5"></th>
-					</tr>
-					<tr>
-						<td>¼­¿ï</td>
-						<td>´ëÀü</td>
-						<td>´ë±¸</td>
-						<td>ºÎ»ê</td>
-						<td>±¤ÁÖ</td>
-					</tr>
-					<tr>
-						<td>¿ï»ê</td>
-						<td>ÀÎÃµ</td>
-						<td>¿ë»ê</td>
-						<td>ÀÇÁ¤ºÎ</td>
-						<td>ÃáÃµ</td>
-					</tr>
-				</table>
+			<div id="trainStationsTable" class="col-lg-4 col-md-6 col-sm-6 jumbotron">
 			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4"></div>
+			<div class="col-lg-4 col-md-3 col-sm-3"></div>
 		</section>
 	</div>
 	<footer class="team02-footer">
@@ -88,5 +69,6 @@
 	<script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/static/js/ticketing.js"></script>
 	<script src="/static/js/common.js"></script>
+	<script src="/static/js/stations.js"></script>
 </body>
 </html>

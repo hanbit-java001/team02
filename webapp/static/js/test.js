@@ -1,4 +1,13 @@
 $(function(){
+	function addStationsData() {
+		
+	}
+	addStationsData();
+	
+	
+	
+	
+	
 	$(".applyBtn").on("click", function() {
 		var trainId = $("#txtTrainId").val().trim();
 		var seatNumber = $("#txtSeatNumber").val().trim();

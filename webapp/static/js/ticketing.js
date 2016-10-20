@@ -50,24 +50,6 @@ $(function() {
 	});
 	
 
-	$("tr td").mouseenter(function(){
-		$(this).css("color", "blue")
-	})
-	$("tr td").mouseleave(function(){
-		$(this).css("color", "black")
-	})
-	$("tr td").click(function(){
-		var target = $("#trainStationsTable").attr("tgt");
-		
-		if (target == "departure") {
-			$(".form-departure").val($(this).text())
-		}
-		else if (target == "arrival") {
-			$(".form-arrival").val($(this).text())
-		}
 
-		$("#trainStationsTable").hide()
-		$(".reserveForm").show()
-	})
 	
 });
