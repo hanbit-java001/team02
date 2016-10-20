@@ -35,17 +35,14 @@ public class MemberDAO {
 
 
 
-	public List<MemberVO> selectMembers(String memberId) {
-		return null;
+	public List<MemberVO> selectMembers(int page) {
+		return sqlSession.selectList("member.selectMembers", page);
 	}
 
 
 
 	public MemberVO selectMember(String memberId) {
-		Map param = new HashMap();
-		param.put("memberId", memberId);
-
-		return sqlSession.selectOne("member.selectMember", param);
+		return sqlSession.selectOne("member.selectMember", memberId);
 	}
 
 

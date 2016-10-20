@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hanbit.team02.core.dao.MemberDAO;
 import com.hanbit.team02.core.vo.MemberVO;
@@ -26,6 +27,7 @@ public class MemberService {
 	private SecurityService securityService;
 
 	// 회원가입
+	@Transactional
 	public int joinMember(MemberVO member) {
 		LOGGER.debug("회원가입");
 
@@ -48,14 +50,12 @@ public class MemberService {
 	}
 
 	// 회원목록
-	public List<MemberVO> getMembers(String memberId) {
+	public List<MemberVO> getMembers(int page) {
 		LOGGER.debug("회원목록");
 
-		if (memberId.equals("admin")) {
-			return memberDAO.selectMembers(memberId);
-		} else {
-			return null;
-		}
+		List<MemberVO> members = memberDAO.selectMembers(page);
+
+		return members;
 	}
 
 	// 회원정보 조회
@@ -66,6 +66,7 @@ public class MemberService {
 	}
 
 	// 회원정보 수정
+	@Transactional
 	public int modifyMember(MemberVO member) {
 		LOGGER.debug("회원정보 수정");
 
@@ -84,6 +85,7 @@ public class MemberService {
 	}
 
 	// 회원 탈퇴
+	@Transactional
 	public int leaveMember(MemberVO member) {
 		LOGGER.debug("회원 탈퇴");
 

@@ -19,29 +19,25 @@
 	<select id="selectTickets" parameterType="map" resultType="TicketVO">
 		SELECT t.train_id, t.seat_number, t.reserved_number, t.name, t.reserved_time, t.cancel
 		  FROM TICKET t, SHARES s
-	         WHERE t.cancel = #{cancel}
-	           AND (
-			 (s.group_yn = 'N' AND s.share_id = {#memberId})
-		      OR (s.group_yn = 'Y' AND s.share_id IN (
+	     WHERE t.cancel = #{cancel}
+	       AND ((s.group_yn = 'N' AND s.share_id = {#memberId})
+		    OR (s.group_yn = 'Y' AND s.share_id IN (
 				SELECT group_id
 				  FROM GROUP_MEMBER
-				 WHERE member_id = {#memberId})
-			 )
+				 WHERE member_id = {#memberId}))
 	 	       )
-	     ORDER BY reserved_time
+	  ORDER BY reserved_number
 	</select>
 
 	<select id="selectTicket" parameterType="map" resultType="TicketVO">
 		SELECT t.train_id, t.seat_number, t.reserved_number, t.name, t.reserved_time, t.cancel
 		  FROM TICKET t, SHARES s
 		 WHERE t.reserved_number = #{reservedNumber} AND t.cancel = #{cancel}
-		   AND (
-			 (s.group_yn = 'N' AND s.share_id = {#memberId})
-		      OR (s.group_yn = 'Y' AND s.share_id IN (
+		   AND ((s.group_yn = 'N' AND s.share_id = {#memberId})
+		    OR (s.group_yn = 'Y' AND s.share_id IN (
 				SELECT group_id
 				  FROM GROUP_MEMBER
-				 WHERE member_id = #{memberId})
-		          )
+				 WHERE member_id = #{memberId}))
 		       )
 	</select>
 

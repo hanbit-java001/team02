@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hanbit.team02.core.dao.TicketDAO;
 import com.hanbit.team02.core.session.SessionHelpler;
@@ -20,13 +21,17 @@ public class TrainTicketingService {
 	private TicketDAO ticketDAO;
 
 	//예매하기
+	@Transactional
 	public int reserveTrainTicket(TicketVO ticket) {
 		LOGGER.debug("티켓 예매");
 
 		String memberId = SessionHelpler.getSession().getMemberId();
 		ticket.setMemberId(memberId);
 
-		return ticketDAO.reserveTicket(ticket);
+		int result = ticketDAO.reserveTicket(ticket);
+		ticketDAO.insertShares(false, true, ticket.getReservedNumber(), memberId);
+
+		return result;
 	}
 
 	//예매 목록보기
@@ -64,7 +69,8 @@ public class TrainTicketingService {
 		String memberId = SessionHelpler.getSession().getMemberId();
 		ticket.setMemberId(memberId);
 
-		return ticketDAO.cancelTicket(ticket);
+		int result = ticketDAO.cancelTicket(ticket);
+		return result;
 	}
 
 	//취소목록보기

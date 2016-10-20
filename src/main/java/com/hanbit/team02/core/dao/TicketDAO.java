@@ -20,6 +20,7 @@ public class TicketDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
+	// 공유 관련
 	public int insertShares(boolean groupYn, boolean ownerYn, String reservedNumber, String shareId) {
 		Map params = new HashMap();
 

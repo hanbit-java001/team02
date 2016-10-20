@@ -28,7 +28,7 @@
 			(#{name}, #{memberId}, #{password}, #{email}, #{phoneNumber})
 	</insert>
 
-	<select id="selectMember" parameterType="map" resultType="string">
+	<select id="selectMember" parameterType="string" resultType="MemberVO">
 		SELECT MEMBER_NAME AS name,
 			   MEMBER_ID AS memberId,
 			   MEMBER_PW AS password,

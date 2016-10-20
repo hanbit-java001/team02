@@ -33,7 +33,7 @@ public class TicketingController {
 		int countAdded = trainTicketingService.reserveTrainTicket(ticket);
 
 		if (countAdded == 0) {
-			throw new RuntimeException();
+			throw new RuntimeException("잠시 후 이용해주세요.");
 		}
 		return ticket;
 	}
@@ -63,7 +63,7 @@ public class TicketingController {
 		int countRevoked = trainTicketingService.cancelReservedTrainTicket(ticket);
 
 		if (countRevoked == 0) {
-			throw new RuntimeException();
+			throw new RuntimeException("예매자만 취소할 수 있습니다.");
 		}
 		return ticket;
 	}
