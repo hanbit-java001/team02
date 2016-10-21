@@ -51,6 +51,12 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.+'
     
     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    
+    
+    compile group: 'net.sf.ezmorph', name: 'ezmorph', version: '1.0.6'
+    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.2'
+    compile files('libs/json-lib-2.4-jdk15.jar')
+    compile files('libs/xom-1.2.9.jar')
 }
 
 test {
