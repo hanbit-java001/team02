@@ -72,9 +72,9 @@ public class MemberController {
 	public MemberVO editMember(@RequestBody MemberVO member) {
 		LOGGER.debug("회원정보 수정");
 
-		int countEditted = memberService.modifyMember(member);
+		int countEdited = memberService.modifyMember(member);
 
-		if(countEditted == 0) {
+		if(countEdited == 0) {
 			throw new RuntimeException("잠시 후 이용해주세요.");
 		}
 

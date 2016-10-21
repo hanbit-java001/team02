@@ -28,6 +28,20 @@
 			(#{name}, #{memberId}, #{password}, #{email}, #{phoneNumber})
 	</insert>
 
+	<select id="selectMembers" parameterType="int" resultType="MemberVO">
+		<![CDATA[
+		SELECT 	a.rn, a.name, a.memberId, a.password, a.email, a.phoneNumber
+		  FROM (
+			SELECT a.rn, a.name, a.memberId, a.password, a.email, a.phoneNumber
+			  FROM (
+				SELECT ROWNUM rn, MEMBER_NAME name, MEMBER_ID memberId, MEMBER_PW password,
+					   MEMBER_EMAIL email, MEMBER_PH phoneNumber
+				  FROM MEMBER) a
+			 WHERE rn <= 3 * #{page}) a
+		 WHERE rn > 3 * (#{page} - 1)
+  		]]>
+	</select>
+
 	<select id="selectMember" parameterType="string" resultType="MemberVO">
 		SELECT MEMBER_NAME AS name,
 			   MEMBER_ID AS memberId,
@@ -47,15 +61,12 @@
 		 </choose>
 	</select>
 
-	<select id="selectMembers" >
-
-	</select>
-
-	<select id="selectPassword">
+	<select id="selectPassword" parameterType="string">
 		SELECT password
 		  FROM MEMBER
 		 WHERE member_id = #{memberId}
 	</select>
+
 	<update id="updateMember" parameterType="MemberVO">
 		UPDATE MEMBER
 		   SET member_name = #{name},
@@ -63,8 +74,9 @@
 		       member_pw = #{password}
 	</update>
 
-	<delete id="deleteMember" parameterType="string">
-
+	<delete id="deleteMember" parameterType="MemberVO">
+		DELETE
+		  FROM MEMBER
 	</delete>
 
 </mapper>
