@@ -38,6 +38,9 @@
 				<p>
 					<button type="button" class="btn btnListingOfCanceled btn-block">취소목록</button>
 				</p>
+				<p>
+					<button type="button" class="btn btnMemberInfo btn-block">회원정보</button>
+				</p>
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4"></div>
 		</nav>
