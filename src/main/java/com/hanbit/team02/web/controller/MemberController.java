@@ -62,7 +62,9 @@ public class MemberController {
 	public MemberVO viewMember(@RequestParam("memberId") String memberId) {
 		LOGGER.debug("회원정보 조회");
 
-		return memberService.getMember(memberId);
+		MemberVO member = memberService.getMember(memberId);
+
+		return member;
 	}
 
 	// 회원정보 수정

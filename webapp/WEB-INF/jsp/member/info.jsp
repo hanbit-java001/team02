@@ -34,20 +34,19 @@
 
 	<div id="divMemberInfo" class="hidden-view">
 		<div class="form-group">
-			<label>이름</label>
-			<div id="infoName"></div>
+			<label for="infoName" class="input-required">이름</label>
+			<input type="text" class="form-control" id="infoName" placeholder="이름">
 		</div>
 		<div class="form-group">
 			<label>아이디</label>
 			<div id="infoMemberId"></div>
 		</div>
 		<div class="form-group">
-			<label>비밀번호</label>
-			<div id="infoPassword"></div>
+			<label for="infoPassword" class="input-required">비밀번호</label>
+			<input type="password" class="form-control" id="infoPassword" placeholder="비밀번호">
 		</div>
-		<div class="form-group">
-			<label>이메일</label>
-			<div id="infoEmail"></div>
+			<label for="infoEmail" class="input-required">이메일</label>
+			<input type="text" class="form-control" id="infoEmail" placeholder="이메일">
 		</div>
 		<div class="form-group">
 			<label>전화번호</label>

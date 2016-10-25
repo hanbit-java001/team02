@@ -10,12 +10,23 @@ $(function() {
 		passwordCheck();
 	});
 
-	function hidePasswordDialog() {
+	function showDivMemberInfo(member) {
 		$(".password-dialog").hide();
-	}
-
-	function showDivMemberInfo() {
 		$("#divMemberInfo").show();
+
+		var data = {
+			name : member.name,
+			memberId : member.memberId,
+			password : member.password,
+			email : member.email,
+			phoneNumber : member.phoneNumber
+		}
+
+		$("#infoName").val(data.name);
+		$("#infoMemberId").html(data.memberId);
+		$("#infoPassword").val(data.password);
+		$("#infoEmail").val(data.email);
+		$("#infoPhoneNumber").html(data.phoneNumber);
 	}
 
 	function passwordCheck() {
@@ -29,7 +40,7 @@ $(function() {
 		}
 
 		$.ajax({
-			url : "/api/member/",
+			url : "/api/member/viewMember",
 			method : "POST",
 			data : {
 				password : password
@@ -38,8 +49,7 @@ $(function() {
 
 				$("#txtPasswordConfirm").val("");
 
-				hidePasswordDialog();
-				showDivMemberInfo();
+				showDivMemberInfo(member);
 			},
 			error : function() {
 				alert("비밀번호를 잘못 입력하셨습니다. 다시 입력해주세요.");
@@ -49,5 +59,31 @@ $(function() {
 
 	$(".btnCancel").on("click", function() {
 		location.href = "/home/main";
+	});
+
+	$(".btnInfoUpdate").on("click", function() {
+		showDivMemberInfo(member);
+
+		callAjax({
+			url : "/api/member/editMember",
+			method : "POST",
+			success : function(result) {
+				if (result.countEdited > 0) {
+					alert("회원정보가 수정되었습니다.");
+				}
+			}
+		});
+	});
+
+	$(".btnInfoDelete").on("click", function() {
+		callAjax({
+			url : "/api/member/removeMember",
+			method : "DELETE",
+			success : function(result) {
+				if (result.countRemoved > 0) {
+					alert("회원탈퇴가 완료되었습니다.");
+				}
+			}
+		});
 	});
 });
