@@ -1,4 +1,4 @@
-$(function() {
+22$(function() {
 	$(".menu-icon").on("click", function() {
 		$(".main-menus").toggle();
 	});
