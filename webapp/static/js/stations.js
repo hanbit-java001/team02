@@ -1,15 +1,17 @@
 $(function(){
 	
-	var citiCode = function(){
-		
-			$.ajax({
-				url:;
-				method:"POST";
-				data:{
-					obj.body.items[i].cityname;
-				}
-			})
-		
+	function getCityCodes() {
+		$.ajax({
+			url:"/api/get/citycode",
+			method:"POST",
+			data:{
+				operatorName : "getCtyCodeList",
+				searchingCountNum : 999,
+				pageNum : 1
+			}
+		}).done(function(result){
+			addStation(result);
+		});
 	}
 
 	var cityCodesDemo = {
@@ -87,6 +89,7 @@ $(function(){
 		
 		
 		$("#trainStationsTable").append(stationtableHTML);
+
 		$("tr td").mouseenter(function(){
 			$(this).css("color", "blue")
 		})
@@ -109,6 +112,6 @@ $(function(){
 	}
 
 	
-	$(".list-departure, .list-arrival").on("click", addStation(cityCodes));
+	$(".list-departure, .list-arrival").on("click", getCityCodes);
 		
 });

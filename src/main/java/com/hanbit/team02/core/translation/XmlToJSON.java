@@ -9,6 +9,7 @@ import java.net.URLEncoder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -17,7 +18,7 @@ import net.sf.json.xml.XMLSerializer;
 @Service
 public class XmlToJSON {
     
-	@Autowired
+	@Transactional
     public String XmlToJson(String operatorName, String searchingCountNum, String pageNum) throws IOException{
     	StringBuilder urlBuilder = new StringBuilder("http://openapi.tago.go.kr/openapi/service/TrainInfoService/"+operatorName); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=Wx6wZSSkjgV9%2FZWena%2Fr0NZcwetrNNAbNzQpqxaiOKpgws04rbXLlLyEcfRdUNMUaBQdZPHtcjfZL2HFBdi%2BBQ%3D%3D"); /*Service Key*/
