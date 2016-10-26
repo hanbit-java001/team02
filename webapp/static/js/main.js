@@ -1,4 +1,4 @@
-22$(function() {
+$(function() {
 	$(".menu-icon").on("click", function() {
 		$(".main-menus").toggle();
 	});
@@ -36,22 +36,24 @@
 	});
 
 	$(".btnLogin").on("click", function() {
-		login();
+		doLogin();
 	});
 
 	$(".login-dialog").keyup(function(event) {
 		if (event.keyCode != 13) {
 			return;
 		}
-		login();
+		doLogin();
 	});
 
 	$(".btnLoginCancel").on("click", function() {
+		$("#txtId").val("");
+		$("#txtPassword").val("");
 		hideLoginDialog();
 		showMainContent();
 	});
 
-	function login() {
+	function doLogin() {
 		var memberId = $("#txtId").val();
 		var password = $("#txtPassword").val();
 
@@ -68,23 +70,24 @@
 		}
 
 		$.ajax({
-			url : "/api/security/login",
-			method : "POST",
-			data : {
-				memberId : memberId,
-				password : password
+			url: "/api/security/login",
+			method: "POST",
+			data: {
+				memberId: memberId,
+				password: password
 			},
-			success : function(result) {
+			success: function(result) {
 				var name = result.name;
 				alert(name + "님 안녕하세요.");
 
 				$("#txtId").val("");
 				$("#txtPassword").val("");
 
-				hideLoginDialog();
+				hideloginDialog();
+				location.reload();
 				showMenu(true);
 			},
-			error : function() {
+			error: function() {
 				alert("아이디 혹은 비밀번호를 잘못 입력하셨습니다. 다시 입력해주세요.");
 			}
 		});
@@ -101,9 +104,9 @@
 	}
 
 	callAjax({
-		url : "/api/security/isLoggedIn",
-		method : "GET",
-		success : function(result) {
+		url: "/api/security/isLoggedIn",
+		method: "GET",
+		success: function(result) {
 			if (result.name == "") {
 				showMenu(false);
 			} else {

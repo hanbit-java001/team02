@@ -49,7 +49,7 @@ $(function() {
 
 				$("#txtPasswordConfirm").val("");
 
-				showDivMemberInfo(member);
+				showDivMemberInfo();
 			},
 			error : function() {
 				alert("비밀번호를 잘못 입력하셨습니다. 다시 입력해주세요.");
@@ -62,7 +62,7 @@ $(function() {
 	});
 
 	$(".btnInfoUpdate").on("click", function() {
-		showDivMemberInfo(member);
+		showDivMemberInfo();
 
 		callAjax({
 			url : "/api/member/editMember",
