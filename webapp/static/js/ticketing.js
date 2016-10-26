@@ -36,18 +36,6 @@ $(function() {
 		$(".ticketingContainer").show();
 	}
 
-	$(".list-departure, .list-arrival").on("click", function() {
-		$(".reserveForm").hide();
-		var tofrom = $(this).attr("tgt");
-
-		if (tofrom == "departure"){
-			$("#departureOrarrival").text($(".arr").text());
-		} else if (tofrom == "arrival") {
-			$("#departureOrarrival").text($(".dep").text());
-		}
-		$("#trainStationsTable").attr("tgt", tofrom);
-		$("#trainStationsTable").show();
-	});
 
 	$(".btnMemberInfo").on("click", function() {
 		location.href = "/member/info";
