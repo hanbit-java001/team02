@@ -23,7 +23,7 @@
 	display: none;
 }
 
-#showDivMemberInfo {
+#divMemberInfo {
 	position: absolute;
 	top: 50%;
 	left: 50%;

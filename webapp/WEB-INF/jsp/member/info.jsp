@@ -45,7 +45,7 @@
 			<label for="infoPassword" class="input-required">비밀번호</label>
 			<input type="password" class="form-control" id="infoPassword" placeholder="비밀번호">
 		</div>
-		<div>
+		<div class="form-group">
 			<label for="infoEmail" class="input-required">이메일</label>
 			<input type="text" class="form-control" id="infoEmail" placeholder="이메일">
 		</div>
