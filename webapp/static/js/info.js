@@ -10,25 +10,6 @@ $(function() {
 		passwordCheck();
 	});
 
-	function showDivMemberInfo(member) {
-		$(".password-dialog").hide();
-		$("#divMemberInfo").show();
-
-		var data = {
-			name : member.name,
-			memberId : member.memberId,
-			password : member.password,
-			email : member.email,
-			phoneNumber : member.phoneNumber
-		}
-
-		$("#infoName").val(data.name);
-		$("#infoMemberId").html(data.memberId);
-		$("#infoPassword").val(data.password);
-		$("#infoEmail").val(data.email);
-		$("#infoPhoneNumber").html(data.phoneNumber);
-	}
-
 	function passwordCheck() {
 		var password = $("#txtPasswordConfirm").val();
 
@@ -57,13 +38,26 @@ $(function() {
 		});
 	}
 
-	$(".btnCancel").on("click", function() {
-		location.href = "/home/main";
-	});
+	function showDivMemberInfo(member) {
+		$(".password-dialog").hide();
+		$("#divMemberInfo").show();
 
-	$(".btnInfoUpdate").on("click", function() {
-		showDivMemberInfo();
+		var data = {
+			name : member.name,
+			memberId : member.memberId,
+			password : member.password,
+			email : member.email,
+			phoneNumber : member.phoneNumber
+		}
 
+		$("#infoName").val(data.name);
+		$("#infoMemberId").html(data.memberId);
+		$("#infoPassword").val(data.password);
+		$("#infoEmail").val(data.email);
+		$("#infoPhoneNumber").html(data.phoneNumber);
+	}
+
+	function update() {
 		callAjax({
 			url : "/api/member/editMember",
 			method : "POST",
@@ -73,17 +67,33 @@ $(function() {
 				}
 			}
 		});
+	}
+
+	function remove() {
+		if(confirm("정말 탈퇴하시겠습니까?")) {
+			callAjax({
+				url : "/api/member/removeMember",
+				method : "DELETE",
+				success : function(result) {
+					if (result.countRemoved > 0) {
+						alert("탈퇴가 완료되었습니다. 안녕");
+					}
+				}
+			});
+		} else {
+			alert("잘 보고 클릭하세요.");
+		}
+	}
+
+	$(".btnInfoUpdate").on("click", function() {
+		update();
+	});
+
+	$(".btnCancel").on("click", function() {
+		location.href = "/home/main";
 	});
 
 	$(".btnInfoDelete").on("click", function() {
-		callAjax({
-			url : "/api/member/removeMember",
-			method : "DELETE",
-			success : function(result) {
-				if (result.countRemoved > 0) {
-					alert("회원탈퇴가 완료되었습니다.");
-				}
-			}
-		});
+		remove();
 	});
 });

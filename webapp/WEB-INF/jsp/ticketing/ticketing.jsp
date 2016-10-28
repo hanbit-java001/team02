@@ -16,7 +16,7 @@
 <title>Ticketing page</title>
 </head>
 <body>
-	<div class="team02-body">
+	<div class="team02-body"  style="min-height: 600px;">
 		<header class="team2-header">
 		<div class="train-ticketing-name">열차 예매</div>
 			<div id="btnGroupMain">
@@ -39,7 +39,10 @@
 					<button type="button" class="btn btnListingOfCanceled btn-block">취소목록</button>
 				</p>
 				<p>
-					<button type="button" class="btn btnMemberInfo btn-block">회원정보</button>
+					<button type="button" class="btn btnMemberInfo btn-block" id="hidden-view">회원정보</button>
+				</p>
+				<p>
+					<button type="button" class="btn btnMemberList btn-block" id="hidden-view">회원목록</button>
 				</p>
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4"></div>

@@ -54,9 +54,9 @@
 			<div id="infoPhoneNumber"></div>
 		</div>
 		<div class="bottom-buttons">
-			<button class="btnInfoUpdate btn btn-success">회원정보수정</button>
+			<button class="btnInfoUpdate btn btn-success">수정하기</button>
 			<button class="btnCancel btn btn-default">취소</button>
-			<button class="btnInfoDelete btn btn-danger">회원탈퇴</button>
+			<button class="btnInfoDelete btn btn-danger">탈퇴하기</button>
 		</div>
 	</div>
 

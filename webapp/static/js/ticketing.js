@@ -19,6 +19,9 @@ $(function() {
 		showBtnsOfTicketing();
 	});
 
+	$(".btnMemberInfo").on("click", function() {
+		location.href = "/member/info";
+	});
 
 	function hideBtnsOfTicketing() {
 		$(".ticketingContainer").hide();
@@ -36,9 +39,24 @@ $(function() {
 		$(".ticketingContainer").show();
 	}
 
+	function showMemberMenu(loggedIn) {
+		if (loggedIn) {
+			$(".btnMemberInfo").show();
+		}
+	}
 
-	$(".btnMemberInfo").on("click", function() {
-		location.href = "/member/info";
+	callAjax({
+		url: "/api/security/isLoggedIn",
+		method: "GET",
+		success: function(result) {
+			if (result.memberId == "admin") {
+				$(".btnMemberList").show();
+				showMemberMenu(true);
+			} else if (result.name == "") {
+				showMemberMenu(false);
+			} else {
+				showMemberMenu(true);
+			}
+		}
 	});
-
 });

@@ -25,6 +25,7 @@
 							<li id="mainLogin">로그인</li>
 							<li id="mainLogout">로그아웃</li>
 							<li id="mainService">서비스 이용하기</li>
+							<li id="mainAdmin" class="hidden-view">관리자 페이지</li>
 						</ul>
 					</div>
 				</div>

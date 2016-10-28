@@ -72,7 +72,7 @@ html, body {
 	.main-name{
 	font-size: 15px;
 	}
-	
+
 	.main-menu {
 		width: 100%;
 		right: 0px;
@@ -81,17 +81,17 @@ html, body {
 		display: none;
 		margin-top: 55px;
 	}
-	
+
 	.main-menu ul li {
 		font-size: medium;
 		color: black;
 		display: inline;
 		z-index: 30;
-	
+
 		border: 1px solid black;
 /* 		border-radius: 5px; */
 	}
-	
+
 	.team02-header-content .menu-icon{
 		display: inline-block;
 		float: right;
@@ -138,4 +138,9 @@ html, body {
 
 .form-group {
 	text-align: left;
+}
+
+.hidden-view {
+	position: relative;
+	display: none;
 }

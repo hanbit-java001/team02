@@ -61,6 +61,8 @@ $(function() {
 			success : function(result) {
 				var name = result.name;
 				alert(name + "님의 가입을 환영합니다.");
+
+				location.href = "/";
 			}
 		});
 	}

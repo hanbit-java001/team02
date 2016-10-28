@@ -43,6 +43,11 @@ public class MemberController {
 		return member;
 	}
 
+	@RequestMapping("/member/info")
+	public String info() {
+		return "member/info";
+	}
+
 	// 회원목록
 	@LoginRequired
 	@RequestMapping("/api/member/viewMembers")

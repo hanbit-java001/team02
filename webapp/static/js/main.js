@@ -28,6 +28,8 @@ $(function() {
 			showLoginDialog();
 		} else if (mainId == "mainLogout") {
 			location.href = "/security/logout";
+		} else if (mainId == "mainAdmin") {
+			location.href = "/ticketing/ticketing";
 		}
 	});
 
@@ -78,6 +80,7 @@ $(function() {
 			},
 			success: function(result) {
 				var name = result.name;
+				var memberId = result.memberId;
 				alert(name + "님 안녕하세요.");
 
 				$("#txtId").val("");
@@ -107,7 +110,11 @@ $(function() {
 		url: "/api/security/isLoggedIn",
 		method: "GET",
 		success: function(result) {
-			if (result.name == "") {
+			if (result.memberId == "admin") {
+				$("#mainAdmin").show();
+				$("#mainService").hide();
+				showMenu(true);
+			} else if (result.name == "") {
 				showMenu(false);
 			} else {
 				showMenu(true);

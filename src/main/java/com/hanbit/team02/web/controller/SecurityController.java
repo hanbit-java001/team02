@@ -39,7 +39,7 @@ public class SecurityController {
 
 		Map result = new HashMap();
 		result.put("name", member.getName());
-
+		result.put("memberId", member.getMemberId());
 		return result;
 	}
 
@@ -55,6 +55,7 @@ public class SecurityController {
 			result.put("name", "");
 		} else {
 			result.put("name", session.getName());
+			result.put("memberId", session.getMemberId());
 		}
 		return result;
 	}
