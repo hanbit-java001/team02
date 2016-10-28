@@ -64,8 +64,8 @@ $(function(){
 		for(var j = 0; j<obj.body.items.length/4; j++){
 			cityTableHTML += '<tr>';
 			for(var i = j*4; i<(j*4)+4; i++){
-				cityTableHTML += '<td>';
 				if(i < obj.body.items.length){
+					cityTableHTML += '<td cityCode ="'+ obj.body.items[i].citycode +'">';
 					cityTableHTML += obj.body.items[i].cityname;
 					//(this).attr("cityCode",obj.body.items[i].citycode)
 				}else if(i >= obj.body.items.length){
