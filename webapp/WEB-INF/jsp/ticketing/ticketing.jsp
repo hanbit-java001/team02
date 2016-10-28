@@ -16,7 +16,7 @@
 <title>Ticketing page</title>
 </head>
 <body>
-	<div class="team02-body">
+	<div class="team02-body"  style="min-height: 600px;">
 		<header class="team2-header">
 		<div class="train-ticketing-name">열차 예매</div>
 			<div id="btnGroupMain">

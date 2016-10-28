@@ -40,3 +40,8 @@
 #departureOrarrival{
 	text-align: center;
 }
+.closeIcon{
+	width: 30px;
+	margin-left: 94%;
+	margin-top: -30px;
+}
