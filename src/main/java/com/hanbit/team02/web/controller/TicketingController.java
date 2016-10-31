@@ -1,6 +1,8 @@
 package com.hanbit.team02.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,6 +57,23 @@ public class TicketingController {
 		return trainTicketingService.getReservedTrainTicket(reservedNumber, cancel);
 	}
 
+	// 공유 취소하기
+	@LoginRequired
+	@RequestMapping("api/ticketing/revokeShares")
+	@ResponseBody
+	public Map revokeShares(@RequestParam("groupYn") boolean groupYn) {
+		int countRevokedShares = trainTicketingService.cancelShared(groupYn);
+
+		if (countRevokedShares == 0) {
+			throw new RuntimeException("공유 취소 권한이 없습니다.");
+		}
+
+		Map result = new HashMap();
+		result.put("countRevokedShares", countRevokedShares);
+
+		return result;
+	}
+
 	// 취소하기
 	@LoginRequired
 	@RequestMapping("/api/ticketing/revoke")
@@ -63,7 +82,7 @@ public class TicketingController {
 		int countRevoked = trainTicketingService.cancelReservedTrainTicket(ticket);
 
 		if (countRevoked == 0) {
-			throw new RuntimeException("예매자만 취소할 수 있습니다.");
+			throw new RuntimeException("예매 취소 권한이 없습니다.");
 		}
 		return ticket;
 	}

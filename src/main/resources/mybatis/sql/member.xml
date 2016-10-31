@@ -46,7 +46,8 @@
 		SELECT MEMBER_NAME AS name,
 			   MEMBER_ID AS memberId,
 			   MEMBER_PW AS password,
-			   MEMBER_EMAIL AS email
+			   MEMBER_EMAIL AS email,
+			   MEMBER_PH AS phoneNumber
 		  FROM MEMBER
 		 <choose>
 		 	<when test="memberId != null">
