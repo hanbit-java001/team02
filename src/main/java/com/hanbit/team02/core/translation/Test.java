@@ -15,6 +15,7 @@ public class Test {
     	XmlToJSON json = new XmlToJSON();
     	String jsonString = json.XmlToJson("getCtyCodeList", "999", "1");
     	System.out.println(jsonString);
-    	
+    	String jsonStringstation = json.XmlToJsonGETCity("getCtyAcctoTrainSttnList", "11", "999");
+    	System.out.println(jsonStringstation);
     }
 }

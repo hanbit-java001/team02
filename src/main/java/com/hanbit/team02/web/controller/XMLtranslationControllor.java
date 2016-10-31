@@ -31,5 +31,13 @@ public class XMLtranslationControllor {
 		return result;
 	}
 	
-	
+	@RequestMapping(value="/api/get/TrainSttnList", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public String xmlTranslatorTrainSttnList(@RequestParam("operatorName") String operatorName,
+			@RequestParam("cityCode") String cityCode,
+			@RequestParam("numOfRows") String numOfRows) throws IOException{
+		
+		String result = xmltojson.XmlToJsonGETCity(operatorName, cityCode, numOfRows);
+		return result;
+	}
 }

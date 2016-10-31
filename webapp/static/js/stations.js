@@ -14,13 +14,13 @@ $(function(){
 		});	
 	}
 	
-	function makeStationTable(caller, cityCode) {
+	function makeStationTable(caller) {
 		$.ajax({
-			url:"/api/get/citycode",
+			url:"/api/get/TrainSttnList",
 			method:"POST",
 			data:{
-				operatorName : "/getCtyAcctoTrainSttnList",
-				cityCode : cityCode,
+				operatorName : "getCtyAcctoTrainSttnList",
+				cityCode : 11,
 				numOfRows : 999,
 			}
 		}).done(function(result){
@@ -37,7 +37,21 @@ $(function(){
 		stationTableHTML += '<tr>';
 		stationTableHTML += '	<th id="departureOrarrival" colspan="4"></th>';
 		stationTableHTML += '</tr>';
-		stationTableHTML += '';
+		
+		for(var j = 0; j<obj.body.items.length/4; j++){
+			stationTableHTML += '<tr>';
+			for(var i = j*4; i<(j*4)+4; i++){
+				if(i < obj.body.items.length){
+					stationTableHTML += '<td nodeid ="'+ obj.body.items[i].nodeid +'">';
+					stationTableHTML += obj.body.items[i].nodename;
+				}else if(i >= obj.body.items.length){
+					stationTableHTML += '';
+				}
+				stationTableHTML += '</td>';
+			}
+			stationTableHTML += '</tr>';
+		}
+		stationTableHTML += '</table>';
 		
 		$("#trainStationsTable").append(stationTableHTML);
 	
@@ -48,6 +62,14 @@ $(function(){
 		} else if (tofrom == "arrival") {
 			$("#departureOrarrival").text($(".dep").text());
 		}
+		$("#trainStationsTable").attr("tgt", tofrom);
+		
+		$("tr td").mouseenter(function(){
+			$(this).css("color", "blue")
+		})
+		$("tr td").mouseleave(function(){
+			$(this).css("color", "black")
+		})
 	}
 
 
@@ -67,7 +89,6 @@ $(function(){
 				if(i < obj.body.items.length){
 					cityTableHTML += '<td cityCode ="'+ obj.body.items[i].citycode +'">';
 					cityTableHTML += obj.body.items[i].cityname;
-					//(this).attr("cityCode",obj.body.items[i].citycode)
 				}else if(i >= obj.body.items.length){
 					cityTableHTML += '';
 				}
@@ -107,7 +128,8 @@ $(function(){
 				$(".form-arrival").val($(this).text())
 			}
 			
-			cityCode = $("tr td")
+			cityCode = $("[citycode]").val();
+			makeStationTable($(this));
 
 			//$("#trainStationsTable").hide()
 			//$(".reserveForm").show()
