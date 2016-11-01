@@ -44,7 +44,7 @@ public class TrainTicketingService {
 			return ticketDAO.selectTickets(cancel, memberId);
 		}
 		else{
-			return null;
+			throw new RuntimeException("예매 내역이 없습니다.");
 		}
 	}
 
@@ -58,7 +58,21 @@ public class TrainTicketingService {
 			return ticketDAO.selectTicket(reservedNumber, cancel, memberId);
 		}
 		else{
-			return null;
+			throw new RuntimeException("예매 내역이 없습니다.");
+		}
+	}
+
+	//예매건수
+	public int countReserved(String reservedNumber, int cancel) {
+		LOGGER.debug("예매건수");
+
+		String memberId = SessionHelpler.getSession().getMemberId();
+
+		if(cancel==0){
+			return ticketDAO.countTicket(reservedNumber, cancel, memberId);
+		}
+		else{
+			throw new RuntimeException("예매 내역이 없습니다.");
 		}
 	}
 
@@ -93,7 +107,7 @@ public class TrainTicketingService {
 			return ticketDAO.selectTickets(cancel, memberId);
 		}
 		else{
-			return null;
+			throw new RuntimeException("취소 내역이 없습니다.");
 		}
 	}
 
@@ -107,7 +121,21 @@ public class TrainTicketingService {
 			return ticketDAO.selectTicket(reservedNumber, cancel, memberId);
 		}
 		else{
-			return null;
+			throw new RuntimeException("취소 내역이 없습니다.");
+		}
+	}
+
+	//취소건수
+	public int countCanceled(String reservedNumber, int cancel) {
+		LOGGER.debug("취소건수");
+
+		String memberId = SessionHelpler.getSession().getMemberId();
+
+		if(cancel!=0){
+			return ticketDAO.countTicket(reservedNumber, cancel, memberId);
+		}
+		else{
+			throw new RuntimeException("취소 내역이 없습니다.");
 		}
 	}
 }

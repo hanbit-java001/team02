@@ -58,22 +58,13 @@ public class MemberService {
 		return members;
 	}
 
+	public int getTotalMembers() {
+		return memberDAO.countMembers();
+	}
+
 	// 회원정보 조회
 	public MemberVO getMember(String memberId) {
 		LOGGER.debug("회원정보 조회");
-
-		MemberVO member = new MemberVO();
-
-		String passwordFromDB = memberDAO.selectPassword(member.getMemberId());
-		String passwordCurrent = member.getCurrentPassword();
-		String encryptedPasswordCurrent = securityService.encryptPassword(passwordCurrent);
-
-		if (!securityService.matchPassword(passwordFromDB, encryptedPasswordCurrent)) {
-			throw new RuntimeException("비밀번호를 잘못 입력하셨습니다.");
-		}
-
-		String encryptedPassword = securityService.encryptPassword(member.getPassword());
-		member.setPassword(encryptedPassword);
 
 		return memberDAO.selectMember(memberId);
 	}
@@ -92,6 +83,17 @@ public class MemberService {
 	@Transactional
 	public int leaveMember(MemberVO member) {
 		LOGGER.debug("회원 탈퇴");
+
+		String passwordFromDB = memberDAO.selectPassword(member.getMemberId());
+		String passwordCurrent = member.getCurrentPassword();
+		String encryptedPasswordCurrent = securityService.encryptPassword(passwordCurrent);
+
+		if (!securityService.matchPassword(passwordFromDB, encryptedPasswordCurrent)) {
+			throw new RuntimeException("비밀번호를 잘못 입력하셨습니다.");
+		}
+
+		String encryptedPassword = securityService.encryptPassword(member.getPassword());
+		member.setPassword(encryptedPassword);
 
 		int result = memberDAO.deleteMember(member);
 

@@ -111,8 +111,8 @@ $(function() {
 		method: "GET",
 		success: function(result) {
 			if (result.memberId == "admin") {
-				$("#mainAdmin").show();
 				$("#mainService").hide();
+				$("#mainAdmin").show();
 				showMenu(true);
 			} else if (result.name == "") {
 				showMenu(false);

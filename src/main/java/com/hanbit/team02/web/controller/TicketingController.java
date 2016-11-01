@@ -40,7 +40,7 @@ public class TicketingController {
 		return ticket;
 	}
 
-	// 예매 목록보기
+	// 예매 목록보기 *예매/취소목록 수정해야 함
 	@LoginRequired
 	@RequestMapping("/api/ticketing/bookedTickets")
 	@ResponseBody
@@ -55,6 +55,22 @@ public class TicketingController {
 	public TicketVO bookedTicket(@RequestParam("reservedNumber") String reservedNumber,
 			@RequestParam("cancel") int cancel) {
 		return trainTicketingService.getReservedTrainTicket(reservedNumber, cancel);
+	}
+
+	// 예매건수
+	@LoginRequired
+	@RequestMapping("/api/ticketing/countBooked")
+	@ResponseBody
+	public Map countBooked(@RequestParam("reservedNumber") String reservedNumber,
+			@RequestParam("cancel") int cancel) {
+
+		int eventCount = trainTicketingService.countReserved(reservedNumber, cancel);
+
+		Map ticket = new HashMap();
+
+		ticket.put("eventCount", eventCount);
+
+		return ticket;
 	}
 
 	// 공유 취소하기
@@ -102,5 +118,21 @@ public class TicketingController {
 	public TicketVO revokedTicket(@RequestParam("reservedNumber") String reservedNumber,
 			@RequestParam("cancel") int cancel) {
 		return trainTicketingService.getCanceledTrainTicket(reservedNumber, cancel);
+	}
+
+	// 취소건수
+	@LoginRequired
+	@RequestMapping("/api/ticketing/countRevoked")
+	@ResponseBody
+	public Map countRevoked(@RequestParam("reservedNumber") String reservedNumber,
+			@RequestParam("cancel") int cancel) {
+
+		int eventCount = trainTicketingService.countCanceled(reservedNumber, cancel);
+
+		Map ticket = new HashMap();
+
+		ticket.put("eventCount", eventCount);
+
+		return ticket;
 	}
 }

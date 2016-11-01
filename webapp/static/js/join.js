@@ -45,20 +45,20 @@ $(function() {
 		}
 
 		var data = {
-			name : name,
-			memberId : memberId,
-			password : password,
-			email : email,
-			phoneNumber : phoneNumber
+			name: name,
+			memberId: memberId,
+			password: password,
+			email: email,
+			phoneNumber: phoneNumber
 		};
 
 		callAjax({
-			url : "/api/member/join",
-			method : "POST",
-			contentType : "application/json; charset=utf-8",
-			dataType : "json",
-			data : JSON.stringify(data),
-			success : function(result) {
+			url: "/api/member/join",
+			method: "POST",
+			contentType: "application/json; charset=utf-8",
+			dataType: "json",
+			data: JSON.stringify(data),
+			success: function(result) {
 				var name = result.name;
 				alert(name + "님의 가입을 환영합니다.");
 

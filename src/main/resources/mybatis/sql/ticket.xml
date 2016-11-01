@@ -41,15 +41,32 @@
 		       )
 	</select>
 
+	<select id="countTicket" parameterType="map" resultType="int">
+	<![CDATA[
+		SELECT COUNT(t.reservedNumber)
+		  FROM TICKET t, SHARES s
+		 WHERE t.reserved_number = #{reservedNumber} AND t.cancel = #{cancel}
+		   AND (
+		         (s.group_yn = 'N' AND s.share_id = #{memberId})
+		         OR
+		         (s.group_yn = 'Y' AND s.share_id IN (
+		       	   SELECT group_id
+		       	     FROM GROUP_MEMBER
+		       	    WHERE member_id = #{memberId})
+		       	 )
+		       )
+	]]>
+	</select>
+
 	<update id="cancelShares" parameterType="map">
 	    UPDATE SHARES
-	       SET group_yn = 'N'
+	       SET group_yn = #{groupYn}	<!-- N으로 바꾸면 공유 취소 -->
 	     WHERE reserved_number IN (
 		 		SELECT t.reserved_number
 		 		  FROM TICKET t, SHARES s
 		 		 WHERE t.reserved_number = #{reservedNumber}
 		 		   AND t.reserved_number = s.reserved_number
-		 		   AND s.group_yn = 'N'
+		 		   AND s.group_yn = 'Y'
 		 		   AND s.owner_yn = 'Y'
 		 		   AND s.share_id = #{memberId}
 		 )

@@ -42,6 +42,11 @@
   		]]>
 	</select>
 
+	<select id="countMembers" resultType="int">
+  		SELECT COUNT(MEMBER_ID)
+  		  FROM MEMBER
+  	</select>
+
 	<select id="selectMember" parameterType="string" resultType="MemberVO">
 		SELECT MEMBER_NAME AS name,
 			   MEMBER_ID AS memberId,
@@ -53,12 +58,6 @@
 		 	<when test="memberId != null">
 		 		WHERE MEMBER_ID = #{memberId}
 		 	</when>
-		 	<when test="email != null">
-		 		WHERE MEMBER_EMAIL = #{email}
-		 	</when>
-		 	<otherwise>
-		 		WHERE email = '!@#$'
-		 	</otherwise>
 		 </choose>
 	</select>
 

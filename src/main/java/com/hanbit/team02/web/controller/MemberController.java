@@ -1,6 +1,8 @@
 package com.hanbit.team02.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,21 +45,30 @@ public class MemberController {
 		return member;
 	}
 
-	@RequestMapping("/member/info")
-	public String info() {
-		return "member/info";
+	@RequestMapping("/member/list")
+	public String list() {
+		return "member/list";
 	}
 
 	// 회원목록
 	@LoginRequired
 	@RequestMapping("/api/member/viewMembers")
 	@ResponseBody
-	public List<MemberVO> viewMembers(@RequestParam("page") int page) {
-		LOGGER.debug("회원목록");
+	public Map<String, Object> listMembers(@RequestParam("page") int page) {
+		Map<String, Object> pagingMembers = new HashMap<>();
 
 		List<MemberVO> members = memberService.getMembers(page);
+		int totalCount = memberService.getTotalMembers();
 
-		return members;
+		pagingMembers.put("totalCount", totalCount);
+		pagingMembers.put("members", members);
+
+		return pagingMembers;
+	}
+
+	@RequestMapping("/member/info")
+	public String info() {
+		return "member/info";
 	}
 
 	// 회원정보 조회

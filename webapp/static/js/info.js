@@ -21,18 +21,18 @@ $(function() {
 		}
 
 		$.ajax({
-			url : "/api/member/viewMember",
-			method : "POST",
-			data : {
-				password : password
+			url: "/api/member/viewMember",
+			method: "POST",
+			data: {
+				password: password
 			},
-			success : function(result) {
+			success: function(result) {
 
 				$("#txtPasswordConfirm").val("");
 
 				showDivMemberInfo();
 			},
-			error : function() {
+			error: function() {
 				alert("비밀번호를 잘못 입력하셨습니다. 다시 입력해주세요.");
 			}
 		});
@@ -43,11 +43,11 @@ $(function() {
 		$("#divMemberInfo").show();
 
 		var data = {
-			name : member.name,
-			memberId : member.memberId,
-			password : member.password,
-			email : member.email,
-			phoneNumber : member.phoneNumber
+			name: member.name,
+			memberId: member.memberId,
+			password: member.password,
+			email: member.email,
+			phoneNumber: member.phoneNumber
 		}
 
 		$("#infoName").val(data.name);
@@ -72,9 +72,9 @@ $(function() {
 	function remove() {
 		if(confirm("정말 탈퇴하시겠습니까?")) {
 			callAjax({
-				url : "/api/member/removeMember",
-				method : "DELETE",
-				success : function(result) {
+				url: "/api/member/removeMember",
+				method: "DELETE",
+				success: function(result) {
 					if (result.countRemoved > 0) {
 						alert("탈퇴가 완료되었습니다. 안녕");
 					}
@@ -94,6 +94,7 @@ $(function() {
 	});
 
 	$(".btnInfoDelete").on("click", function() {
+		$(".password-dialog").show();
 		remove();
 	});
 });

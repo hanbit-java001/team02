@@ -1,8 +1,6 @@
 package com.hanbit.team02.core.dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,17 +32,17 @@ public class MemberDAO {
 	}
 
 
-
 	public List<MemberVO> selectMembers(int page) {
 		return sqlSession.selectList("member.selectMembers", page);
 	}
 
-
+	public int countMembers() {
+		return sqlSession.selectOne("member.countMembers");
+	}
 
 	public MemberVO selectMember(String memberId) {
 		return sqlSession.selectOne("member.selectMember", memberId);
 	}
-
 
 
 	public String selectPassword(String memberId) {
@@ -52,11 +50,9 @@ public class MemberDAO {
 	}
 
 
-
 	public int updateMember(MemberVO member) {
 		return sqlSession.update("member.updateMember", member);
 	}
-
 
 
 	public int deleteMember(MemberVO member) {

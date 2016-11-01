@@ -21,7 +21,7 @@
 		</header>
 	</div>
 
-	<div class="password-dialog">
+	<div class="password-dialog" class="hidden-view">
 		<div class="form-group">
 			<label for="txtPasswordConfirm" class="input-required">비밀번호 확인</label>
 			<input type="password" class="form-control" id="txtPasswordConfirm" placeholder="비밀번호 확인">
@@ -32,7 +32,7 @@
 		</div>
 	</div>
 
-	<div id="divMemberInfo" class="hidden-view">
+	<div id="divMemberInfo">
 		<div class="form-group">
 			<label for="infoName" class="input-required">이름</label>
 			<input type="text" class="form-control" id="infoName" placeholder="이름">

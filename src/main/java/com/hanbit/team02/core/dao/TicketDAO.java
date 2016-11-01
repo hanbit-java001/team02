@@ -62,16 +62,28 @@ public class TicketDAO {
 		return ticket;
 	}
 
+	// 예매 혹은 취소 건수
+	public int countTicket(String reservedNumber, int cancel, String memberId) {
+		Map params = new HashMap();
+
+		params.put("reservedNumber", reservedNumber);
+		params.put("cancel", cancel);
+		params.put("memberId", memberId);
+
+		int ticket = sqlSession.selectOne("ticket.countTicket", params);
+		return ticket;
+	}
+
 	// 공유 취소하기
-		public int cancelShares(boolean groupYn, String memberId) {
-			Map params = new HashMap();
+	public int cancelShares(boolean groupYn, String memberId) {
+		Map params = new HashMap();
 
-			params.put("groupYn", groupYn? "Y":"N");
-			params.put("memberId", memberId);
+		params.put("groupYn", groupYn? "Y":"N");
+		params.put("memberId", memberId);
 
-			int result = sqlSession.update("ticket.cancelShares", params);
-			return result;
-		}
+		int result = sqlSession.update("ticket.cancelShares", params);
+		return result;
+	}
 
 	// 티켓 취소하기
 	public int cancelTicket(TicketVO ticket) {
