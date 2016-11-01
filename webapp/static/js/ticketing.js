@@ -23,6 +23,10 @@ $(function() {
 		location.href = "/member/info";
 	});
 
+	$(".btnMemberList").on("click", function() {
+		location.href = "/member/list";
+	});
+
 	function hideBtnsOfTicketing() {
 		$(".ticketingContainer").hide();
 	}

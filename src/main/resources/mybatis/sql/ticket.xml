@@ -41,6 +41,20 @@
 		       )
 	</select>
 
+	<update id="cancelShares" parameterType="map">
+	    UPDATE SHARES
+	       SET group_yn = 'N'
+	     WHERE reserved_number IN (
+		 		SELECT t.reserved_number
+		 		  FROM TICKET t, SHARES s
+		 		 WHERE t.reserved_number = #{reservedNumber}
+		 		   AND t.reserved_number = s.reserved_number
+		 		   AND s.group_yn = 'N'
+		 		   AND s.owner_yn = 'Y'
+		 		   AND s.share_id = #{memberId}
+		 )
+	</update>
+
 	<update id="cancelTicket" parameterType="TicketVO">
 		UPDATE TICKET
 		   SET cancel = #{cancel}

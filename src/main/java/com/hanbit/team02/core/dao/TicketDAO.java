@@ -62,6 +62,17 @@ public class TicketDAO {
 		return ticket;
 	}
 
+	// 공유 취소하기
+		public int cancelShares(boolean groupYn, String memberId) {
+			Map params = new HashMap();
+
+			params.put("groupYn", groupYn? "Y":"N");
+			params.put("memberId", memberId);
+
+			int result = sqlSession.update("ticket.cancelShares", params);
+			return result;
+		}
+
 	// 티켓 취소하기
 	public int cancelTicket(TicketVO ticket) {
 		int result = sqlSession.update("ticket.cancelTicket", ticket);

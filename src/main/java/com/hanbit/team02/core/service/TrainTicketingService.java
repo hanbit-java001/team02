@@ -62,6 +62,16 @@ public class TrainTicketingService {
 		}
 	}
 
+	//공유 취소하기
+	public int cancelShared(boolean groupYn) {
+		LOGGER.debug("공유 취소");
+
+		String memberId = SessionHelpler.getSession().getMemberId();
+
+		int result = ticketDAO.cancelShares(groupYn, memberId);
+		return result;
+	}
+
 	//취소하기
 	public int cancelReservedTrainTicket(TicketVO ticket) {
 		LOGGER.debug("예매 취소");
