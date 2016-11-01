@@ -29,7 +29,7 @@ $(function() {
 			success: function(result) {
 
 				$("#txtPasswordConfirm").val("");
-
+				showDivMemberInfo(member);
 				remove();
 			},
 			error: function() {
@@ -86,6 +86,7 @@ $(function() {
 	}
 
 	$(".btnInfoUpdate").on("click", function() {
+		showDivMemberInfo(member);
 		update();
 	});
 
