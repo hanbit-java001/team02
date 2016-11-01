@@ -49,3 +49,17 @@
 	position: relative;
 	display: none;
 }
+#pagingBar{
+	position:relative;
+	display: inline-block;
+}
+.pageNumber {
+	width: 20px;
+	float: left;
+	font-size: 120%;
+}
+.pageNumber.selectable:hover {
+	color: blue;
+	font-weight: bold;
+	cursor: pointer;
+}
