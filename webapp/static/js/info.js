@@ -30,7 +30,7 @@ $(function() {
 
 				$("#txtPasswordConfirm").val("");
 
-				showDivMemberInfo();
+				remove();
 			},
 			error: function() {
 				alert("비밀번호를 잘못 입력하셨습니다. 다시 입력해주세요.");
@@ -95,6 +95,5 @@ $(function() {
 
 	$(".btnInfoDelete").on("click", function() {
 		$(".password-dialog").show();
-		remove();
 	});
 });
