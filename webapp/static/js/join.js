@@ -14,6 +14,7 @@ $(function() {
 		var name = $("#txtName").val();
 		var memberId = $("#txtMemberId").val();
 		var password = $("#txtPassword").val();
+		var passwordConfirm = $("#txtPasswordConfirm").val();
 		var email = $("#txtEmail").val();
 		var phoneNumber = $("#txtPhoneNumber").val();
 
@@ -31,6 +32,11 @@ $(function() {
 			alert("비밀번호를 입력하세요.");
 			$("#txtPassword").val("");
 			$("#txtPassword").focus();
+			return;
+		} else if (password != passwordConfirm) {
+			alert("비밀번호를 동일하게 입력하세요.");
+			$("#txtPasswordConfirm").val("");
+			$("#txtPasswordConfirm").focus();
 			return;
 		} else if (email.trim() == "") {
 			alert("이메일을 입력하세요.");

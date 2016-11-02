@@ -35,6 +35,10 @@
 			<input type="password" class="form-control" id="txtPassword" placeholder="비밀번호">
 		</div>
 		<div class="form-group">
+			<label for="txtPasswordConfirm" class="input-required">비밀번호 확인</label>
+			<input type="password" class="form-control" id="txtPasswordConfirm" placeholder="비밀번호 확인">
+		</div>
+		<div class="form-group">
 			<label for="txtEmail" class="input-required">이메일</label>
 			<input type="text" class="form-control" id="txtEmail" placeholder="이메일">
 		</div>

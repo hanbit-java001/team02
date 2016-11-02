@@ -21,37 +21,30 @@
 		</header>
 	</div>
 
-	<div class="password-dialog" class="hidden-view">
+	<div class="member-info">
+		<div class="form-group">
+			<label for="txtName" class="input-required">이름</label>
+			<input type="text" class="form-control" id="txtName" placeholder="이름">
+		</div>
+		<div class="form-group">
+			<label for="txtMemberId" class="input-required">아이디</label>
+			<input type="text" class="form-control" id="txtMemberId" placeholder="아이디">
+		</div>
+		<div class="form-group">
+			<label for="txtPassword" class="input-required">비밀번호</label>
+			<input type="password" class="form-control" id="txtPassword" placeholder="비밀번호">
+		</div>
 		<div class="form-group">
 			<label for="txtPasswordConfirm" class="input-required">비밀번호 확인</label>
 			<input type="password" class="form-control" id="txtPasswordConfirm" placeholder="비밀번호 확인">
 		</div>
-		<div class="bottom-buttons">
-			<button class="btnConfirm btn btn-success">확인</button>
-			<button class="btnCancel btn btn-default">취소</button>
-		</div>
-	</div>
-
-	<div id="divMemberInfo">
 		<div class="form-group">
-			<label for="infoName" class="input-required">이름</label>
-			<input type="text" class="form-control" id="infoName" placeholder="이름">
+			<label for="txtEmail" class="input-required">이메일</label>
+			<input type="text" class="form-control" id="txtEmail" placeholder="이메일">
 		</div>
 		<div class="form-group">
-			<label>아이디</label>
-			<div id="infoMemberId"></div>
-		</div>
-		<div class="form-group">
-			<label for="infoPassword" class="input-required">비밀번호</label>
-			<input type="password" class="form-control" id="infoPassword" placeholder="비밀번호">
-		</div>
-		<div class="form-group">
-			<label for="infoEmail" class="input-required">이메일</label>
-			<input type="text" class="form-control" id="infoEmail" placeholder="이메일">
-		</div>
-		<div class="form-group">
-			<label>전화번호</label>
-			<div id="infoPhoneNumber"></div>
+			<label for="txtPhoneNumber" class="input-required">전화번호</label>
+			<input type="text" class="form-control" id="txtPhoneNumber" placeholder="전화번호">
 		</div>
 		<div class="bottom-buttons">
 			<button class="btnInfoUpdate btn btn-success">수정하기</button>

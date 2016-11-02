@@ -74,29 +74,26 @@ public class MemberService {
 	public int modifyMember(MemberVO member) {
 		LOGGER.debug("회원정보 수정");
 
-		int result = memberDAO.updateMember(member);
+		int countEmail = memberDAO.countEmail(member.getEmail());
+		int countPhoneNumber = memberDAO.countPhoneNumber(member.getPhoneNumber());
 
-		return result;
-	}
-
-	// 회원 탈퇴
-	@Transactional
-	public int leaveMember(MemberVO member) {
-		LOGGER.debug("회원 탈퇴");
-
-		String passwordFromDB = memberDAO.selectPassword(member.getMemberId());
-		String passwordCurrent = member.getCurrentPassword();
-		String encryptedPasswordCurrent = securityService.encryptPassword(passwordCurrent);
-
-		if (!securityService.matchPassword(passwordFromDB, encryptedPasswordCurrent)) {
-			throw new RuntimeException("비밀번호를 잘못 입력하셨습니다.");
+		if (countEmail > 0){
+			throw new RuntimeException("중복된 메일입니다.");
+		} else if (countPhoneNumber > 0) {
+			throw new RuntimeException("중복된 전화번호입니다.");
 		}
 
 		String encryptedPassword = securityService.encryptPassword(member.getPassword());
 		member.setPassword(encryptedPassword);
 
-		int result = memberDAO.deleteMember(member);
+		return memberDAO.updateMember(member);
+	}
 
-		return result;
+	// 회원 탈퇴
+	@Transactional
+	public int leaveMember(String memberId) {
+		LOGGER.debug("회원 탈퇴");
+
+		return memberDAO.deleteMember(memberId);
 	}
 }

@@ -55,7 +55,7 @@ public class MemberDAO {
 	}
 
 
-	public int deleteMember(MemberVO member) {
-		return sqlSession.delete("member.updateMember", member);
+	public int deleteMember(String memberId) {
+		return sqlSession.delete("member.deleteMember", memberId);
 	}
 }

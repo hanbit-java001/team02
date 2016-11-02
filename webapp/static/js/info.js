@@ -1,46 +1,43 @@
 $(function() {
-	$(".btnConfirm").on("click", function() {
-		passwordCheck();
-	});
+	function showMemberInfo(member) {
+		var name = $("#txtName").val();
+		var memberId = $("#txtMemberId").val();
+		var password = $("#txtPassword").val();
+		var passwordConfirm = $("#txtPasswordConfirm").val();
+		var email = $("#txtEmail").val();
+		var phoneNumber = $("#txtPhoneNumber").val();
 
-	$(".password-dialog").keyup(function(event) {
-		if (event.keyCode != 13) {
+		if (name.trim() == "") {
+			alert("이름을 입력하세요.");
+			$("#txtName").val("");
+			$("#txtName").focus();
 			return;
-		}
-		passwordCheck();
-	});
-
-	function passwordCheck() {
-		var password = $("#txtPasswordConfirm").val();
-
-		if (password.trim() == "") {
+		} else if (memberId.trim() == "") {
+			alert("아이디를 입력하세요.");
+			$("#txtMemberId").val("");
+			$("#txtMemberId").focus();
+			return;
+		} else if (password.trim() == "") {
 			alert("비밀번호를 입력하세요.");
+			$("#txtPassword").val("");
+			$("#txtPassword").focus();
+			return;
+		} else if (password != passwordConfirm) {
+			alert("비밀번호를 동일하게 입력하세요.");
 			$("#txtPasswordConfirm").val("");
 			$("#txtPasswordConfirm").focus();
 			return;
+		} else if (email.trim() == "") {
+			alert("이메일을 입력하세요.");
+			$("#txtEmail").val("");
+			$("#txtEmail").focus();
+			return;
+		} else if (phoneNumber.trim() == "") {
+			alert("핸드폰 번호를 입력하세요.");
+			$("#txtPhoneNumber").val("");
+			$("#txtPhoneNumber").focus();
+			return;
 		}
-
-		$.ajax({
-			url: "/api/member/viewMember",
-			method: "POST",
-			data: {
-				password: password
-			},
-			success: function(result) {
-
-				$("#txtPasswordConfirm").val("");
-				showDivMemberInfo(member);
-				remove();
-			},
-			error: function() {
-				alert("비밀번호를 잘못 입력하셨습니다. 다시 입력해주세요.");
-			}
-		});
-	}
-
-	function showDivMemberInfo(member) {
-		$(".password-dialog").hide();
-		$("#divMemberInfo").show();
 
 		var data = {
 			name: member.name,
@@ -50,14 +47,15 @@ $(function() {
 			phoneNumber: member.phoneNumber
 		}
 
-		$("#infoName").val(data.name);
-		$("#infoMemberId").html(data.memberId);
-		$("#infoPassword").val(data.password);
-		$("#infoEmail").val(data.email);
-		$("#infoPhoneNumber").html(data.phoneNumber);
+		$("#txtName").val(data.name);
+		$("#txtMemberId").html(data.memberId);
+		$("#txtPassword").val(data.password);
+		$("#txtPasswordConfirm").val(data.password);
+		$("#txtEmail").val(data.email);
+		$("#txtPhoneNumber").html(data.phoneNumber);
 	}
 
-	function update() {
+	function updateMember() {
 		callAjax({
 			url : "/api/member/editMember",
 			method : "POST",
@@ -69,8 +67,8 @@ $(function() {
 		});
 	}
 
-	function remove() {
-		if(confirm("정말 탈퇴하시겠습니까?")) {
+	function removeMember() {
+		if (confirm("정말 탈퇴하시겠습니까?")) {
 			callAjax({
 				url: "/api/member/removeMember",
 				method: "DELETE",
@@ -81,13 +79,22 @@ $(function() {
 				}
 			});
 		} else {
-			alert("잘 보고 클릭하세요.");
+			location.reload();
 		}
 	}
 
+	function getMember() {
+		callAjax({
+			url: "/api/member/viewMember"
+			method: "GET",
+			success: function(result) {
+				showMemberInfo(result.member);
+			}
+		});
+	}
+
 	$(".btnInfoUpdate").on("click", function() {
-		showDivMemberInfo(member);
-		update();
+		updateMember();
 	});
 
 	$(".btnCancel").on("click", function() {
@@ -95,6 +102,6 @@ $(function() {
 	});
 
 	$(".btnInfoDelete").on("click", function() {
-		$(".password-dialog").show();
+		removeMember();
 	});
 });

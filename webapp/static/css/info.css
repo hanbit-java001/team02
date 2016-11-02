@@ -1,19 +1,10 @@
-.password-dialog {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 300px;
-	padding: 20px;
-}
-
 .bottom-buttons {
 	position: relative;
 	left:5%;
 }
 
 @media(max-height: 530px) {
-	.password-dialog {
+	.member-info {
 		position: absolute;
 	}
 }
@@ -23,7 +14,7 @@
 	display: none;
 }
 
-#divMemberInfo {
+.member-info {
 	position: absolute;
 	top: 50%;
 	left: 50%;
