@@ -8,7 +8,7 @@ $(function() {
 		memberHTML += "<div class='member-memberId member-box-center'>";
 		memberHTML += memberId;
 		memberHTML += "</div>";
-		memberHTML += "<div class='member-email member-box-left'>";
+		memberHTML += "<div class='member-email member-box-center'>";
 		memberHTML += email;
 		memberHTML += "</div>";
 		memberHTML += "</div>";

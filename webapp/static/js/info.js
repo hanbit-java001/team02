@@ -1,58 +1,29 @@
 $(function() {
-	function showMemberInfo(member) {
-		var name = $("#txtName").val();
-		var memberId = $("#txtMemberId").val();
-		var password = $("#txtPassword").val();
-		var passwordConfirm = $("#txtPasswordConfirm").val();
-		var email = $("#txtEmail").val();
-		var phoneNumber = $("#txtPhoneNumber").val();
+	function getMember(callback) {
+		callAjax({
+			url: "/api/member/viewMember"
+			method: "GET",
+			success: function(result) {
+				callback(result);
+			}
+		});
+	}
 
-		if (name.trim() == "") {
-			alert("이름을 입력하세요.");
-			$("#txtName").val("");
-			$("#txtName").focus();
-			return;
-		} else if (memberId.trim() == "") {
-			alert("아이디를 입력하세요.");
-			$("#txtMemberId").val("");
-			$("#txtMemberId").focus();
-			return;
-		} else if (password.trim() == "") {
-			alert("비밀번호를 입력하세요.");
-			$("#txtPassword").val("");
-			$("#txtPassword").focus();
-			return;
-		} else if (password != passwordConfirm) {
-			alert("비밀번호를 동일하게 입력하세요.");
-			$("#txtPasswordConfirm").val("");
-			$("#txtPasswordConfirm").focus();
-			return;
-		} else if (email.trim() == "") {
-			alert("이메일을 입력하세요.");
-			$("#txtEmail").val("");
-			$("#txtEmail").focus();
-			return;
-		} else if (phoneNumber.trim() == "") {
-			alert("핸드폰 번호를 입력하세요.");
-			$("#txtPhoneNumber").val("");
-			$("#txtPhoneNumber").focus();
-			return;
-		}
-
-		var data = {
-			name: member.name,
-			memberId: member.memberId,
-			password: member.password,
-			email: member.email,
-			phoneNumber: member.phoneNumber
-		}
-
-		$("#txtName").val(data.name);
-		$("#txtMemberId").html(data.memberId);
-		$("#txtPassword").val(data.password);
-		$("#txtPasswordConfirm").val(data.password);
-		$("#txtEmail").val(data.email);
-		$("#txtPhoneNumber").html(data.phoneNumber);
+	function removeMember() {
+		var check = confirm("정말 탈퇴하시겠습니까?");
+	    if (check == true) {
+	        callAjax({
+				url: "/api/member/removeMember",
+				method: "DELETE",
+				success: function(result) {
+					if (result.countRemoved > 0) {
+						alert("탈퇴가 완료되었습니다. 안녕");
+					}
+				}
+			});
+	    } else {
+	        location.reload();
+	    }
 	}
 
 	function updateMember() {
@@ -67,41 +38,54 @@ $(function() {
 		});
 	}
 
-	function removeMember() {
-		if (confirm("정말 탈퇴하시겠습니까?")) {
-			callAjax({
-				url: "/api/member/removeMember",
-				method: "DELETE",
-				success: function(result) {
-					if (result.countRemoved > 0) {
-						alert("탈퇴가 완료되었습니다. 안녕");
-					}
-				}
-			});
-		} else {
-			location.reload();
+	function showDetailMember(member) {
+		$("#member-info-detail").show();
+
+		var data = {
+			name: member.name,
+			memberId: member.memberId,
+			password: member.password,
+			email: member.email,
+			phoneNumber: member.phoneNumber
 		}
+
+		$("#detailName").html(data.name);
+		$("#detailMemberId").html(data.memberId);
+		$("#detailPassword").html(data.password);
+		$("#detailPasswordConfirm").html(data.password);
+		$("#detailEmail").html(data.email);
+		$("#detailPhoneNumber").html(data.phoneNumber);
+		$(".btnUpdate").attr("memberId", data.memberId);
+    	$(".btnDelete").attr("memberId", data.memberId);
 	}
 
-	function getMember() {
-		callAjax({
-			url: "/api/member/viewMember"
-			method: "GET",
-			success: function(result) {
-				showMemberInfo(result.member);
-			}
-		});
+	function showUpdateMember(member) {
+		$("#member-info-update").show();
+
+		$("#txtName").val(member.name);
+		$("#txtMemberId").html(member.memberId);
+		$("#txtPassword").val(member.password);
+		$("#txtPasswordConfirm").val(member.password);
+		$("#txtEmail").val(member.email);
+		$("#txtPhoneNumber").html(member.phoneNumber);
 	}
 
-	$(".btnInfoUpdate").on("click", function() {
-		updateMember();
+	$(".btnUpdate").on("click", function() {
+		var memberId = $(this).attr("memberId");
+
+		getMember(function(member) {
+			showUpdateMember(member);
+			updateMember();
+    	});
 	});
 
 	$(".btnCancel").on("click", function() {
-		location.href = "/home/main";
+		location.href = "/ticketing/ticketing";
 	});
 
-	$(".btnInfoDelete").on("click", function() {
+	$(".btnDelete").on("click", function() {
+		var memberId = $(this).attr("memberId");
+		showDetailMember(member);
 		removeMember();
 	});
 });

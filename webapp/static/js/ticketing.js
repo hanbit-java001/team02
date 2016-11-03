@@ -54,6 +54,9 @@ $(function() {
 		method: "GET",
 		success: function(result) {
 			if (result.memberId == "admin") {
+				$(".btnReserve").hide();
+				$(".btnListing").hide();
+				$(".btnListingOfCanceled").hide();
 				$(".btnMemberList").show();
 				showMemberMenu(true);
 			} else if (result.name == "") {

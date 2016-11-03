@@ -47,7 +47,7 @@
   		  FROM MEMBER
   	</select>
 
-	<select id="selectMember" parameterType="string" resultType="MemberVO">
+	<select id="selectMember" parameterType="map" resultType="MemberVO">
 		SELECT MEMBER_NAME AS name,
 			   MEMBER_ID AS memberId,
 			   MEMBER_PW AS password,

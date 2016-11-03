@@ -60,7 +60,7 @@ public class SecurityController {
 		return result;
 	}
 
-	@RequestMapping("/api/security/logout")
+	@RequestMapping("/security/logout")
 	public void logout(HttpServletResponse response) throws Exception {
 		Session session = SessionHelpler.getSession();
 		session.logout();

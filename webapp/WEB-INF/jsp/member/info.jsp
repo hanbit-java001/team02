@@ -21,9 +21,9 @@
 		</header>
 	</div>
 
-	<div class="member-info">
+	<div id="member-info-update" >
 		<div class="form-group">
-			<label for="txtName" class="input-required">이름</label>
+			<label for="txtName">이름</label>
 			<input type="text" class="form-control" id="txtName" placeholder="이름">
 		</div>
 		<div class="form-group">
@@ -47,9 +47,41 @@
 			<input type="text" class="form-control" id="txtPhoneNumber" placeholder="전화번호">
 		</div>
 		<div class="bottom-buttons">
-			<button class="btnInfoUpdate btn btn-success">수정하기</button>
+			<button class="btnUpdate btn btn-success">수정하기</button>
 			<button class="btnCancel btn btn-default">취소</button>
-			<button class="btnInfoDelete btn btn-danger">탈퇴하기</button>
+			<button class="btnDelete btn btn-danger">탈퇴하기</button>
+		</div>
+	</div>
+
+	<div id="member-info-detail" class="hidden-view">
+		<div class="form-group">
+   			<label>이름</label>
+   			<div id="detailName"></div>
+		</div>
+		<div class="form-group">
+   			<label>아이디</label>
+   			<div id="detailMemberId"></div>
+		</div>
+		<div class="form-group">
+   			<label>비밀번호</label>
+   			<div id="detailPassword"></div>
+		</div>
+		<div class="form-group">
+   			<label>비밀번호 확인</label>
+   			<div id="detailPasswordConfirm"></div>
+		</div>
+		<div class="form-group">
+   			<label>이메일</label>
+   			<div id="detailEmail"></div>
+		</div>
+		<div class="form-group">
+   			<label>전화번호</label>
+   			<div id="detailPhoneNumber"></div>
+		</div>
+		<div class="bottom-buttons">
+			<button class="btnUpdate btn btn-success">수정하기</button>
+			<button class="btnCancel btn btn-default">취소</button>
+			<button class="btnDelete btn btn-danger">탈퇴하기</button>
 		</div>
 	</div>
 

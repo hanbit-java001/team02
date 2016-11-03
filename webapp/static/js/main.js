@@ -83,12 +83,13 @@ $(function() {
 				var memberId = result.memberId;
 				alert(name + "님 안녕하세요.");
 
-				$("#txtId").val("");
+				$("#txtMemberId").val("");
 				$("#txtPassword").val("");
 
-				hideloginDialog();
-				location.reload();
 				showMenu(true);
+
+				location.href = "/";
+
 			},
 			error: function() {
 				alert("아이디 혹은 비밀번호를 잘못 입력하셨습니다. 다시 입력해주세요.");

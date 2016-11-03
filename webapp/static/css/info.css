@@ -4,7 +4,13 @@
 }
 
 @media(max-height: 530px) {
-	.member-info {
+	.member-info-update {
+		position: absolute;
+	}
+}
+
+@media(max-height: 530px) {
+	.member-info-detail {
 		position: absolute;
 	}
 }
@@ -14,8 +20,17 @@
 	display: none;
 }
 
-.member-info {
-	position: absolute;
+.member-info-update {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 300px;
+	padding: 20px;
+}
+
+.member-info-detail {
+	position: relative;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
