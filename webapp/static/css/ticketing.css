@@ -34,11 +34,16 @@
 	display: none;
 	text-align: center;
 }
+
+
 #trainStationsTable td{
 	cursor: pointer;
 }
 #departureOrarrival{
 	text-align: center;
+	margin-bottom: 15px;
+    margin-top: -10px;
+    font-weight: bold;
 }
 .closeIcon{
 	width: 30px;
@@ -62,4 +67,8 @@
 	color: blue;
 	font-weight: bold;
 	cursor: pointer;
+}
+
+.cityCell{
+	
 }

@@ -1,26 +1,10 @@
 $(function(){
 	
-	function stationsPaging(obj) {
-		for(var j = 0; j</*obj.body.items.length/*/4; j++){
-			stationTableHTML += '<tr>';
-			for(var i = j*4; i<(j*4)+4; i++){
-				if(i < obj.body.items.length){
-					stationTableHTML += '<td nodeid ="'+ obj.body.items[i].nodeid +'">';
-					stationTableHTML += obj.body.items[i].nodename;
-				}else if(i >= obj.body.items.length){
-					stationTableHTML += '';
-				}
-				stationTableHTML += '</td>';
-			}
-			stationTableHTML += '</tr>';
-		}
-		stationTableHTML += '</table>';
-		stationTableHTML += '<div id="pagingBar">';
-		stationTableHTML += '</div>';
-	}
+	var cityListObj;
+	var stationListObj;
 	
-	var cityCode = 0;
-	function makeCityTables(caller) {
+	
+	function makeTables(caller) {
 		$.ajax({
 			url:"/api/get/citycode",
 			method:"POST",
@@ -30,11 +14,12 @@ $(function(){
 				pageNum : 1
 			}
 		}).done(function(result){
+			cityListObj = result;
 			addCities(result, caller);
 		});	
 	}
 	
-	function makeStationTable(target, cityCode) {
+	function makeStationTable(caller, cityCode) {
 		$.ajax({
 			url:"/api/get/TrainSttnList",
 			method:"POST",
@@ -44,57 +29,115 @@ $(function(){
 				numOfRows : 999,
 			}
 		}).done(function(result){
-			addStations(result, target);
+			stationListObj = result;
+			addStations(result, caller);
 		})
 	}
-
-	function addStations(obj, target) {
-		var stationTableHTML = "";
-		stationTableHTML += '<div id="closeIcon">';
-		stationTableHTML += '<i class="material-icons closeIcon">close</i>';
-		stationTableHTML += '</div>';
-		stationTableHTML += '<table class="table table-striped stationTable">';
-		stationTableHTML += '<tr>';
-		stationTableHTML += '	<th id="departureOrarrival" colspan="4"></th>';
-		stationTableHTML += '</tr>';
-		
-		for(var j = 0; j</*obj.body.items.length/*/4; j++){
-			stationTableHTML += '<tr>';
-			for(var i = j*4; i<(j*4)+4; i++){
-				if(i < obj.body.items.length){
-					stationTableHTML += '<td nodeid ="'+ obj.body.items[i].nodeid +'">';
-					stationTableHTML += obj.body.items[i].nodename;
-				}else if(i >= obj.body.items.length){
-					stationTableHTML += '';
-				}
-				stationTableHTML += '</td>';
-			}
-			stationTableHTML += '</tr>';
-		}
-		stationTableHTML += '</table>';
-		stationTableHTML += '<div id="pagingBar">';
-		for (var i = 0; i<obj.body.items.length/4/4; i++){
-			stationTableHTML += '<div class="pageNumber';
-			if (i != obj.body.items.length/4/4) {
-				stationTableHTML += ' selectable';
-			}
-			stationTableHTML += '">'+(i+1)+'</div>'
-		}
-		stationTableHTML += '</div>';
-		
-		$("#trainStationsTable").append(stationTableHTML);
 	
-		//표 머리에 출발역 도착역 쓰는 코드
+
+	var stationTableHTML = "";
+	var cityTableHTML = "";
+	
+	function addCloseIcon() {
+		var closeIconHTML ="";
+		closeIconHTML += '<div id="closeIcon">';
+		closeIconHTML += '<i class="material-icons closeIcon">close</i>';
+		closeIconHTML += '</div>';
+		$("#trainStationsTable").append(closeIconHTML);
+	}
+	
+	function addListTableHead(caller) {
+		var ListTableHeadHTML ="";
+		ListTableHeadHTML += '<div id="departureOrarrival" colspan="4"/>';
+		$("#trainStationsTable").append(ListTableHeadHTML);
 		
-		if (target == "departure"){
+		//표 머리에 출발역 도착역 쓰는 코드
+		var tofrom = caller.attr("tgt");
+		
+		if (tofrom == "departure"){
 			$("#departureOrarrival").text($(".arr").text());
-		} else if (target == "arrival") {
+		} else if (tofrom == "arrival") {
 			$("#departureOrarrival").text($(".dep").text());
 		}
-		$("#trainStationsTable").attr("tgt");
 		
+	}
+	
+	function addListCitiesTable(obj) {
+		var listCitiesTableHTML = "";
+		listCitiesTableHTML += '<table class="table table-striped cltiesList">';
+		for(var j = 0; j<obj.body.items.length/4; j++){
+			listCitiesTableHTML += '<tr>';
+			for(var i = j*4; i<(j*4)+4; i++){
+				if(i < obj.body.items.length){
+					listCitiesTableHTML += '<td cityCode ="'+ obj.body.items[i].citycode +'">';
+					listCitiesTableHTML += obj.body.items[i].cityname;
+				}else if(i >= obj.body.items.length){
+					listCitiesTableHTML += '';
+				}
+				listCitiesTableHTML += '</td>';
+			}
+			listCitiesTableHTML += '</tr>';
+		}
+		listCitiesTableHTML += '</table>';
+		
+		$("#trainStationsTable").append(listCitiesTableHTML);
+	}
+	
+
+	function addListStationsTable(stationListObj) {
+		
+		var totalItems = stationListObj.body.items.length;
+		var itemsPerRow = 4;
+		var page = 1;
+		var startIndex = (page - 1) * itemsPerRow*4;
+		var endIndex = Math.min(page * itemsPerRow, totalItems);
+		console.log(stationListObj)
+		console.log(totalItems)
+		console.log(endIndex)
+
+		var listStationsTableHTML = "";
+		listStationsTableHTML += '<table class="table table-striped staionList">';
+		for(var j = 0; j<totalItems/itemsPerRow; j++){
+			listStationsTableHTML += '<tr>';
+			for(var i = j*4; i<(j*4)+4; i++){
+				if(i < stationListObj.body.items.length){
+					listStationsTableHTML += '<td nodeid ="'+ stationListObj.body.items[i].nodeid +'">';
+					listStationsTableHTML += stationListObj.body.items[i].nodename;
+				}else if(i >= stationListObj.body.items.length){
+					listStationsTableHTML += '';
+				}
+				listStationsTableHTML += '</td>';
+			}
+			listStationsTableHTML += '</tr>';
+		}
+		listStationsTableHTML += '</table>';
+		$("#trainStationsTable").append(listStationsTableHTML);
+	}
+
+	function paging(obj) {
+		var pagingHTML = "";
+		pagingHTML += '<div id="pagingBar">';
+		for (var i = 0; i<obj.body.items.length/4/4; i++){
+			pagingHTML += '<div class="pageNumber';
+			if (i != 0) {
+				pagingHTML += ' selectable';
+			}
+			pagingHTML += '">'+(i+1)+'</div>'
+		}
+		pagingHTML += '</div>';
+		
+		$("#trainStationsTable").append(pagingHTML);
+	}
+	
+	
+	function addStations(obj, caller) {
+		addCloseIcon()
+		addListTableHead(caller)
+		addListStationsTable(obj)
+		paging(obj)
+
 		$("tr td").mouseenter(function(){
-				$(this).css({"color": "blue","font-weight":"bold"})				
+			$(this).css({"color": "blue","font-weight":"bold"})				
 		})
 		$("tr td").mouseleave(function(){
 			$(this).css({"color": "black","font-weight":"normal"})
@@ -108,7 +151,9 @@ $(function(){
 			else if (target == "arrival") {
 				$(".form-arrival").val($(this).text())
 			}
-			$("#trainStationsTable").hide()
+			
+			
+			$("#trainStationsTable").empty().hide()
 			$(".reserveForm").show()
 			$("#closeIcon").detach()
 			$(".stationTable").detach()
@@ -116,19 +161,18 @@ $(function(){
 		});
 		
 		$(".pageNumber").click(function(){
-			var selectedNumber = $(".pageNumber").text()
-			if (selectedNumber == (obj.body.items.length/4/4)+1){
-				
+			var selectedNumber = $(this).text();
+			console.log(selectedNumber)
+			if (selectedNumber != page){
+				$("#trainStationsTable").empty();
 			}else{
 				
 			}
-			$(".stationTable").detach()
-			$("#pagingBar").detach()
 		});
 		
 		
 		$(".closeIcon").click(function(){
-			$("#trainStationsTable").hide()
+			$("#trainStationsTable").empty().hide()
 			$(".reserveForm").show()
 			$(".stationTable").detach()
 			$("#pagingBar").detach()
@@ -137,83 +181,36 @@ $(function(){
 
 
 	function addCities(obj, caller){
-		var cityTableHTML = "";
-		cityTableHTML += '<div id="closeIcon">';
-		cityTableHTML += '<i class="material-icons closeIcon">close</i>';
-		cityTableHTML += '</div>';
-		cityTableHTML += '<table class="table table-striped stationTable">';
-		cityTableHTML += '<tr>';
-		cityTableHTML += '	<th id="departureOrarrival" colspan="4"></th>';
-		cityTableHTML += '</tr>';
-		
-		for(var j = 0; j<obj.body.items.length/4; j++){
-			cityTableHTML += '<tr>';
-			for(var i = j*4; i<(j*4)+4; i++){
-				if(i < obj.body.items.length){
-					cityTableHTML += '<td cityCode ="'+ obj.body.items[i].citycode +'">';
-					cityTableHTML += obj.body.items[i].cityname;
-				}else if(i >= obj.body.items.length){
-					cityTableHTML += '';
-				}
-				cityTableHTML += '</td>';
-			}
-			cityTableHTML += '</tr>';
-		}
-		cityTableHTML += '</table>';
-		
-		
-		$("#trainStationsTable").append(cityTableHTML);
-		
-		//표 머리에 출발역 도착역 쓰는 코드
-		var tofrom = caller.attr("tgt");
-		
-		if (tofrom == "departure"){
-			$("#departureOrarrival").text($(".arr").text());
-		} else if (tofrom == "arrival") {
-			$("#departureOrarrival").text($(".dep").text());
-		}
-		
-		$("#trainStationsTable").attr("tgt", tofrom);
+		addCloseIcon()
+		addListTableHead(caller)
+		addListCitiesTable(obj)
 
-		$("tr td").mouseenter(function(){
+		$(".cltiesList tr td").mouseenter(function(){
 			$(this).css({"color": "blue","font-weight":"bold"})
 		})
-		$("tr td").mouseleave(function(){
+		$(".cltiesList tr td").mouseleave(function(){
 			$(this).css({"color": "black","font-weight":"normal"})
 		})
-		$("tr td").click(function(){
-			var target = $("#trainStationsTable").attr("tgt");
-//			
-//			if (target == "departure") {
-//				$(".form-departure").val($(this).text())
-//			}
-//			else if (target == "arrival") {
-//				$(".form-arrival").val($(this).text())
-//			}
-			
+		
+		$(".cltiesList tr td").click(function(){
 			var cityCode = $(this).attr("citycode");
-			makeStationTable(target, cityCode);
-
-			//$("#trainStationsTable").hide()
-			//$(".reserveForm").show()
-			$("#closeIcon").detach()
-			$(".stationTable").detach()	
+			$("#trainStationsTable").attr("tgt");
+			$("#trainStationsTable").empty()
+			makeStationTable(caller, cityCode);
 		});
 
 		$(".closeIcon").click(function(){
-			$("#trainStationsTable").hide()
+			$("#trainStationsTable").empty().hide()
 			$(".reserveForm").show()
-			$(".stationTable").detach()
+			cityTableHTML="";
 		});
 	}
 
-	$(".list-departure, .list-arrival").on("click", function() {
+	$(".list-departure, .list-arrival").on("click", function(){
 		$(".reserveForm").hide();
 		
-		makeCityTables($(this));
+		makeTables($(this));
 		
 		$("#trainStationsTable").fadeIn();
-		
 	});
-		
 });

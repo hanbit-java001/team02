@@ -75,6 +75,6 @@
 	<script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/static/js/ticketing.js"></script>
 	<script src="/static/js/common.js"></script>
-	<script src="/static/js/stations.js"></script>
+	<script src="/static/js/stationPaging.js"></script>
 </body>
 </html>
