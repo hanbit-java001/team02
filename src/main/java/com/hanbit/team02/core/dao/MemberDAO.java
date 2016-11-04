@@ -43,11 +43,11 @@ public class MemberDAO {
 	}
 
 	public MemberVO selectMember(String memberId) {
-		Map param = new HashMap();
+		Map info = new HashMap();
 
-		param.put("memberId", memberId);
+		info.put("memberId", memberId);
 
-		return sqlSession.selectOne("member.selectMember", param);
+		return sqlSession.selectOne("member.selectMember", info);
 	}
 
 

@@ -39,7 +39,7 @@
 		<div>
 			<div class="col-lg-4 col-md-3 col-sm-2"></div>
 				<div class="main-content col-lg-4 col-md-6 col-sm-8">
-					<h3>회원목록</h3><br><br>
+					<h4>회원목록</h4><br><br>
 					<div class="member-container"></div>
 					<div class="member-paging"></div>
 				</div>

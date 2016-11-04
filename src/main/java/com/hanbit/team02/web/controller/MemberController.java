@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hanbit.team02.core.service.MemberService;
 import com.hanbit.team02.core.session.LoginRequired;
+import com.hanbit.team02.core.session.Session;
+import com.hanbit.team02.core.session.SessionHelpler;
 import com.hanbit.team02.core.vo.MemberVO;
 
 @Controller
@@ -75,14 +77,22 @@ public class MemberController {
 
 	// 회원정보 조회
 	@LoginRequired
+//	@RequestMapping(value = "/api/member/{memberId}", method = RequestMethod.GET)
 	@RequestMapping("/api/member/viewMember")
 	@ResponseBody
-	public MemberVO viewMember(@RequestParam("memberId") String memberId) {
+	public Map viewMember() {
 		LOGGER.debug("회원정보 조회");
 
-		MemberVO member = memberService.getMember(memberId);
+		Session session = SessionHelpler.getSession();
 
-		return member;
+		String memberId = session.getMemberId();
+
+		Map memberInfo = new HashMap();
+		MemberVO info = memberService.getMember(memberId);
+
+		memberInfo.put("info", info);
+
+		return memberInfo;
 	}
 
 	// 회원정보 수정
@@ -103,9 +113,9 @@ public class MemberController {
 
 	// 회원 탈퇴
 	@LoginRequired
-	@RequestMapping("/api/member/removeMember")
+	@RequestMapping(value = "/api/member/{memberId}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public Map removeMember(@RequestParam("memberId") String memberId) {
+	public Map removeMember(@PathVariable("memberId") String memberId) {
 		LOGGER.debug("회원 탈퇴");
 
 		int countRemoved = memberService.leaveMember(memberId);

@@ -66,7 +66,9 @@ public class MemberService {
 	public MemberVO getMember(String memberId) {
 		LOGGER.debug("회원정보 조회");
 
-		return memberDAO.selectMember(memberId);
+		MemberVO info = memberDAO.selectMember(memberId);
+
+		return info;
 	}
 
 	// 회원정보 수정

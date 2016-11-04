@@ -116,8 +116,12 @@ $(function() {
 				$("#mainAdmin").show();
 				showMenu(true);
 			} else if (result.name == "") {
+				$("#mainAdmin").hide();
+				$("#mainService").show();
 				showMenu(false);
 			} else {
+				$("#mainAdmin").hide();
+				$("#mainService").show();
 				showMenu(true);
 			}
 		}
