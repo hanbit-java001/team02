@@ -130,10 +130,10 @@ html, body {
 }
 
 .login-dialog {
-	display:none;
 	position: relative;
 	border: 1;
 	background-color: greeen;
+	margin-top: 80px;
 }
 
 .form-group {

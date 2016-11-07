@@ -9,11 +9,32 @@ $(function() {
 	function showMainContent() {
 		$(".main-content").show();
 	}
-	function hideLoginDialog() {
-		$(".login-dialog").hide();
+	function emptyLoginDialog() {
+		$(".login-dialog").empty();
 	}
 	function showLoginDialog() {
-		$(".login-dialog").show();
+		var loginDialogHTML ="";
+		loginDialogHTML +='<div class="form-group">';
+		loginDialogHTML +='<label for="txtId" class="input-required">아이디</label>';
+		loginDialogHTML +='<input type="text" class="form-control" id="txtId" placeholder="아이디">';
+		loginDialogHTML +='</div>';
+		loginDialogHTML +='<div class="form-group">';
+		loginDialogHTML +='<label for="txtPassword" class="input-required">비밀번호</label>';
+		loginDialogHTML +='<input type="password" class="form-control" id="txtPassword" placeholder="비밀번호">';
+		loginDialogHTML +='</div>';
+		loginDialogHTML +='<div class="bottom-buttons">';
+		loginDialogHTML +='<button class="btnLogin btn btn-success">로그인</button>';
+		loginDialogHTML +='<button class="btnLoginCancel btn btn-default">취소</button>';
+		loginDialogHTML +='</div>';
+		
+		$(".login-dialog").append(loginDialogHTML);
+		
+		$(".btnLoginCancel").on("click", function() {
+			$("#txtId").val("");
+			$("#txtPassword").val("");
+			emptyLoginDialog();
+			showMainContent();
+		});
 	}
 
 	$(".main-menu ul li").on("click", function() {
@@ -24,8 +45,12 @@ $(function() {
 		} else if (mainId == "mainService") {
 			location.href = "/ticketing/ticketing";
 		} else if (mainId == "mainLogin") {
+			if($(".login-dialog").text() == ""){
 			hideMainContent();
 			showLoginDialog();
+			} else{
+				
+			}
 		} else if (mainId == "mainLogout") {
 			location.href = "/security/logout";
 		} else if (mainId == "mainAdmin") {
@@ -48,12 +73,7 @@ $(function() {
 		doLogin();
 	});
 
-	$(".btnLoginCancel").on("click", function() {
-		$("#txtId").val("");
-		$("#txtPassword").val("");
-		hideLoginDialog();
-		showMainContent();
-	});
+
 
 	function doLogin() {
 		var memberId = $("#txtId").val();

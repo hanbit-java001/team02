@@ -34,29 +34,15 @@
 		</div>
 		<div>
 			<div class="col-lg-4 col-md-3 col-sm-2"></div>
-				<div class="main-content col-lg-4 col-md-6 col-sm-8">
-					<h2>편리한 교통 예매 서비스</h2><br><br>
-					<p>목적지로 가는 경로를 추천해주고,<br> 교통편을 예약할 수 있습니다.</p><br>
-					<button id="btnJoin" class="btn btn-primary">지금 가입하기</button>
-				</div>
-				<div class="login-dialog col-lg-4 col-md-6 col-sm-8">
-					<div class="form-group">
-						<label for="txtId" class="input-required">아이디</label>
-						<input type="text" class="form-control" id="txtId" placeholder="아이디">
-					</div>
-					<div class="form-group">
-						<label for="txtPassword" class="input-required">비밀번호</label>
-						<input type="password" class="form-control" id="txtPassword" placeholder="비밀번호">
-					</div>
-					<div class="bottom-buttons">
-						<button class="btnLogin btn btn-success">로그인</button>
-						<button class="btnLoginCancel btn btn-default">취소</button>
-					</div>
-				<div class="col-lg-4 col-md-4 col-sm-4"></div>
+			<div class="main-content col-lg-4 col-md-6 col-sm-8">
+				<h2>편리한 교통 예매 서비스</h2><br><br>
+				<p>목적지로 가는 경로를 추천해주고,<br> 교통편을 예약할 수 있습니다.</p><br>
+				<button id="btnJoin" class="btn btn-primary">지금 가입하기</button>
 			</div>
+			<div class="login-dialog col-lg-4 col-md-6 col-sm-8"></div>
+			<div class="col-lg-4 col-md-4 col-sm-4"></div>
 		</div>
-
-	</div>
+		</div>
 		<div class="team02-footer">2016, Hanbit Team 02</div>
 <script src="/static/plugins/jquery/jquery-3.1.0.min.js"></script>
 <script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
