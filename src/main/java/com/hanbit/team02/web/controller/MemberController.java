@@ -113,10 +113,14 @@ public class MemberController {
 
 	// 회원 탈퇴
 	@LoginRequired
-	@RequestMapping(value = "/api/member/{memberId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/member/revokeMember", method = RequestMethod.DELETE)
 	@ResponseBody
-	public Map removeMember(@PathVariable("memberId") String memberId) {
+	public Map removeMember() {
 		LOGGER.debug("회원 탈퇴");
+
+		Session session = SessionHelpler.getSession();
+
+		String memberId = session.getMemberId();
 
 		int countRemoved = memberService.leaveMember(memberId);
 

@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/static/plugins/material/iconfont/material-icons.css">
 <link rel="stylesheet" href="/static/css/common.css" />
 <link rel="stylesheet" href="/static/css/member.css" />
-<link rel="stylesheet" href="/static/css/main.css" />
+<link rel="stylesheet" href="/static/css/mainSub.css" />
 </head>
 <body>
 	<div class="team02-body">
@@ -39,7 +39,7 @@
 		<div>
 			<div class="col-lg-4 col-md-3 col-sm-2"></div>
 				<div class="main-content col-lg-4 col-md-6 col-sm-8">
-					<h4>회원정보</h4><br><br>
+					<h3>회원정보</h3><br>
 					<div class="member-container"></div>
 					<div class="bottom-buttons">
 						<button class="btnUpdate btn btn-success">수정하기</button>

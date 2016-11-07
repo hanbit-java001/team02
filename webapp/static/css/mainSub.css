@@ -1,0 +1,146 @@
+html, body {
+	position: relative;
+	height: 100%;
+	min-height: 400px;
+}
+
+.main-container {
+	height: 100%;
+}
+
+.main-top {
+	position: absolute;
+	width: 100%;
+	height: 48px;
+	background-color:#383838;
+	z-index: 1000;
+}
+
+.main-name {
+	text-align: left;
+	color: white;
+	font-size: x-large;
+	width: 40%;
+	left: 0px;
+	padding-top: 10px;
+}
+
+.main-top-body>div {
+	position: absolute;
+	display: inline-block;
+	height: 100%;
+	top: 0px;
+}
+
+
+
+.main-menu {
+	width: 50%;
+	right: 0px;
+}
+
+.main-menu ul {
+	text-align: right;
+	margin-left: -5px;
+}
+@media (min-width: 650px) {
+	.main-menu ul {
+		display: block !important;
+	}
+}
+
+.main-menu ul li {
+	cursor: pointer;
+	font-size: medium;
+	color: white;
+	display: inline-block;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	margin-top: 8px;
+
+	border: 1px solid white;
+	border-radius: 5px;
+}
+.team02-header-content .menu-icon{
+	display: none;
+}
+
+
+@media (max-width: 650px) {
+	.main-name{
+	font-size: 15px;
+	}
+
+	.main-menu {
+		width: 100%;
+		right: 0px;
+	}
+	.main-menu ul{
+		display: none;
+		margin-top: 55px;
+	}
+
+	.main-menu ul li {
+		font-size: medium;
+		color: black;
+		display: inline;
+		z-index: 30;
+
+		border: 1px solid black;
+/* 		border-radius: 5px; */
+	}
+
+	.team02-header-content .menu-icon{
+		display: inline-block;
+		float: right;
+		margin-right: 30px;
+	}
+}
+
+
+@media (max-width:355px ){
+	.main-content h2 {
+		font-size: 20px;
+	}
+}
+
+@media (max-width:320px ){
+	.main-menu {
+		width: 200px;
+	}
+	#mainService{
+		display: inline-block;
+	}
+}
+.main-content {
+	margin-top: 30px;
+	position: relative;
+	align-content: center;
+	vertical-align:middle;
+	text-align: center;
+}
+
+.main-bottom {
+	position: relative;
+	text-align: center;
+	color: black;
+	font-size: small;
+}
+
+.login-dialog {
+	display:none;
+	position: relative;
+	border: 1;
+	background-color: greeen;
+}
+
+.form-group {
+	text-align: left;
+}
+
+.hidden-view {
+	position: relative;
+	display: none;
+}

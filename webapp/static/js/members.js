@@ -1,17 +1,32 @@
 $(function() {
+	function addHeader() {
+		var memberHeaderHTML = "";
+
+		memberHeaderHTML += "<table class='table table-responsive'>";
+		memberHeaderHTML += "<thead>"
+		memberHeaderHTML += "<tr>";
+		memberHeaderHTML += "<th class='member-box-center'>"+'이름'+"</th>";
+		memberHeaderHTML += "<th class='member-box-center'>"+'아이디'+"</th>";
+		memberHeaderHTML += "<th class='member-box-center'>"+'이메일'+"</th>";
+		memberHeaderHTML += "</tr>";
+		memberHeaderHTML += "</thead>"
+
+		$(".member-header").append(memberHeaderHTML);
+	}
+
 	function addMember(name, memberId, email) {
+
 		var memberHTML = "";
-		memberHTML += "<div class='member-box'>";
-		memberHTML += "<div class='member-name member-box-center'>";
-		memberHTML += name;
-		memberHTML += "</div>";
-		memberHTML += "<div class='member-memberId member-box-center'>";
-		memberHTML += memberId;
-		memberHTML += "</div>";
-		memberHTML += "<div class='member-email member-box-center'>";
-		memberHTML += email;
-		memberHTML += "</div>";
-		memberHTML += "</div>";
+
+		memberHTML += "<table class='table table-responsive'>";
+		memberHTML += "<tbody>";
+		memberHTML += "<tr>";
+		memberHTML += "<td class='member-box-width'>"+name+"</td>";
+		memberHTML += "<td class='member-box-width'>"+memberId+"</td>";
+		memberHTML += "<td class='member-box-width'>"+email+"</td>";
+		memberHTML += "</tr>";
+		memberHTML += "</tbody>";
+		memberHTML += "</table>";
 
 		$(".member-container").append(memberHTML);
 	}
@@ -24,6 +39,7 @@ $(function() {
 				page: pageNumber
 			}
 		}).done(function(pagingMembers) {
+			addHeader();
 			$(".member-container").empty();
 
 			for (var i=0; i<pagingMembers.members.length; i++) {
@@ -39,6 +55,9 @@ $(function() {
 			var totalCount = pagingMembers.totalCount;
 
 			drawPaging(totalCount);
+		}).fail(function() {
+			alert("로그인이 필요합니다.");
+			location.href = "/home/main";
 		});
 	}
 
