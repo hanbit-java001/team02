@@ -44,6 +44,7 @@
 	margin-bottom: 15px;
     margin-top: -10px;
     font-weight: bold;
+    font-size: 120%
 }
 .closeIcon{
 	width: 30px;
@@ -55,6 +56,8 @@
 	display: none;
 }
 #pagingBar{
+	margin-top: 20px;
+    margin-bottom: -20px;
 	position:relative;
 	display: inline-block;
 }
@@ -69,6 +72,29 @@
 	cursor: pointer;
 }
 
-.cityCell{
-	
+
+
+.citiesTable, .stationsTable{
+	display: inline-block;
+}
+
+.cityCell, .stationCell{
+	width: 90px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 10px;
+	display: inline-block;
+	font-size: 110%;
+	cursor: pointer;
+}
+.cityCell:hover, .stationCell:hover{
+	color: blue;
+	font-weight: bold;
+}
+.reserveBtnContainer{
+	position: relative;
+	margin-left: 40%;
+}
+.reserveContainer.reserve{
+	display: inline-block;
 }
