@@ -9,4 +9,6 @@ function callAjax(ajaxObj) {
 
 		alert(errorMsg);
 	});
+
+
 }

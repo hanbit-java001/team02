@@ -8,7 +8,35 @@ public class TicketVO {
 	private String reservedTime;
 	private int cancel;
 	private String memberId;
+	private String departureStation;
+	private String departureTime;
+	private String arrivalStation;
+	private String arrivalTime;
 
+	public String getDepartureStation() {
+		return departureStation;
+	}
+	public void setDepartureStation(String departureStation) {
+		this.departureStation = departureStation;
+	}
+	public String getDepartureTime() {
+		return departureTime;
+	}
+	public void setDepartureTime(String departureTime) {
+		this.departureTime = departureTime;
+	}
+	public String getArrivalStation() {
+		return arrivalStation;
+	}
+	public void setArrivalStation(String arrivalStation) {
+		this.arrivalStation = arrivalStation;
+	}
+	public String getArrivalTime() {
+		return arrivalTime;
+	}
+	public void setArrivalTime(String arrivalTime) {
+		this.arrivalTime = arrivalTime;
+	}
 	public String getTrainId() {
 		return trainId;
 	}

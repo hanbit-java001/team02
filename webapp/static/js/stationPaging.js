@@ -93,16 +93,16 @@ $(function(){
 		$(".closeIcon").click(closeAction);
 	});
 	
-	$().on("",function(){
+	$(".reserve").on("click",function(){
 		$.ajax({
 			url : "/api/ticket/reserve",
 			method : "POST",
 			data : {
-				departure : departure,
-				arrival : arrival
-			}
-		})
-	})
+				departure : departureStation,
+				arrival : arrivalStation
+				}
+			});
+		});
 ///////////////////////////////////////////////////////////////////////
 
 
@@ -168,6 +168,7 @@ $(function(){
 //////////////////////////////////////////////////////////////////////
 	
 	
+//////////////////////////////////////////////////////////////////////
 	function drawPaging(obj) {
 		var pagingHTML = "";
 		pagingHTML += '<div id="pagingBar">';
@@ -181,7 +182,6 @@ $(function(){
 		pagingHTML += '</div>';
 		
 		$("#trainStationsTable").append(pagingHTML);
-//////////////////////////////////////////////////////////////////////
 /*page number 클릭하는 이벤트에 station 다 지우고 새로 그려주는 함수*/
 		$(".pageNumber.selectable").on("click", function() {
 			var page = Number($(this).text());
@@ -191,5 +191,29 @@ $(function(){
 			stationsTable(stations, page);
 		});
 //////////////////////////////////////////////////////////////////////
+	}
+	function showLoginDialog() {
+		var loginDialogHTML ="";
+		loginDialogHTML +='<div class="form-group">';
+		loginDialogHTML +='<label for="txtId" class="input-required">아이디</label>';
+		loginDialogHTML +='<input type="text" class="form-control" id="txtId" placeholder="아이디">';
+		loginDialogHTML +='</div>';
+		loginDialogHTML +='<div class="form-group">';
+		loginDialogHTML +='<label for="txtPassword" class="input-required">비밀번호</label>';
+		loginDialogHTML +='<input type="password" class="form-control" id="txtPassword" placeholder="비밀번호">';
+		loginDialogHTML +='</div>';
+		loginDialogHTML +='<div class="bottom-buttons">';
+		loginDialogHTML +='<button class="btnLogin btn btn-success">로그인</button>';
+		loginDialogHTML +='<button class="btnLoginCancel btn btn-default">취소</button>';
+		loginDialogHTML +='</div>';
+		
+		$(".login-dialog").append(loginDialogHTML);
+		
+		$(".btnLoginCancel").on("click", function() {
+			$("#txtId").val("");
+			$("#txtPassword").val("");
+			emptyLoginDialog();
+			showMainContent();
+		});
 	}
 });

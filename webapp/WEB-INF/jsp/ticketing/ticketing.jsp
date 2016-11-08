@@ -68,6 +68,8 @@
 			</div>
 			<div id="trainStationsTable" class="col-lg-4 col-md-6 col-sm-6 jumbotron">
 			</div>
+			<div id="login-dialog" class="col-lg-4 col-md-6 col-sm-6">
+			</div>
 			<div class="col-lg-4 col-md-3 col-sm-3"></div>
 		</section>
 	</div>
