@@ -79,9 +79,9 @@ public class MemberService {
 		int countEmail = memberDAO.countEmail(member.getEmail());
 		int countPhoneNumber = memberDAO.countPhoneNumber(member.getPhoneNumber());
 
-		if (countEmail > 0){
+		if (countEmail > 2){
 			throw new RuntimeException("중복된 메일입니다.");
-		} else if (countPhoneNumber > 0) {
+		} else if (countPhoneNumber > 2) {
 			throw new RuntimeException("중복된 전화번호입니다.");
 		}
 

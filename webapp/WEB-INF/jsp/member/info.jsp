@@ -41,11 +41,6 @@
 				<div class="main-content col-lg-4 col-md-6 col-sm-8">
 					<h3>회원정보</h3><br>
 					<div class="member-container"></div>
-					<div class="bottom-buttons">
-						<button class="btnUpdate btn btn-success">수정하기</button>
-						<button class="btnCancel btn btn-default">취소</button>
-						<button class="btnDelete btn btn-danger">탈퇴하기</button>
-					</div>
 				</div>
 				<div class="login-dialog col-lg-4 col-md-6 col-sm-8">
 					<div class="form-group">
