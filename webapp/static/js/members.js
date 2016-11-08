@@ -1,4 +1,8 @@
 $(function() {
+	$(".btnConfirm").on("click", function() {
+		location.href = "/ticketing/ticketing";
+	});
+
 	function addHeader() {
 		var memberHeaderHTML = "";
 
@@ -12,6 +16,18 @@ $(function() {
 		memberHeaderHTML += "</thead>"
 
 		$(".member-header").append(memberHeaderHTML);
+	}
+
+	function addConfirm() {
+		var confirmHTML = "";
+
+		confirmHTML += '<button class="btnConfirm btn btn-success">확인</button>';
+
+		$(".member-confirm").html(confirmHTML);
+
+		$(".btnConfirm").on("click", function() {
+			location.href = "/ticketing/ticketing";
+		});
 	}
 
 	function addMember(name, memberId, email) {
@@ -135,4 +151,5 @@ $(function() {
 	var totalPages;
 
 	getMembers(currentPage);
+	addConfirm();
 });

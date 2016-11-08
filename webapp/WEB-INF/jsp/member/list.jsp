@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -42,7 +42,8 @@
 					<h3>회원목록</h3><br>
 					<div class="member-header"></div>
 					<div class="member-container"></div>
-					<div class="member-paging"></div>
+					<div class="member-paging"></div><br>
+					<div class="member-confirm"></div>
 				</div>
 				<div class="login-dialog col-lg-4 col-md-6 col-sm-8">
 					<div class="form-group">
