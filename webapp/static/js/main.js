@@ -29,6 +29,10 @@ $(function() {
 
 		$(".login-dialog").append(loginDialogHTML);
 
+		$(".btnLogin").on("click", function() {
+			doLogin();
+		});
+
 		$(".btnLoginCancel").on("click", function() {
 			$("#txtId").val("");
 			$("#txtPassword").val("");
@@ -60,10 +64,6 @@ $(function() {
 
 	$("#btnJoin").on("click", function() {
 		location.href = "/member/join";
-	});
-
-	$(".btnLogin").on("click", function() {
-		doLogin();
 	});
 
 	$(".login-dialog").keyup(function(event) {

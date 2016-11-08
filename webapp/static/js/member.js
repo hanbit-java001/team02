@@ -1,24 +1,36 @@
 $(function() {
 	function addMember(name, memberId, email, phoneNumber) {
 		var memberHTML = "";
-		memberHTML += "<table class='table table-bordered'>";
-		memberHTML += "<tr>";
-		memberHTML += "<th class='member-info-center'>"+'이름'+"</th>";
-		memberHTML += "<td>"+name+"</td>";
-		memberHTML += "</tr>";
-		memberHTML += "<tr>";
-		memberHTML += "<th class='member-info-center'>"+'아이디'+"</th>";
-		memberHTML += "<td>"+memberId+"</td>";
-		memberHTML += "</tr>";
-		memberHTML += "<tr>";
-		memberHTML += "<th class='member-info-center'>"+'이메일'+"</th>";
-		memberHTML += "<td>"+email+"</td>";
-		memberHTML += "</tr>";
-		memberHTML += "<tr>";
-		memberHTML += "<th class='member-info-center'>"+'전화번호'+"</th>";
-		memberHTML += "<td>"+phoneNumber+"</td>";
-		memberHTML += "</tr>";
-		memberHTML += "</table>";
+		memberHTML += '<div class="member-update">';
+
+		memberHTML += '<div class="form-group">';
+		memberHTML += '<label for="txtName">'+'이름'+'</label>';
+		memberHTML += '<input type="hidden" class="form-control" id="txtName" value='+password+'>';
+		memberHTML += '</div>';
+		memberHTML += '<div class="form-group">';
+		memberHTML += '<label for="txtMemberId">'+'아이디'+'</label>';
+		memberHTML += '<input type="hidden" class="form-control" id="txtMemberId" placeholder="아이디">';
+		memberHTML += '</div>';
+		memberHTML += '<div class="form-group">';
+		memberHTML += '<label for="txtPassword">'+'비밀번호'+'</label>';
+		memberHTML += '<input type="password" class="form-control" id="txtPassword" value='+password+'>';
+		memberHTML += '</div>';
+		memberHTML += '<div class="form-group">';
+		memberHTML += '<label for="txtPasswordConfirm">'+'비밀번호 확인'+'</label>';
+		memberHTML += '<input type="password" class="form-control" id="txtPasswordConfirm" value='+password+'>';
+		memberHTML += '</div>';
+		memberHTML += '<div class="form-group">';
+		memberHTML += '<label for="txtEmail">'+'이메일'+'</label>';
+		memberHTML += '<input type="text" class="form-control" id="txtEmail" value='+email+'>';
+		memberHTML += '</div>';
+		memberHTML += '<div class="form-group">';
+		memberHTML += '<label for="txtPhoneNumber">'+'전화번호'+'</label>';
+		memberHTML += '<input type="text" class="form-control" id="txtPhoneNumber" value='+phoneNumber+'>';
+		memberHTML += '</div>';
+		memberHTML += '<div class="bottom-buttons">';
+		memberHTML += '<button class="btnUpdateConfirm btn btn-success">확인</button>';
+		memberHTML += '</div>';
+		memberHTML += '</div>';
 
 		$(".member-container").append(memberHTML);
 	}
