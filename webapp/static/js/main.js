@@ -26,9 +26,9 @@ $(function() {
 		loginDialogHTML +='<button class="btnLogin btn btn-success">로그인</button>';
 		loginDialogHTML +='<button class="btnLoginCancel btn btn-default">취소</button>';
 		loginDialogHTML +='</div>';
-		
+
 		$(".login-dialog").append(loginDialogHTML);
-		
+
 		$(".btnLoginCancel").on("click", function() {
 			$("#txtId").val("");
 			$("#txtPassword").val("");
@@ -49,7 +49,7 @@ $(function() {
 			hideMainContent();
 			showLoginDialog();
 			} else{
-				
+
 			}
 		} else if (mainId == "mainLogout") {
 			location.href = "/security/logout";
@@ -124,6 +124,7 @@ $(function() {
 		} else {
 			$("#mainLogin").show();
 			$("#mainLogout").hide();
+			$("#mainService").hide();
 		}
 	}
 
@@ -137,7 +138,6 @@ $(function() {
 				showMenu(true);
 			} else if (result.name == "") {
 				$("#mainAdmin").hide();
-				$("#mainService").show();
 				showMenu(false);
 			} else {
 				$("#mainAdmin").hide();
