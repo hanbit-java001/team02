@@ -2,6 +2,7 @@ package com.hanbit.team02.core.service;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,5 +138,16 @@ public class TrainTicketingService {
 		else{
 			throw new RuntimeException("취소 내역이 없습니다.");
 		}
+	}
+
+	//예매번호 생성
+	public String generateNumber() {
+		String time = String.valueOf(System.currentTimeMillis());
+		String threadNumber = String.valueOf(Thread.currentThread().getId());
+		threadNumber = StringUtils.leftPad(threadNumber, 4, "0");
+
+		String uniqueNumber = time + threadNumber;
+
+		return uniqueNumber;
 	}
 }

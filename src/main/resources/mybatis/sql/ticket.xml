@@ -11,9 +11,9 @@
 
 	<insert id="reserveTicket" parameterType="TicketVO">
 		INSERT INTO TICKET
-			(NAME, RESERVED_TIME, CANCEL, DEPARTURE, ARRIVAL)
+			(RESERVED_NUMBER, NAME, RESERVED_TIME, CANCEL, DEPARTURE, ARRIVAL)
 		VALUES
-			(#{name}, #{reservedTime}, #{cancel}, #{departureStation}, #{arrivalStation})
+			(#{reservedNumber}, #{name}, #{reservedTime}, #{cancel}, #{departureStation}, #{arrivalStation})
 	</insert>
 
 	<select id="selectTickets" parameterType="map" resultType="TicketVO">

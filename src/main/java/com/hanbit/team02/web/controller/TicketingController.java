@@ -34,7 +34,7 @@ public class TicketingController {
 	public TicketVO bookTicket(@RequestParam("departure") String departure,
 			@RequestParam("arrival") String arrival,
 			@RequestParam("depTime") String depTime) {
-		
+
 		String memberName = SessionHelpler.getSession().getName();
 
 		TicketVO result = new TicketVO();
@@ -42,7 +42,10 @@ public class TicketingController {
 		result.setArrivalStation(arrival);
 		result.setReservedTime(depTime);
 		result.setName(memberName);
-		
+
+		String reservedNumber = trainTicketingService.generateNumber();
+		result.setReservedNumber(reservedNumber);
+
 		int countAdded = trainTicketingService.reserveTrainTicket(result);
 
 		if (countAdded == 0) {
@@ -84,7 +87,8 @@ public class TicketingController {
 		return ticket;
 	}
 
-	// 공유 취소하기
+
+	/* 공유 취소하기
 	@LoginRequired
 	@RequestMapping("api/ticketing/revokeShares")
 	@ResponseBody
@@ -100,6 +104,7 @@ public class TicketingController {
 
 		return result;
 	}
+	*/
 
 	// 취소하기
 	@LoginRequired
