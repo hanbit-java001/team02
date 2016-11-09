@@ -4,7 +4,7 @@ $(function() {
 		$(".team2-back-button").show();
 	});
 
-	$(".team2-back-button").on("click", function(){
+	$(".team2-back-button, .reserveCancel").on("click", function(){
 		$(".team2-back-button").hide();
 	});
 
@@ -14,7 +14,7 @@ $(function() {
 		showReserveContainer();
 	});
 
-	$(".team2-back-button").on("click", function() {
+	$(".team2-back-button, .reserveCancel").on("click", function() {
 		hideReserveContainer();
 		showBtnsOfTicketing();
 	});
@@ -45,6 +45,9 @@ $(function() {
 				depTime : depPlandTime
 				}
 			});
+		alert("예매 되었습니다!");
+		hideReserveContainer();
+		showBtnsOfTicketing()
 	})
 
 	function hideBtnsOfTicketing() {

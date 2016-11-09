@@ -66,7 +66,7 @@
 				</div>
 				<div class="reserveBtnContainer">
 					<input class="btn btn-default reserve" type="button" value="예매">
-					<button type="button" class="btn btn-danger">취소</button>
+					<button type="button" class="btn btn-danger reserveCancel">취소</button>
 				</div>
 			</div>
 			<div id="trainStationsTable" class="col-lg-4 col-md-6 col-sm-6 jumbotron">
