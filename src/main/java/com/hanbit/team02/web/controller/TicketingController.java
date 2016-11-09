@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hanbit.team02.core.service.TrainTicketingService;
 import com.hanbit.team02.core.session.LoginRequired;
 import com.hanbit.team02.core.session.SessionHelpler;
+import com.hanbit.team02.core.vo.MemberVO;
 import com.hanbit.team02.core.vo.TicketVO;
 
 @Controller
@@ -54,12 +55,21 @@ public class TicketingController {
 		return result;
 	}
 
-	// 예매 목록보기 *예매/취소목록 수정해야 함
+	// 예매 목록보기
 	@LoginRequired
 	@RequestMapping("/api/ticketing/bookedTickets")
 	@ResponseBody
-	public List<TicketVO> bookedTickets(@RequestParam("cancel") int cancel) {
-		return trainTicketingService.getReservedTrainTickets(cancel);
+	public Map<String, Object> bookedTickets(@RequestParam("page") int page,
+			@RequestParam("cancel") int cancel) {
+		Map<String, Object> pagingTickets = new HashMap<>();
+
+		List<TicketVO> tickets = trainTicketingService.getReservedTickets(page, cancel);
+		int totalCount = trainTicketingService.getTotalReservedTickets();
+
+		pagingTickets.put("totalCount", totalCount);
+		pagingTickets.put("tickets", tickets);
+
+		return pagingTickets;
 	}
 
 	// 예매 상세보기

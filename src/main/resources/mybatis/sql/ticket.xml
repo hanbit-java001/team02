@@ -16,18 +16,45 @@
 			(#{reservedNumber}, #{name}, #{reservedTime}, #{cancel}, #{departureStation}, #{arrivalStation})
 	</insert>
 
-	<select id="selectTickets" parameterType="map" resultType="TicketVO">
-		SELECT t.train_id, t.seat_number, t.reserved_number, t.name, t.reserved_time, t.cancel
-		  FROM TICKET t, SHARES s
-	     WHERE t.cancel = #{cancel}
-	       AND ((s.group_yn = 'N' AND s.share_id = {#memberId})
-		    OR (s.group_yn = 'Y' AND s.share_id IN (
-				SELECT group_id
-				  FROM GROUP_MEMBER
-				 WHERE member_id = {#memberId}))
-	 	       )
-	  ORDER BY reserved_number
+	<select id="selectReservedTickets" parameterType="map" resultType="TicketVO">
+		<![CDATA[
+		SELECT 	a.rn, a.reservedNumber, a.name, a.reservedTime, a.cancel, a.departureStation, a.arrivalStation
+		  FROM (
+			SELECT a.rn, a.reservedNumber, a.name, a.reservedTime, a.cancel, a.departureStation, a.arrivalStation
+			  FROM (
+				SELECT ROWNUM rn, RESERVED_NUMBER reservedNumber, NAME name, RESERVED_TIME reservedTime,
+				CANCEL cancel, DEPARTURE departureStation, ARRIVAL arrivalStation
+				  FROM TICKET) a
+			 WHERE rn <= 1 * #{page}) a
+		 WHERE rn > 1 * (#{page} - 1) AND member_id = #{memberId} AND cancel = '0'
+  		]]>
 	</select>
+
+	<select id="countReservedTickets" resultType="int">
+  		SELECT COUNT(RESERVED_NUMBER)
+  		  FROM MEMBER
+  		 WHERE member_id = #{memberId} AND cancel = '0'
+  	</select>
+
+  	<select id="selectCanceledTickets" parameterType="map" resultType="TicketVO">
+		<![CDATA[
+		SELECT 	a.rn, a.reservedNumber, a.name, a.reservedTime, a.cancel, a.departureStation, a.arrivalStation
+		  FROM (
+			SELECT a.rn, a.reservedNumber, a.name, a.reservedTime, a.cancel, a.departureStation, a.arrivalStation
+			  FROM (
+				SELECT ROWNUM rn, RESERVED_NUMBER reservedNumber, NAME name, RESERVED_TIME reservedTime,
+				CANCEL cancel, DEPARTURE departureStation, ARRIVAL arrivalStation
+				  FROM TICKET) a
+			 WHERE rn <= 1 * #{page}) a
+		 WHERE rn > 1 * (#{page} - 1) AND member_id = #{memberId} AND cancel = '1'
+  		]]>
+	</select>
+
+	<select id="countCanceledTickets" resultType="int">
+  		SELECT COUNT(RESERVED_NUMBER)
+  		  FROM MEMBER
+  		 WHERE member_id = #{memberId} AND cancel = '1'
+  	</select>
 
 	<select id="selectTicket" parameterType="map" resultType="TicketVO">
 		SELECT t.train_id, t.seat_number, t.reserved_number, t.name, t.reserved_time, t.cancel
@@ -41,6 +68,7 @@
 		       )
 	</select>
 
+<!--
 	<select id="countTicket" parameterType="map" resultType="int">
 	<![CDATA[
 		SELECT COUNT(t.reservedNumber)
@@ -57,6 +85,7 @@
 		       )
 	]]>
 	</select>
+ -->
 
 	<update id="cancelShares" parameterType="map">
 	    UPDATE SHARES
@@ -85,4 +114,19 @@
 		 		   AND s.share_id = #{memberId}
 		 )
 	</update>
+
+<!--
+	<select id="selectTickets" parameterType="map" resultType="TicketVO">
+		SELECT t.train_id, t.seat_number, t.reserved_number, t.name, t.reserved_time, t.cancel
+		  FROM TICKET t, SHARES s
+	     WHERE t.cancel = #{cancel}
+	       AND ((s.group_yn = 'N' AND s.share_id = {#memberId})
+		    OR (s.group_yn = 'Y' AND s.share_id IN (
+				SELECT group_id
+				  FROM GROUP_MEMBER
+				 WHERE member_id = {#memberId}))
+	 	       )
+	  ORDER BY reserved_number
+	</select>
+ -->
 </mapper>
