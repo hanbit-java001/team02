@@ -15,7 +15,7 @@ $(function() {
 		});
 	}
 
-	function addMember(reservedNumber, name, reservedTime, departureStation, arrivalStation) {
+	function addTicket(reservedNumber, name, reservedTime, departureStation, arrivalStation) {
 
 		var ticketHTML = "";
 
@@ -47,7 +47,7 @@ $(function() {
 
 	function getTickets(pageNumber) {
 		$.ajax({
-			url: "/api/ticketing/bookedTickets",
+			url: "/api/ticketing/bookedTicketsAdmin",
 			method: "POST",
 			data: {
 				page: pageNumber
@@ -56,14 +56,16 @@ $(function() {
 
 			$(".ticket-container").empty();
 
-			for (var i=0; i<pagingMembers.members.length; i++) {
-				var member = pagingMembers.members[i];
+			for (var i=0; i<pagingTickets.tickets.length; i++) {
+				var ticket = pagingTickets.tickets[i];
 
-				var name = member.name;
-				var memberId = member.memberId;
-				var email = member.email;
+				var reservedNumber = ticket.reservedNumber;
+				var name = ticket.name;
+				var reservedTime = ticket.reservedTime;
+				var departureStation = ticket.departureStation;
+				var arrivalStation = ticket.arrivalStation;
 
-				addMember(name, memberId, email);
+				addTicket(reservedNumber, name, reservedTime, departureStation, arrivalStation);
 			}
 
 			var totalCount = pagingTickets.totalCount;
@@ -81,20 +83,20 @@ $(function() {
 		totalPages = parseInt(totalCount / itemsPerPage)
 			+ (totalCount % itemsPerPage > 0 ? 1 : 0);
 
-		$(".member-paging").empty();
+		$(".ticket-paging").empty();
 
-		var pagingNumberHTML = "<div class='member-paging-number'>";
+		var pagingNumberHTML = "<div class='ticket-paging-number'>";
 		pagingNumberHTML += "이전";
 		pagingNumberHTML += "</div>";
 
-		$(".member-paging").append(pagingNumberHTML);
+		$(".ticket-paging").append(pagingNumberHTML);
 
 		for (var i=firstPage; i<=lastPage; i++) {
 			if (i > totalPages) {
 				break;
 			}
 
-			pagingNumberHTML = "<div class='member-paging-number";
+			pagingNumberHTML = "<div class='ticket-paging-number";
 
 			if (i == currentPage) {
 				pagingNumberHTML += "current-page";
@@ -104,16 +106,16 @@ $(function() {
 			pagingNumberHTML += i;
 			pagingNumberHTML += "</div>";
 
-			$(".member-paging").append(pagingNumberHTML);
+			$(".ticket-paging").append(pagingNumberHTML);
 		}
 
-		pagingNumberHTML = "<div class='member-paging-number'>";
+		pagingNumberHTML = "<div class='ticket-paging-number'>";
 		pagingNumberHTML += "다음";
 		pagingNumberHTML += "</div>";
 
-		$(".member-paging").append(pagingNumberHTML);
+		$(".ticket-paging").append(pagingNumberHTML);
 
-		$(".member-paging-number").on("click", function() {
+		$(".ticket-paging-number").on("click", function() {
 			var pageText = $(this).text();
 			var pageNumber = 0;
 
@@ -137,7 +139,7 @@ $(function() {
 
 			currentPage = pageNumber;
 
-			getMembers(pageNumber);
+			getTickets(pageNumber);
 		});
 	}
 
@@ -148,6 +150,6 @@ $(function() {
 	var lastPage;
 	var totalPages;
 
-	getMembers(currentPage);
+	getTickets(currentPage);
 	addConfirm();
 });

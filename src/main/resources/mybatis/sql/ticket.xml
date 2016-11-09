@@ -16,7 +16,7 @@
 			(#{reservedNumber}, #{name}, #{reservedTime}, #{cancel}, #{departureStation}, #{arrivalStation})
 	</insert>
 
-	<select id="selectReservedTickets" parameterType="map" resultType="TicketVO">
+	<select id="selectTickets" parameterType="map" resultType="TicketVO">
 		<![CDATA[
 		SELECT 	a.rn, a.reservedNumber, a.name, a.reservedTime, a.cancel, a.departureStation, a.arrivalStation
 		  FROM (
@@ -26,17 +26,17 @@
 				CANCEL cancel, DEPARTURE departureStation, ARRIVAL arrivalStation
 				  FROM TICKET) a
 			 WHERE rn <= 1 * #{page}) a
-		 WHERE rn > 1 * (#{page} - 1) AND member_id = #{memberId} AND cancel = '0'
+		 WHERE rn > 1 * (#{page} - 1) AND member_id = #{memberId} AND cancel = #{cancel}
   		]]>
 	</select>
 
-	<select id="countReservedTickets" resultType="int">
-  		SELECT COUNT(RESERVED_NUMBER)
+	<select id="countTickets" parameterType="map" resultType="int">
+  		SELECT COUNT(CANCEL)
   		  FROM MEMBER
-  		 WHERE member_id = #{memberId} AND cancel = '0'
+  		 WHERE member_id = #{memberId} AND cancel = #{cancel}
   	</select>
 
-  	<select id="selectCanceledTickets" parameterType="map" resultType="TicketVO">
+	<select id="selectTicketsAdmin" parameterType="int" resultType="TicketVO">
 		<![CDATA[
 		SELECT 	a.rn, a.reservedNumber, a.name, a.reservedTime, a.cancel, a.departureStation, a.arrivalStation
 		  FROM (
@@ -46,14 +46,14 @@
 				CANCEL cancel, DEPARTURE departureStation, ARRIVAL arrivalStation
 				  FROM TICKET) a
 			 WHERE rn <= 1 * #{page}) a
-		 WHERE rn > 1 * (#{page} - 1) AND member_id = #{memberId} AND cancel = '1'
+		 WHERE rn > 1 * (#{page} - 1) AND cancel = #{cancel}
   		]]>
 	</select>
 
-	<select id="countCanceledTickets" resultType="int">
-  		SELECT COUNT(RESERVED_NUMBER)
+	<select id="countTicketsAdmin" parameterType="int" resultType="int">
+  		SELECT COUNT(CANCEL)
   		  FROM MEMBER
-  		 WHERE member_id = #{memberId} AND cancel = '1'
+  		 WHERE cancel = #{cancel}
   	</select>
 
 	<select id="selectTicket" parameterType="map" resultType="TicketVO">
