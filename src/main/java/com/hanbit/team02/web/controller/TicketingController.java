@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hanbit.team02.core.service.TrainTicketingService;
 import com.hanbit.team02.core.session.LoginRequired;
+import com.hanbit.team02.core.session.SessionHelpler;
 import com.hanbit.team02.core.vo.TicketVO;
 
 @Controller
@@ -30,14 +31,24 @@ public class TicketingController {
 	@LoginRequired
 	@RequestMapping("/api/ticketing/book")
 	@ResponseBody
-	public TicketVO bookTicket(@RequestBody TicketVO ticket) {
+	public TicketVO bookTicket(@RequestParam("departure") String departure,
+			@RequestParam("arrival") String arrival,
+			@RequestParam("depTime") String depTime) {
+		
+		String memberName = SessionHelpler.getSession().getName();
 
-		int countAdded = trainTicketingService.reserveTrainTicket(ticket);
+		TicketVO result = new TicketVO();
+		result.setDepartureStation(departure);
+		result.setArrivalStation(arrival);
+		result.setReservedTime(depTime);
+		result.setName(memberName);
+		
+		int countAdded = trainTicketingService.reserveTrainTicket(result);
 
 		if (countAdded == 0) {
 			throw new RuntimeException("잠시 후 이용해주세요.");
 		}
-		return ticket;
+		return result;
 	}
 
 	// 예매 목록보기 *예매/취소목록 수정해야 함

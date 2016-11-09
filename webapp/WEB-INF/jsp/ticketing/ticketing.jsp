@@ -56,13 +56,16 @@
 					<input type="context" class="form-control form-departure" id="txtName" placeholder="출발역">
 					<i tgt="departure" class="material-icons list-departure input-group-addon">list</i>
 				</div>
+				<div>
+					<input type="date" class="form-control depPlandTime" placeholder="Text input">				
+				</div>
 					<label for="txtName" class="input-required dep">도착역</label>
 				<div class="form-group input-group">
 					<input type="context" class="form-control form-arrival" id="txtName" placeholder="도착역">
 					<i tgt="arrival" class="material-icons list-arrival input-group-addon">list</i>
 				</div>
 				<div class="reserveBtnContainer">
-					<input class="btn btn-default reserve" type="submit" value="예매">
+					<input class="btn btn-default reserve" type="button" value="예매">
 					<button type="button" class="btn btn-danger">취소</button>
 				</div>
 			</div>

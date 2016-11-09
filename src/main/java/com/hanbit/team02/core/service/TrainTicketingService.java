@@ -29,7 +29,7 @@ public class TrainTicketingService {
 		ticket.setMemberId(memberId);
 
 		int result = ticketDAO.reserveTicket(ticket);
-		ticketDAO.insertShares(false, true, ticket.getReservedNumber(), memberId);
+//		ticketDAO.insertShares(false, true, ticket.getReservedNumber(), memberId);
 
 		return result;
 	}

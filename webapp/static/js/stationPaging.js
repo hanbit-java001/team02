@@ -13,19 +13,7 @@ $(function(){
 			citiesTable(result);
 		});
 	}
-//	function drawCityList() {
-//		$.ajax({
-//			url:"/api/get/citiescode",
-//			method:"POST",
-//			data:{
-//				operatorName : "getCtyCodeList",
-//				searchingCountNum : 999,
-//				pageNum : 1
-//			}
-//		}).done(function(result){
-//			citiesTable(result);
-//		});
-//	}
+
 	
 	function citiesTable(obj) {
 		var totalCities = obj.body.items.length;
@@ -92,17 +80,7 @@ $(function(){
 		var tofrom = $("#trainStationsTable").attr("tgt");
 		$(".closeIcon").click(closeAction);
 	});
-	
-	$(".reserve").on("click",function(){
-		$.ajax({
-			url : "/api/ticket/reserve",
-			method : "POST",
-			data : {
-				departure : departureStation,
-				arrival : arrivalStation
-				}
-			});
-		});
+
 ///////////////////////////////////////////////////////////////////////
 
 
@@ -191,29 +169,5 @@ $(function(){
 			stationsTable(stations, page);
 		});
 //////////////////////////////////////////////////////////////////////
-	}
-	function showLoginDialog() {
-		var loginDialogHTML ="";
-		loginDialogHTML +='<div class="form-group">';
-		loginDialogHTML +='<label for="txtId" class="input-required">아이디</label>';
-		loginDialogHTML +='<input type="text" class="form-control" id="txtId" placeholder="아이디">';
-		loginDialogHTML +='</div>';
-		loginDialogHTML +='<div class="form-group">';
-		loginDialogHTML +='<label for="txtPassword" class="input-required">비밀번호</label>';
-		loginDialogHTML +='<input type="password" class="form-control" id="txtPassword" placeholder="비밀번호">';
-		loginDialogHTML +='</div>';
-		loginDialogHTML +='<div class="bottom-buttons">';
-		loginDialogHTML +='<button class="btnLogin btn btn-success">로그인</button>';
-		loginDialogHTML +='<button class="btnLoginCancel btn btn-default">취소</button>';
-		loginDialogHTML +='</div>';
-		
-		$(".login-dialog").append(loginDialogHTML);
-		
-		$(".btnLoginCancel").on("click", function() {
-			$("#txtId").val("");
-			$("#txtPassword").val("");
-			emptyLoginDialog();
-			showMainContent();
-		});
 	}
 });

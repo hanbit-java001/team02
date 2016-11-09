@@ -21,17 +21,17 @@ public class TicketDAO {
 	private SqlSession sqlSession;
 
 	// 공유 관련
-	public int insertShares(boolean groupYn, boolean ownerYn, String reservedNumber, String shareId) {
-		Map params = new HashMap();
-
-		params.put("groupYn", groupYn? "Y":"N");
-		params.put("ownerYn", ownerYn? "Y":"N");
-		params.put("reservedNumber", reservedNumber);
-		params.put("shareId", shareId);
-
-		int result = sqlSession.insert("ticket.insertShares", params);
-		return result;
-	}
+//	public int insertShares(boolean groupYn, boolean ownerYn, String reservedNumber, String shareId) {
+//		Map params = new HashMap();
+//
+//		params.put("groupYn", groupYn? "Y":"N");
+//		params.put("ownerYn", ownerYn? "Y":"N");
+//		params.put("reservedNumber", reservedNumber);
+//		params.put("shareId", shareId);
+//
+//		int result = sqlSession.insert("ticket.insertShares", params);
+//		return result;
+//	}
 
 	// 티켓 예매하기
 	public int reserveTicket(TicketVO ticket) {

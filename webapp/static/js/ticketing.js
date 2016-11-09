@@ -26,6 +26,26 @@ $(function() {
 	$(".btnMemberList").on("click", function() {
 		location.href = "/member/list";
 	});
+	
+	$(".reserve").on("click", function() {
+		var departureStation = $(".form-departure").val();
+		var arrivalStation = $(".form-arrival").val();
+		var depPlandTime = $(".depPlandTime").val();
+		
+		console.log(departureStation);
+		console.log(arrivalStation);
+		console.log(depPlandTime);
+		
+		$.ajax({
+			url : "/api/ticketing/book",
+			method : "POST",
+			data : {
+				departure : departureStation,
+				arrival : arrivalStation,
+				depTime : depPlandTime
+				}
+			});
+	})
 
 	function hideBtnsOfTicketing() {
 		$(".ticketingContainer").hide();
