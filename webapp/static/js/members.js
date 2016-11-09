@@ -9,9 +9,9 @@ $(function() {
 		memberHeaderHTML += "<table class='table table-responsive'>";
 		memberHeaderHTML += "<thead>"
 		memberHeaderHTML += "<tr>";
-		memberHeaderHTML += "<th class='member-box-center'>"+'이름'+"</th>";
-		memberHeaderHTML += "<th class='member-box-center'>"+'아이디'+"</th>";
-		memberHeaderHTML += "<th class='member-box-center'>"+'이메일'+"</th>";
+		memberHeaderHTML += "<th>"+'이름'+"</th>";
+		memberHeaderHTML += "<th>"+'아이디'+"</th>";
+		memberHeaderHTML += "<th>"+'이메일'+"</th>";
 		memberHeaderHTML += "</tr>";
 		memberHeaderHTML += "</thead>"
 
@@ -37,9 +37,9 @@ $(function() {
 		memberHTML += "<table class='table table-responsive'>";
 		memberHTML += "<tbody>";
 		memberHTML += "<tr>";
-		memberHTML += "<td class='member-box-width'>"+name+"</td>";
-		memberHTML += "<td class='member-box-width'>"+memberId+"</td>";
-		memberHTML += "<td class='member-box-width'>"+email+"</td>";
+		memberHTML += "<td class='member-left'>"+name+"</td>";
+		memberHTML += "<td class='member-left'>"+memberId+"</td>";
+		memberHTML += "<td class='member-left'>"+email+"</td>";
 		memberHTML += "</tr>";
 		memberHTML += "</tbody>";
 		memberHTML += "</table>";
@@ -55,7 +55,7 @@ $(function() {
 				page: pageNumber
 			}
 		}).done(function(pagingMembers) {
-			addHeader();
+
 			$(".member-container").empty();
 
 			for (var i=0; i<pagingMembers.members.length; i++) {
@@ -150,6 +150,7 @@ $(function() {
 	var lastPage;
 	var totalPages;
 
+	addHeader();
 	getMembers(currentPage);
 	addConfirm();
 });

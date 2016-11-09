@@ -77,7 +77,6 @@ public class MemberController {
 
 	// 회원정보 조회
 	@LoginRequired
-//	@RequestMapping(value = "/api/member/{memberId}", method = RequestMethod.GET)
 	@RequestMapping("/api/member/viewMember")
 	@ResponseBody
 	public Map viewMember() {

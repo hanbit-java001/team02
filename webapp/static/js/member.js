@@ -1,5 +1,5 @@
 $(function() {
-	function addMember(name, memberId, password, email, phoneNumber) {
+	function addMember(name, memberId, email, phoneNumber) {
 		var memberHTML = "";
 		memberHTML += '<div class="member-info">';
 
@@ -13,11 +13,11 @@ $(function() {
 		memberHTML += '</div>';
 		memberHTML += '<div class="form-group">';
 		memberHTML += '<label for="txtPassword">'+'비밀번호'+'</label>';
-		memberHTML += '<input type="password" class="form-control" id="txtPassword" value='+password+'>';
+		memberHTML += '<input type="password" class="form-control" id="txtPassword" placeholder="비밀번호">';
 		memberHTML += '</div>';
 		memberHTML += '<div class="form-group">';
 		memberHTML += '<label for="txtPasswordConfirm">'+'비밀번호 확인'+'</label>';
-		memberHTML += '<input type="password" class="form-control" id="txtPasswordConfirm" value='+password+'>';
+		memberHTML += '<input type="password" class="form-control" id="txtPasswordConfirm" placeholder="비밀번호 확인">';
 		memberHTML += '</div>';
 		memberHTML += '<div class="form-group">';
 		memberHTML += '<label for="txtEmail">'+'이메일'+'</label>';
@@ -43,7 +43,7 @@ $(function() {
 			var phoneNumber = $("#txtPhoneNumber").val();
 
 			if (password.trim() == "") {
-				alert("비밀번호를 입력하세요.");
+				alert("비밀번호를 변경해주세요.");
 				$("#txtPassword").val("");
 				$("#txtPassword").focus();
 				return;
@@ -115,11 +115,10 @@ $(function() {
 
 			var name = member.name;
 			var memberId = member.memberId;
-			var password = member.password;
 			var email = member.email;
 			var phoneNumber = member.phoneNumber;
 
-			addMember(name, memberId, password, email, phoneNumber);
+			addMember(name, memberId, email, phoneNumber);
 		}).fail(function() {
 			$(".main-content").empty();
 			alert("로그인이 필요합니다.");
