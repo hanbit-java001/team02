@@ -4,15 +4,18 @@ html, body {
 	min-height: 510px;
 }
 
-.member-box {
-	display: inline-block;
-	width: 300px;
-	height: 200px;
+.table {
 	border: 1px solid #999;
 }
 
-.member-box-width {
+.header-cell-width {
+	width: 80px;
+	text-align: center;
+}
+
+.member-cell-width {
 	width: 200px;
+	text-align: center;
 }
 
 .member-box-center {

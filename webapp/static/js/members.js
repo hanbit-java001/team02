@@ -3,21 +3,6 @@ $(function() {
 		location.href = "/ticketing/ticketing";
 	});
 
-	function addHeader() {
-		var memberHeaderHTML = "";
-
-		memberHeaderHTML += "<table class='table table-responsive'>";
-		memberHeaderHTML += "<thead>"
-		memberHeaderHTML += "<tr>";
-		memberHeaderHTML += "<th>"+'이름'+"</th>";
-		memberHeaderHTML += "<th>"+'아이디'+"</th>";
-		memberHeaderHTML += "<th>"+'이메일'+"</th>";
-		memberHeaderHTML += "</tr>";
-		memberHeaderHTML += "</thead>"
-
-		$(".member-header").append(memberHeaderHTML);
-	}
-
 	function addConfirm() {
 		var confirmHTML = "";
 
@@ -34,14 +19,19 @@ $(function() {
 
 		var memberHTML = "";
 
-		memberHTML += "<table class='table table-responsive'>";
-		memberHTML += "<tbody>";
+		memberHTML += "<table class='table table-bordered'>";
 		memberHTML += "<tr>";
-		memberHTML += "<td class='member-left'>"+name+"</td>";
-		memberHTML += "<td class='member-left'>"+memberId+"</td>";
-		memberHTML += "<td class='member-left'>"+email+"</td>";
+		memberHTML += "<th class='header-cell-width'>"+'이름'+"</th>";
+		memberHTML += "<td class='member-cell-width'>"+name+"</td>";
 		memberHTML += "</tr>";
-		memberHTML += "</tbody>";
+		memberHTML += "<tr>";
+		memberHTML += "<th class='header-cell-width'>"+'아이디'+"</th>";
+		memberHTML += "<td class='member-cell-width'>"+memberId+"</td>";
+		memberHTML += "</tr>";
+		memberHTML += "<tr>";
+		memberHTML += "<th class='header-cell-width'>"+'이메일'+"</th>";
+		memberHTML += "<td class='member-cell-width'>"+email+"</td>";
+		memberHTML += "</tr>";
 		memberHTML += "</table>";
 
 		$(".member-container").append(memberHTML);
@@ -150,7 +140,6 @@ $(function() {
 	var lastPage;
 	var totalPages;
 
-	addHeader();
 	getMembers(currentPage);
 	addConfirm();
 });
