@@ -53,7 +53,10 @@ public class TicketDAO {
 
 	// 예매/취소 건수
 	public int countTickets(int cancel, String memberId) {
-		return sqlSession.selectOne("ticket.countTickets");
+		Map params = new HashMap();
+		params.put("cancel", cancel);
+
+		return sqlSession.selectOne("ticket.countTickets", params);
 	}
 
 	// 예매/취소 목록 (관리자 기능)
@@ -69,7 +72,7 @@ public class TicketDAO {
 
 	// 예매/취소 건수 (관리자 기능)
 	public int countTicketsAdmin(int cancel) {
-		return sqlSession.selectOne("ticket.countTicketsAdmin");
+		return sqlSession.selectOne("ticket.countTicketsAdmin", cancel);
 	}
 
 	// 예매/취소 상세 보기

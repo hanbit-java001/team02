@@ -45,15 +45,15 @@ $(function() {
 		$(".ticket-container").append(ticketHTML);
 	}
 
-	function getTickets(pageNumber) {
-		$.callAjax({
+	function getTickets(pageNumber, cancel) {
+		callAjax({
 			url: "/api/ticketing/bookedTicketsAdmin",
 			method: "POST",
 			data: {
 				page: pageNumber,
 				cancel: cancel
 			},
-			success: (function(pagingTickets) {
+			success: function(pagingTickets) {
 
 			$(".ticket-container").empty();
 
@@ -74,6 +74,7 @@ $(function() {
 			drawPaging(totalCount);
 			}
 		});
+	}
 
 	function drawPaging(totalCount) {
 		firstPage = parseInt((currentPage - 1) / pagingRange) * pagingRange + 1;
@@ -137,7 +138,7 @@ $(function() {
 
 			currentPage = pageNumber;
 
-			getTickets(pageNumber);
+			getTickets(pageNumber, cancel);
 		});
 	}
 
@@ -147,7 +148,8 @@ $(function() {
 	var firstPage;
 	var lastPage;
 	var totalPages;
+	var cancel = 0;
 
-	getTickets(currentPage);
+	getTickets(currentPage, cancel);
 	addConfirm();
 });

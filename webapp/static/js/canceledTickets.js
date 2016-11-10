@@ -45,8 +45,8 @@ $(function() {
 		$(".ticket-container").append(ticketHTML);
 	}
 
-	function getTickets(pageNumber) {
-		$.callAjax({
+	function getTickets(pageNumber, cancel) {
+		callAjax({
 			url: "/api/ticketing/revokedTickets",
 			method: "POST",
 			data: {
@@ -74,6 +74,7 @@ $(function() {
 			drawPaging(totalCount);
 			}
 		});
+	}
 
 	function drawPaging(totalCount) {
 		firstPage = parseInt((currentPage - 1) / pagingRange) * pagingRange + 1;
@@ -137,7 +138,7 @@ $(function() {
 
 			currentPage = pageNumber;
 
-			getTickets(pageNumber);
+			getTickets(pageNumber, cancel);
 		});
 	}
 
@@ -147,7 +148,8 @@ $(function() {
 	var firstPage;
 	var lastPage;
 	var totalPages;
+	var cancel = 1;
 
-	getTickets(currentPage);
+	getTickets(currentPage, cancel);
 	addConfirm();
 });

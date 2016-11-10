@@ -18,22 +18,22 @@
 
 	<select id="selectTickets" parameterType="map" resultType="TicketVO">
 		<![CDATA[
-		SELECT 	a.rn, a.reservedNumber, a.memberId, a.name, a.reservedTime, a.cancel, a.departureStation, a.arrivalStation
+		SELECT 	a.rn, a.reservedNumber, a.name, a.reservedTime, a.cancel, a.departureStation, a.arrivalStation
 		  FROM (
-			SELECT a.rn, a.reservedNumber, a.memberId, a.name, a.reservedTime, a.cancel, a.departureStation, a.arrivalStation
+			SELECT a.rn, a.reservedNumber, a.name, a.reservedTime, a.cancel, a.departureStation, a.arrivalStation
 			  FROM (
-				SELECT ROWNUM rn, RESERVED_NUMBER reservedNumber, MEMBER_ID memberId, NAME name, RESERVED_TIME reservedTime,
+				SELECT ROWNUM rn, RESERVED_NUMBER reservedNumber, NAME name, RESERVED_TIME reservedTime,
 				CANCEL cancel, DEPARTURE departureStation, ARRIVAL arrivalStation
 				  FROM TICKET) a
 			 WHERE rn <= 1 * #{page}) a
-		 WHERE rn > 1 * (#{page} - 1) AND member_id = #{memberId} AND cancel = #{cancel}
+		 WHERE rn > 1 * (#{page} - 1) AND cancel = #{cancel}
   		]]>
 	</select>
 
 	<select id="countTickets" parameterType="map" resultType="int">
   		SELECT COUNT(CANCEL)
-  		  FROM MEMBER
-  		 WHERE member_id = #{memberId} AND cancel = #{cancel}
+  		  FROM TICKET
+  		 WHERE cancel = #{cancel}
   	</select>
 
 	<select id="selectTicketsAdmin" parameterType="int" resultType="TicketVO">
@@ -52,7 +52,7 @@
 
 	<select id="countTicketsAdmin" parameterType="int" resultType="int">
   		SELECT COUNT(CANCEL)
-  		  FROM MEMBER
+  		  FROM TICKET
   		 WHERE cancel = #{cancel}
   	</select>
 
