@@ -46,13 +46,14 @@ $(function() {
 	}
 
 	function getTickets(pageNumber) {
-		$.ajax({
+		$.callAjax({
 			url: "/api/ticketing/revokedTicketsAdmin",
 			method: "POST",
 			data: {
-				page: pageNumber
-			}
-		}).done(function(pagingTickets) {
+				page: pageNumber,
+				cancel: cancel
+			},
+			success: function(pagingTickets) {
 
 			$(".ticket-container").empty();
 
@@ -71,11 +72,8 @@ $(function() {
 			var totalCount = pagingTickets.totalCount;
 
 			drawPaging(totalCount);
-		}).fail(function() {
-			alert("로그인이 필요합니다.");
-			location.href = "/home/main";
+			}
 		});
-	}
 
 	function drawPaging(totalCount) {
 		firstPage = parseInt((currentPage - 1) / pagingRange) * pagingRange + 1;
