@@ -50,7 +50,7 @@
   		]]>
 	</select>
 
-	<select id="countTicketsAdmin" parameterType="int" resultType="int">
+	<select id="countTicketsAdmin" parameterType="map" resultType="int">
   		SELECT COUNT(CANCEL)
   		  FROM TICKET
   		 WHERE cancel = #{cancel}
