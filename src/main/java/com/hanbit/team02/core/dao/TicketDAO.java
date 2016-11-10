@@ -72,21 +72,18 @@ public class TicketDAO {
 
 	// 예매/취소 건수 (관리자 기능)
 	public int countTicketsAdmin(int cancel) {
-		Map param = new HashMap();
-		param.put("cancel", cancel);
-
-		return sqlSession.selectOne("ticket.countTicketsAdmin", param);
+		return sqlSession.selectOne("ticket.countTicketsAdmin", cancel);
 	}
 
 	// 예매/취소 상세 보기
 	public TicketVO selectTicket(String reservedNumber, int cancel, String memberId) {
-		Map info = new HashMap();
+		Map params = new HashMap();
 
-		info.put("reservedNumber", reservedNumber);
-		info.put("cancel", cancel);
-		info.put("memberId", memberId);
+		params.put("reservedNumber", reservedNumber);
+		params.put("cancel", cancel);
+		params.put("memberId", memberId);
 
-		TicketVO ticket = sqlSession.selectOne("ticket.selectTicket", info);
+		TicketVO ticket = sqlSession.selectOne("ticket.selectTicket", params);
 		return ticket;
 	}
 
@@ -99,10 +96,8 @@ public class TicketDAO {
 	/* 공유 취소
 	public int cancelShares(boolean groupYn, String memberId) {
 		Map params = new HashMap();
-
 		params.put("groupYn", groupYn? "Y":"N");
 		params.put("memberId", memberId);
-
 		int result = sqlSession.update("ticket.cancelShares", params);
 		return result;
 	}

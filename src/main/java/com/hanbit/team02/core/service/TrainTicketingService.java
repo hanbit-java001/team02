@@ -92,7 +92,7 @@ public class TrainTicketingService {
 		}
 	}
 
-	//예매 상세보기
+	/*예매 상세보기
 	public TicketVO getReservedTrainTicket(String reservedNumber, int cancel) {
 		LOGGER.debug("예매 상세보기");
 
@@ -107,6 +107,7 @@ public class TrainTicketingService {
 			throw new RuntimeException("예매 내역이 없습니다.");
 		}
 	}
+	*/
 
 	/*공유 취소
 	public int cancelShared(boolean groupYn) {
@@ -186,7 +187,7 @@ public class TrainTicketingService {
 		}
 	}
 
-	//취소 상세보기
+	/*취소 상세보기
 	public TicketVO getCanceledTrainTicket(String reservedNumber, int cancel) {
 		LOGGER.debug("취소 상세보기");
 
@@ -198,7 +199,7 @@ public class TrainTicketingService {
 		else{
 			throw new RuntimeException("취소 내역이 없습니다.");
 		}
-	}
+	}*/
 
 	//예매번호 생성
 	public String generateNumber() {

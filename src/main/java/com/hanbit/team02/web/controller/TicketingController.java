@@ -93,7 +93,7 @@ public class TicketingController {
 		return ticket;
 	}
 
-	// 예매 상세보기
+	/* 예매 상세보기
 	@LoginRequired
 	@RequestMapping("/api/ticketing/bookedTicket")
 	@ResponseBody
@@ -106,7 +106,7 @@ public class TicketingController {
 		ticketInfo.put("info", info);
 
 		return ticketInfo;
-	}
+	}*/
 
 	@RequestMapping("/ticketing/totalReservations")
 	public String totalReservations() {
@@ -213,7 +213,7 @@ public class TicketingController {
 		return ticket;
 	}
 
-	// 취소상세보기
+	/* 취소상세보기
 	@LoginRequired
 	@RequestMapping("/api/ticketing/revokedTicket")
 	@ResponseBody
@@ -225,7 +225,7 @@ public class TicketingController {
 	@RequestMapping("/ticketing/totalCancelations")
 	public String totalCancelations() {
 		return "ticketing/totalCancelations";
-	}
+	}*/
 
 	// 취소목록  (관리자 기능)
 	@LoginRequired
