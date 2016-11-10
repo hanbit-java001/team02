@@ -55,6 +55,12 @@ public class TicketingController {
 		return result;
 	}
 
+
+	@RequestMapping("/ticketing/reservations")
+	public String reservations() {
+		return "ticketing/reservations";
+	}
+
 	// 예매목록
 	@LoginRequired
 	@RequestMapping("/api/ticketing/bookedTickets")
@@ -85,6 +91,11 @@ public class TicketingController {
 		ticket.put("eventCount", eventCount);
 
 		return ticket;
+	}
+
+	@RequestMapping("/ticketing/totalReservations")
+	public String totalReservations() {
+		return "ticketing/totalReservations";
 	}
 
 	// 예매목록  (관리자 기능)
@@ -159,6 +170,11 @@ public class TicketingController {
 		return ticket;
 	}
 
+	@RequestMapping("/ticketing/cancelations")
+	public String cancelations() {
+		return "ticketing/cancelations";
+	}
+
 	// 취소목록
 	@LoginRequired
 	@RequestMapping("/api/ticketing/revokedTickets")
@@ -189,6 +205,11 @@ public class TicketingController {
 		ticket.put("eventCount", eventCount);
 
 		return ticket;
+	}
+
+	@RequestMapping("/ticketing/totalCancelations")
+	public String totalCancelations() {
+		return "ticketing/totalCancelations";
 	}
 
 	// 취소목록  (관리자 기능)
