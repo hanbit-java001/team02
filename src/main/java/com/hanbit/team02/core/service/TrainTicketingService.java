@@ -98,8 +98,10 @@ public class TrainTicketingService {
 
 		String memberId = SessionHelpler.getSession().getMemberId();
 
+		TicketVO info = ticketDAO.selectTicket(reservedNumber, cancel, memberId);
+
 		if(cancel==0){
-			return ticketDAO.selectTicket(reservedNumber, cancel, memberId);
+			return info;
 		}
 		else{
 			throw new RuntimeException("예매 내역이 없습니다.");

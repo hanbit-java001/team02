@@ -2,11 +2,16 @@ $(function() {
 	$(".btnConfirm").on("click", function() {
 		location.href = "/ticketing/ticketing";
 	});
+	$(".btnDetail").on("click", function() {
+		location.href = "/ticketing/detail";
+	});
+
 
 	function addConfirm() {
 		var confirmHTML = "";
 
-		confirmHTML += '<button class="btnConfirm btn btn-success">확인</button>';
+		confirmHTML += '<button class="btnDetail btn btn-success">상세보기</button>';
+		confirmHTML += '<button class="btnConfirm btn btn-default">뒤로가기</button>';
 
 		$(".ticket-confirm").html(confirmHTML);
 

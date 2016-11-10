@@ -57,8 +57,8 @@
   	</select>
 
 	<select id="selectTicket" parameterType="map" resultType="TicketVO">
-		SELECT t.name, t.reserved_number, t.reserved_time, t.train_id, t.seat_number,
-		 	    t.departureTime, t.arrivalTime, t.departureStation, t.arrivalStation
+		SELECT t.name, t.reserved_number, t.reserved_time,
+		 	    t.departureTime, t.arrivalTime, t.departureStation, t.arrivalStation, t.cancel
 		  FROM TICKET t, SHARES s
 		 WHERE t.reserved_number = #{reservedNumber} AND t.cancel = #{cancel}
 		   AND ((s.group_yn = 'N' AND s.share_id = {#memberId})

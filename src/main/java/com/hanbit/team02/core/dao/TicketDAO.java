@@ -80,13 +80,13 @@ public class TicketDAO {
 
 	// 예매/취소 상세 보기
 	public TicketVO selectTicket(String reservedNumber, int cancel, String memberId) {
-		Map params = new HashMap();
+		Map info = new HashMap();
 
-		params.put("reservedNumber", reservedNumber);
-		params.put("cancel", cancel);
-		params.put("memberId", memberId);
+		info.put("reservedNumber", reservedNumber);
+		info.put("cancel", cancel);
+		info.put("memberId", memberId);
 
-		TicketVO ticket = sqlSession.selectOne("ticket.selectTicket", params);
+		TicketVO ticket = sqlSession.selectOne("ticket.selectTicket", info);
 		return ticket;
 	}
 

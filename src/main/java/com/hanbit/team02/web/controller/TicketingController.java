@@ -97,9 +97,15 @@ public class TicketingController {
 	@LoginRequired
 	@RequestMapping("/api/ticketing/bookedTicket")
 	@ResponseBody
-	public TicketVO bookedTicket(@RequestParam("reservedNumber") String reservedNumber,
+	public Map bookedTicket(@RequestParam("reservedNumber") String reservedNumber,
 			@RequestParam("cancel") int cancel) {
-		return trainTicketingService.getReservedTrainTicket(reservedNumber, cancel);
+
+		Map ticketInfo = new HashMap();
+		TicketVO info = trainTicketingService.getReservedTrainTicket(reservedNumber, cancel);
+
+		ticketInfo.put("info", info);
+
+		return ticketInfo;
 	}
 
 	@RequestMapping("/ticketing/totalReservations")
