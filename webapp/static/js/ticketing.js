@@ -14,6 +14,22 @@ $(function() {
 		showReserveContainer();
 	});
 
+	$(".btnListing").on("click", function() {
+		location.href = "/ticketing/reservations";
+	});
+
+	$(".btnListingOfCanceled").on("click", function() {
+		location.href = "/ticketing/cancelations";
+	});
+
+	$(".btnListingAdmin").on("click", function() {
+		location.href = "/ticketing/totalReservations";
+	});
+
+	$(".btnListingOfCanceledAdmin").on("click", function() {
+		location.href = "/ticketing/totalCancelations";
+	});
+
 	$(".team2-back-button, .reserveCancel").on("click", function() {
 		hideReserveContainer();
 		showBtnsOfTicketing();
