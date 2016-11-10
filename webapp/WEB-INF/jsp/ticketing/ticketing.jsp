@@ -39,6 +39,12 @@
 					<button type="button" class="btn btnListingOfCanceled btn-block">취소목록</button>
 				</p>
 				<p>
+					<button type="button" class="btn btnListingAdmin btn-block" id="hidden-view">예매목록</button>
+				</p>
+				<p>
+					<button type="button" class="btn btnListingOfCanceledAdmin btn-block" id="hidden-view">취소목록</button>
+				</p>
+				<p>
 					<button type="button" class="btn btnMemberInfo btn-block" id="hidden-view">회원정보</button>
 				</p>
 				<p>
@@ -57,7 +63,7 @@
 					<i tgt="departure" class="material-icons list-departure input-group-addon">list</i>
 				</div>
 				<div>
-					<input type="date" class="form-control depPlandTime" placeholder="Text input">				
+					<input type="date" class="form-control depPlandTime" placeholder="Text input">
 				</div>
 					<label for="txtName" class="input-required dep">도착역</label>
 				<div class="form-group input-group">

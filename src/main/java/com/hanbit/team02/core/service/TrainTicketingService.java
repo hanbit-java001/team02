@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hanbit.team02.core.dao.TicketDAO;
 import com.hanbit.team02.core.session.SessionHelpler;
+import com.hanbit.team02.core.vo.MemberVO;
 import com.hanbit.team02.core.vo.TicketVO;
 
 @Service
@@ -21,9 +22,9 @@ public class TrainTicketingService {
 	@Autowired
 	private TicketDAO ticketDAO;
 
-	//예매하기
+	//예매
 	@Transactional
-	public int reserveTrainTicket(TicketVO ticket) {
+	public int reserveTicket(TicketVO ticket) {
 		LOGGER.debug("티켓 예매");
 
 		String memberId = SessionHelpler.getSession().getMemberId();
@@ -35,23 +36,65 @@ public class TrainTicketingService {
 		return result;
 	}
 
-	//예매 목록보기
-	public List<TicketVO> getReservedTrainTickets(int cancel) {
-		LOGGER.debug("예매 티켓 목록 가져오기");
+	//예매목록
+	public List<TicketVO> getReservedTickets(int page, int cancel) {
+		LOGGER.debug("예매목록");
 
 		String memberId = SessionHelpler.getSession().getMemberId();
 
+		List<TicketVO> tickets = ticketDAO.selectTickets(page, cancel, memberId);
+
 		if(cancel==0){
-			return ticketDAO.selectTickets(cancel, memberId);
+			return tickets;
 		}
 		else{
 			throw new RuntimeException("예매 내역이 없습니다.");
 		}
 	}
 
+	//예매건수
+	public int countReserved(int cancel) {
+		LOGGER.debug("예매건수");
+
+		String memberId = SessionHelpler.getSession().getMemberId();
+
+		if(cancel==0){
+			return ticketDAO.countTickets(cancel, memberId);
+		}
+		else {
+			throw new RuntimeException("예매 내역이 없습니다.");
+		}
+	}
+
+	//예매목록 (관리자 기능)
+	public List<TicketVO> getReservedTicketsAdmin(int page, int cancel) {
+		LOGGER.debug("예매목록");
+
+		List<TicketVO> tickets = ticketDAO.selectTicketsAdmin(page, cancel);
+
+		if(cancel==0){
+			return tickets;
+		}
+		else{
+			throw new RuntimeException("예매 내역이 없습니다.");
+		}
+	}
+
+	//예매건수 (관리자 기능)
+	public int countReservedAdmin(int cancel) {
+		LOGGER.debug("예매건수");
+
+		if(cancel==0){
+			return ticketDAO.countTicketsAdmin(cancel);
+		}
+		else {
+			throw new RuntimeException("예매 내역이 없습니다.");
+		}
+	}
+
 	//예매 상세보기
 	public TicketVO getReservedTrainTicket(String reservedNumber, int cancel) {
-		LOGGER.debug("예매 티켓 상세보기");
+		LOGGER.debug("예매 상세보기");
 
 		String memberId = SessionHelpler.getSession().getMemberId();
 
@@ -63,21 +106,7 @@ public class TrainTicketingService {
 		}
 	}
 
-	//예매건수
-	public int countReserved(String reservedNumber, int cancel) {
-		LOGGER.debug("예매건수");
-
-		String memberId = SessionHelpler.getSession().getMemberId();
-
-		if(cancel==0){
-			return ticketDAO.countTicket(reservedNumber, cancel, memberId);
-		}
-		else{
-			throw new RuntimeException("예매 내역이 없습니다.");
-		}
-	}
-
-	//공유 취소하기
+	/*공유 취소
 	public int cancelShared(boolean groupYn) {
 		LOGGER.debug("공유 취소");
 
@@ -86,9 +115,10 @@ public class TrainTicketingService {
 		int result = ticketDAO.cancelShares(groupYn, memberId);
 		return result;
 	}
+	*/
 
-	//취소하기
-	public int cancelReservedTrainTicket(TicketVO ticket) {
+	//취소
+	public int cancelTicket(TicketVO ticket) {
 		LOGGER.debug("예매 취소");
 
 		String memberId = SessionHelpler.getSession().getMemberId();
@@ -98,28 +128,16 @@ public class TrainTicketingService {
 		return result;
 	}
 
-	//취소목록보기
-	public List<TicketVO> getCanceledTrainTickets(int cancel) {
-		LOGGER.debug("취소 티켓 목록 가져오기");
+	//취소목록
+	public List<TicketVO> getCanceledTickets(int page, int cancel) {
+		LOGGER.debug("취소목록");
 
 		String memberId = SessionHelpler.getSession().getMemberId();
 
-		if(cancel!=0){
-			return ticketDAO.selectTickets(cancel, memberId);
-		}
-		else{
-			throw new RuntimeException("취소 내역이 없습니다.");
-		}
-	}
-
-	//취소상세보기
-	public TicketVO getCanceledTrainTicket(String reservedNumber, int cancel) {
-		LOGGER.debug("취소 티켓 상세보기");
-
-		String memberId = SessionHelpler.getSession().getMemberId();
+		List<TicketVO> tickets = ticketDAO.selectTickets(page, cancel, memberId);
 
 		if(cancel!=0){
-			return ticketDAO.selectTicket(reservedNumber, cancel, memberId);
+			return tickets;
 		}
 		else{
 			throw new RuntimeException("취소 내역이 없습니다.");
@@ -127,13 +145,53 @@ public class TrainTicketingService {
 	}
 
 	//취소건수
-	public int countCanceled(String reservedNumber, int cancel) {
+	public int countCanceled(int cancel) {
 		LOGGER.debug("취소건수");
 
 		String memberId = SessionHelpler.getSession().getMemberId();
 
 		if(cancel!=0){
-			return ticketDAO.countTicket(reservedNumber, cancel, memberId);
+			return ticketDAO.countTickets(cancel, memberId);
+		}
+		else {
+			throw new RuntimeException("취소 내역이 없습니다.");
+		}
+	}
+
+	//취소목록 (관리자 기능)
+	public List<TicketVO> getCanceledTicketsAdmin(int page, int cancel) {
+		LOGGER.debug("취소목록");
+
+		List<TicketVO> tickets = ticketDAO.selectTicketsAdmin(page, cancel);
+
+		if(cancel!=0){
+			return tickets;
+		}
+		else{
+			throw new RuntimeException("취소 내역이 없습니다.");
+		}
+	}
+
+	//취소건수 (관리자 기능)
+	public int countCanceledAdmin(int cancel) {
+		LOGGER.debug("취소건수");
+
+		if(cancel!=0){
+			return ticketDAO.countTicketsAdmin(cancel);
+		}
+		else {
+			throw new RuntimeException("취소 내역이 없습니다.");
+		}
+	}
+
+	//취소 상세보기
+	public TicketVO getCanceledTrainTicket(String reservedNumber, int cancel) {
+		LOGGER.debug("취소 상세보기");
+
+		String memberId = SessionHelpler.getSession().getMemberId();
+
+		if(cancel!=0){
+			return ticketDAO.selectTicket(reservedNumber, cancel, memberId);
 		}
 		else{
 			throw new RuntimeException("취소 내역이 없습니다.");

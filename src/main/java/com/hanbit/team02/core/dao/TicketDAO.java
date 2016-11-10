@@ -33,21 +33,43 @@ public class TicketDAO {
 //		return result;
 //	}
 
-	// 티켓 예매하기
+	// 티켓 예매
 	public int reserveTicket(TicketVO ticket) {
 		int result = sqlSession.insert("ticket.reserveTicket", ticket);
 		return result;
 	}
 
-	// 티켓 목록 보기
-	public List<TicketVO> selectTickets(int cancel, String memberId) {
+	// 예매/취소 목록
+	public List<TicketVO> selectTickets(int page, int cancel, String memberId) {
 		Map params = new HashMap();
 
+		params.put("page", page);
 		params.put("cancel", cancel);
 		params.put("memberId", memberId);
 
 		List<TicketVO> result = sqlSession.selectList("ticket.selectTickets", params);
 		return result;
+	}
+
+	// 예매/취소 건수
+	public int countTickets(int cancel, String memberId) {
+		return sqlSession.selectOne("ticket.countTickets");
+	}
+
+	// 예매/취소 목록 (관리자 기능)
+	public List<TicketVO> selectTicketsAdmin(int page, int cancel) {
+		Map params = new HashMap();
+
+		params.put("page", page);
+		params.put("cancel", cancel);
+
+		List<TicketVO> result = sqlSession.selectList("ticket.selectTicketsAdmin", params);
+		return result;
+	}
+
+	// 예매/취소 건수 (관리자 기능)
+	public int countTicketsAdmin(int cancel) {
+		return sqlSession.selectOne("ticket.countTicketsAdmin");
 	}
 
 	// 티켓 상세 보기
@@ -62,19 +84,13 @@ public class TicketDAO {
 		return ticket;
 	}
 
-	// 예매 혹은 취소 건수
-	public int countTicket(String reservedNumber, int cancel, String memberId) {
-		Map params = new HashMap();
-
-		params.put("reservedNumber", reservedNumber);
-		params.put("cancel", cancel);
-		params.put("memberId", memberId);
-
-		int ticket = sqlSession.selectOne("ticket.countTicket", params);
-		return ticket;
+	// 티켓 취소
+	public int cancelTicket(TicketVO ticket) {
+		int result = sqlSession.update("ticket.cancelTicket", ticket);
+		return result;
 	}
 
-	// 공유 취소하기
+	/* 공유 취소
 	public int cancelShares(boolean groupYn, String memberId) {
 		Map params = new HashMap();
 
@@ -84,10 +100,5 @@ public class TicketDAO {
 		int result = sqlSession.update("ticket.cancelShares", params);
 		return result;
 	}
-
-	// 티켓 취소하기
-	public int cancelTicket(TicketVO ticket) {
-		int result = sqlSession.update("ticket.cancelTicket", ticket);
-		return result;
-	}
+	 */
 }

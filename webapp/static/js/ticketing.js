@@ -26,16 +26,16 @@ $(function() {
 	$(".btnMemberList").on("click", function() {
 		location.href = "/member/list";
 	});
-	
+
 	$(".reserve").on("click", function() {
 		var departureStation = $(".form-departure").val();
 		var arrivalStation = $(".form-arrival").val();
 		var depPlandTime = $(".depPlandTime").val();
-		
+
 		console.log(departureStation);
 		console.log(arrivalStation);
 		console.log(depPlandTime);
-		
+
 		$.ajax({
 			url : "/api/ticketing/book",
 			method : "POST",
@@ -80,6 +80,8 @@ $(function() {
 				$(".btnReserve").hide();
 				$(".btnListing").hide();
 				$(".btnListingOfCanceled").hide();
+				$(".btnListingAdmin").show();
+				$(".btnListingOfCanceledAdmin").show();
 				$(".btnMemberList").show();
 				showMemberMenu(true);
 			} else if (result.name == "") {

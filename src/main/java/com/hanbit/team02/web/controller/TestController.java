@@ -29,7 +29,7 @@ public class TestController {
 	@ResponseBody
 	public TicketVO addSchedule(@RequestBody TicketVO ticket) {
 
-		int countAdded = trainTicketingService.reserveTrainTicket(ticket);
+		int countAdded = trainTicketingService.reserveTicket(ticket);
 
 		if (countAdded == 0) {
 			throw new RuntimeException();
