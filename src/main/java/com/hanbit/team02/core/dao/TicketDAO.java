@@ -72,7 +72,7 @@ public class TicketDAO {
 		return sqlSession.selectOne("ticket.countTicketsAdmin");
 	}
 
-	// 티켓 상세 보기
+	// 예매/취소 상세 보기
 	public TicketVO selectTicket(String reservedNumber, int cancel, String memberId) {
 		Map params = new HashMap();
 

@@ -18,11 +18,11 @@
 
 	<select id="selectTickets" parameterType="map" resultType="TicketVO">
 		<![CDATA[
-		SELECT 	a.rn, a.reservedNumber, a.name, a.reservedTime, a.cancel, a.departureStation, a.arrivalStation
+		SELECT 	a.rn, a.reservedNumber, a.memberId, a.name, a.reservedTime, a.cancel, a.departureStation, a.arrivalStation
 		  FROM (
-			SELECT a.rn, a.reservedNumber, a.name, a.reservedTime, a.cancel, a.departureStation, a.arrivalStation
+			SELECT a.rn, a.reservedNumber, a.memberId, a.name, a.reservedTime, a.cancel, a.departureStation, a.arrivalStation
 			  FROM (
-				SELECT ROWNUM rn, RESERVED_NUMBER reservedNumber, NAME name, RESERVED_TIME reservedTime,
+				SELECT ROWNUM rn, RESERVED_NUMBER reservedNumber, MEMBER_ID memberId, NAME name, RESERVED_TIME reservedTime,
 				CANCEL cancel, DEPARTURE departureStation, ARRIVAL arrivalStation
 				  FROM TICKET) a
 			 WHERE rn <= 1 * #{page}) a
@@ -67,6 +67,7 @@
 				  FROM GROUP_MEMBER
 				 WHERE member_id = #{memberId}))
 		       )
+	  ORDER BY reserved_time
 	</select>
 
 <!--
